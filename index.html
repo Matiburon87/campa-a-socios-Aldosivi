@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Comunicación y Campaña — Club Atlético Aldosivi</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Montserrat & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            aldosivi: {
+              green: '#006b3c',
+              darkgreen: '#004d2b',
+              lightgreen: '#009956',
+              yellow: '#ffd700',
+              gold: '#e6c200',
+              accent: '#ffef70'
+            }
+          },
+          fontFamily: {
+            montserrat: ['Montserrat', 'sans-serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbar & glassmorphism */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #006b3c;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #009956;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+    .aldosivi-gradient {
+      background: linear-gradient(135deg, #004d2b 0%, #006b3c 50%, #002b18 100%);
+    }
+    .yellow-glow {
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+    }
+    .chat-bubble-received {
+      background: #1e293b;
+      border-radius: 0px 12px 12px 12px;
+    }
+    .chat-bubble-sent {
+      background: #004d2b;
+      border-radius: 12px 0px 12px 12px;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased text-slate-100 bg-slate-950">
+
+  <!-- Top Navigation Bar -->
+  <header class="glass-panel sticky top-0 z-50 border-b border-emerald-900/40 bg-slate-950/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-aldosivi-yellow to-amber-500 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg yellow-glow">
+            <i class="fa-solid fa-fish-fins text-2xl text-aldosivi-darkgreen"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-aldosivi-green text-aldosivi-yellow">
+                Campaña 2026-2027
+              </span>
+              <span class="text-xs text-slate-400">Validado Admin Socios • 19/08/2026</span>
+            </div>
+            <h1 class="text-lg sm:text-xl font-extrabold font-montserrat text-white tracking-tight">
+              Club Atlético Aldosivi <span class="text-aldosivi-yellow font-normal">| Soluciones de Comunicación</span>
+            </h1>
+          </div>
+        </div>
+
+        <!-- Quick Metrics Overview -->
+        <div class="hidden lg:flex items-center space-x-6 border-l border-slate-800 pl-6">
+          <div class="text-right">
+            <div class="text-xs text-slate-400">Socios Activos</div>
+            <div class="text-lg font-bold font-montserrat text-emerald-400">5.100</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-slate-400">En Deuda (1-5m)</div>
+            <div class="text-lg font-bold font-montserrat text-amber-400">1.200</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-slate-400">Meta Objetivo</div>
+            <div class="text-lg font-bold font-montserrat text-aldosivi-yellow">1.100 <span class="text-xs font-normal text-slate-400">recup+nuevos</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="bg-slate-900/80 border-t border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex space-x-2 overflow-x-auto py-2 scrollbar-none" id="mainTabNav">
+          <button onclick="switchTab('tab-diagnostico')" id="btn-tab-diagnostico" class="tab-btn active px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 bg-aldosivi-green text-white shadow-md">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>1. Diagnóstico Real & ROI</span>
+          </button>
+          <button onclick="switchTab('tab-video')" id="btn-tab-video" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+            <i class="fa-solid fa-film"></i>
+            <span>2. Guiones Video & Reels</span>
+          </button>
+          <button onclick="switchTab('tab-whatsapp')" id="btn-tab-whatsapp" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>3. WhatsApp Anti-Ban & Scripts</span>
+          </button>
+          <button onclick="switchTab('tab-plan')" id="btn-tab-plan" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+            <i class="fa-solid fa-list-check"></i>
+            <span>4. Plan Acción Inmediato & Presupuesto</span>
+          </button>
+          <button onclick="switchTab('tab-prensa')" id="btn-tab-prensa" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>5. Kit de Prensa & Social Media</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- TAB 1: DIAGNÓSTICO REAL & ROI -->
+    <div id="tab-diagnostico" class="tab-content space-y-8">
+      
+      <!-- Key Alert Banner -->
+      <div class="bg-gradient-to-r from-amber-950/80 via-slate-900 to-slate-900 border-l-4 border-amber-400 p-6 rounded-2xl glass-panel shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40 animate-pulse">
+              DATO CRÍTICO CONFIRMADO
+            </span>
+            <span class="text-xs text-slate-400">Reunión presencial Oficina Socios — 19/08/2026</span>
+          </div>
+          <h2 class="text-xl font-bold font-montserrat text-white">1.200 Socios Activos con Deuda de 1 a 5 meses</h2>
+          <p class="text-sm text-slate-300 max-w-3xl">
+            No son ex-socios perdiéndose en el olvido. Son socios activos en sistema que se olvidaron de pagar, tuvieron un problema con su tarjeta o confusión con el débito. <strong>Son el segmento más valioso de la campaña.</strong>
+          </p>
+        </div>
+        <div class="flex-shrink-0 bg-slate-900/90 border border-amber-400/30 p-4 rounded-xl text-center min-w-[200px]">
+          <div class="text-xs text-amber-300 uppercase font-semibold">Potencial Mensual</div>
+          <div class="text-2xl font-black text-emerald-400 font-montserrat">$45.600.000</div>
+          <div class="text-[10px] text-slate-400">1.200 socios × $38.000 débito auto</div>
+        </div>
+      </div>
+
+      <!-- ROI Interactive Calculator -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-emerald-900/50 relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-aldosivi-green/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-calculator text-aldosivi-yellow"></i>
+              <span>Simulador Financiero de Recuperación de Deudores</span>
+            </h3>
+            <p class="text-xs text-slate-400">Ajustá la tasa de recuperación estimada para ver el impacto económico directo e inmediato en la tesorería del club.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-lg p-1 flex items-center">
+            <span class="text-xs text-slate-400 px-3">Cuota Débito Promedio:</span>
+            <span class="text-sm font-bold text-emerald-400 bg-slate-800 px-3 py-1 rounded">$38.000 / mes</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          <!-- Slider Control -->
+          <div class="space-y-6 bg-slate-900/90 p-6 rounded-xl border border-slate-800">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="recoveryRate" class="text-sm font-semibold text-slate-200">Tasa de Recuperación:</label>
+                <span id="recoveryPercentLabel" class="text-xl font-extrabold text-aldosivi-yellow font-montserrat">50%</span>
+              </div>
+              <input type="range" id="recoveryRate" min="10" max="90" value="50" step="5" 
+                class="w-full h-3 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-aldosivi-yellow"
+                oninput="updateRoiCalculator(this.value)">
+              <div class="flex justify-between text-[11px] text-slate-500 mt-1">
+                <span>Conservador (10%)</span>
+                <span class="text-emerald-400 font-bold">Meta Ajustada (50%)</span>
+                <span>Optimista (90%)</span>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-4 border-t border-slate-800 text-xs">
+              <div class="flex justify-between text-slate-300">
+                <span>Socios deudores contactados:</span>
+                <span class="font-bold text-white">1.200 socios</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span>Socios recuperados estimados:</span>
+                <span id="recoveredCount" class="font-bold text-amber-400">600 socios</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span>Costo operativo WhatsApp (Anti-Ban):</span>
+                <span class="font-bold text-emerald-400">$0 / mes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Output Visual Card -->
+          <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-500/30 p-6 rounded-xl space-y-2">
+              <div class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Ingreso Mensual Recuperado</div>
+              <div id="monthlyRecovered" class="text-3xl font-black text-white font-montserrat">$22.800.000</div>
+              <p class="text-xs text-slate-400">Ingreso recurrente mes a mes directo por débito automático.</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-amber-950/60 to-slate-900 border border-amber-500/30 p-6 rounded-xl space-y-2">
+              <div class="text-xs uppercase tracking-wider text-amber-300 font-bold">Proyección Anual (12 Meses)</div>
+              <div id="annualRecovered" class="text-3xl font-black text-aldosivi-yellow font-montserrat">$273.600.000</div>
+              <p class="text-xs text-slate-400">Inyección de fondos fija sin costo de adquisición publicitario.</p>
+            </div>
+
+            <div class="sm:col-span-2 bg-slate-900/80 border border-slate-800 p-4 rounded-xl flex items-center justify-between text-xs text-slate-300">
+              <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-lightbulb text-aldosivi-yellow text-lg"></i>
+                <span><strong>Conclusión Estratégica:</strong> Recuperar 600 deudores genera más ingresos e impacto que captar 1.100 socios desde cero, a una fracción del costo.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segmented Strategy & Comparison -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Segmentation of Deudores -->
+        <div class="glass-panel p-6 rounded-2xl space-y-4">
+          <h3 class="text-base font-bold text-white font-montserrat flex items-center space-x-2">
+            <i class="fa-solid fa-layer-group text-emerald-400"></i>
+            <span>Segmentación de los 1.200 Deudores</span>
+          </h3>
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-emerald-300">Deuda 1 a 2 Meses</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400">~400 socios</span>
+              </div>
+              <p class="text-xs text-slate-400">
+                <strong>Perfil:</strong> Olvidos, expiración de plástico, problemas temporarios.<br>
+                <strong>Estrategia:</strong> Débito auto + recordatorio amable + WhatsApp 1 a 1 directo.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-amber-300">Deuda 3 a 5 Meses</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400">~800 socios</span>
+              </div>
+              <p class="text-xs text-slate-400">
+                <strong>Perfil:</strong> Morosidad consolidada, posible baja inminente.<br>
+                <strong>Estrategia:</strong> Llamada personal de operador + plan de facilidades + débito auto + 1er mes gratis.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Frentes Simultáneos Mix -->
+        <div class="glass-panel p-6 rounded-2xl space-y-4">
+          <h3 class="text-base font-bold text-white font-montserrat flex items-center space-x-2">
+            <i class="fa-solid fa-bullseye text-aldosivi-yellow"></i>
+            <span>Reajuste de Objetivos (Mix 1.100 Totales)</span>
+          </h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border-l-4 border-emerald-500">
+              <div>
+                <div class="text-xs text-slate-400">Frente A: Recuperación Deudores</div>
+                <div class="text-sm font-bold text-white">600 socios recuperados</div>
+              </div>
+              <span class="text-xs font-bold text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded">Prioridad #1</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border-l-4 border-blue-500">
+              <div>
+                <div class="text-xs text-slate-400">Frente B: Captación Nuevos</div>
+                <div class="text-sm font-bold text-white">500 socios nuevos</div>
+              </div>
+              <span class="text-xs font-bold text-blue-400 bg-blue-950 px-2.5 py-1 rounded">Prioridad #2</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border-l-4 border-amber-500">
+              <div>
+                <div class="text-xs text-slate-400">Frente C: Ex-Socios Históricos</div>
+                <div class="text-sm font-bold text-white">200 ex-socios recuperados</div>
+              </div>
+              <span class="text-xs font-bold text-amber-400 bg-amber-950 px-2.5 py-1 rounded">Complementario</span>
+            </div>
+
+            <div class="p-3 bg-aldosivi-green/20 rounded-lg border border-aldosivi-green/40 flex justify-between items-center text-xs font-bold">
+              <span>NUEVA BASE TOTAL EN 6 MESES:</span>
+              <span class="text-aldosivi-yellow text-sm font-montserrat">5.100 → 6.700 Socios</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Contexto Seguridad -->
+      <div class="glass-panel p-6 rounded-2xl border-l-4 border-amber-400">
+        <h3 class="text-base font-bold text-white font-montserrat flex items-center space-x-2 mb-3">
+          <i class="fa-solid fa-shield-halved text-amber-400"></i>
+          <span>Contexto de Seguridad</span>
+        </h3>
+        <p class="text-sm text-slate-300">
+          <strong>Barra brava: LA PESADA.</strong> Incidentes violentos 2024/2025. La campaña se centra en el hincha común, no en la barra.
+          Trabajo conjunto con fuerzas de seguridad y AFA para garantizar espectáculos familiares.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: GUIONES VIDEO & REELS -->
+    <div id="tab-video" class="tab-content hidden space-y-8">
+      
+      <!-- Video Selector Tabs -->
+      <div class="flex flex-wrap gap-3 bg-slate-900 p-2 rounded-xl border border-slate-800">
+        <button onclick="selectVideoScript('reel-a')" id="btn-script-reel-a" class="script-btn active px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all bg-aldosivi-green text-white">
+          🎬 Reel 60s - Var. A (Emocional)
+        </button>
+        <button onclick="selectVideoScript('reel-b')" id="btn-script-reel-b" class="script-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all">
+          ⚡ Reel 60s - Var. B (Rápida Paso a Paso)
+        </button>
+        <button onclick="selectVideoScript('reel-c')" id="btn-script-reel-c" class="script-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all">
+          💛 Reel 60s - Var. C (Nostálgica)
+        </button>
+        <button onclick="selectVideoScript('manifiesto')" id="btn-script-manifiesto" class="script-btn px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all">
+          🎥 Video Manifiesto 3 Min (Oficial)
+        </button>
+      </div>
+
+      <!-- Active Video Script Details Container -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
+        
+        <!-- Header metadata -->
+        <div id="scriptHeader" class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-6 border-b border-slate-800">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Interactive Script Scene Timeline -->
+        <div class="space-y-4">
+          <h4 class="text-xs font-bold uppercase text-slate-400 tracking-widest flex items-center justify-between">
+            <span>Storyboard & Timeline de Producción</span>
+            <span class="text-aldosivi-yellow"><i class="fa-solid fa-clapperboard"></i> Guiado por marcas temporales</span>
+          </h4>
+
+          <div id="scriptTimelineContainer" class="space-y-3">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Technical Production Specs -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
+          <h4 class="text-sm font-bold text-white font-montserrat flex items-center space-x-2">
+            <i class="fa-solid fa-sliders text-aldosivi-yellow"></i>
+            <span>Especificaciones Técnicas & Entregables de Producción</span>
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+              <div class="text-slate-500 mb-1">Formato Principal</div>
+              <div class="font-bold text-white">9:16 (1080x1920)</div>
+              <div class="text-[10px] text-slate-400">Reels / TikTok / Shorts</div>
+            </div>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+              <div class="text-slate-500 mb-1">Locución & Tono</div>
+              <div class="font-bold text-emerald-400">Hincha Real MDP</div>
+              <div class="text-[10px] text-slate-400">Sin todo corporativo</div>
+            </div>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+              <div class="text-slate-500 mb-1">Música / Audio</div>
+              <div class="font-bold text-aldosivi-yellow">La Bifurcada / Upbeat</div>
+              <div class="text-[10px] text-slate-400">Subir volumen en 0:08</div>
+            </div>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+              <div class="text-slate-500 mb-1">Criterio de Éxito</div>
+              <div class="font-bold text-white">Completado > 50%</div>
+              <div class="text-[10px] text-slate-400">CTR Link Bio > 3%</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 3: WHATSAPP ANTI-BAN & SCRIPTS -->
+    <div id="tab-whatsapp" class="tab-content hidden space-y-8">
+      
+      <!-- Anti-Ban Alert Box -->
+      <div class="bg-gradient-to-r from-red-950/80 via-slate-900 to-slate-900 border-l-4 border-red-500 p-6 rounded-2xl glass-panel space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">
+              PROTOCOLOS CRÍTICOS ANTI-BAN
+            </span>
+            <span class="text-xs text-slate-400">Meta WhatsApp Business Reglas 2026</span>
+          </div>
+          <span class="text-xs text-emerald-400 font-mono font-bold"><i class="fa-solid fa-shield-halved"></i> Límite: Max 10 msg / hora</span>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Dado que el número oficial aún no cuenta con verificación de Meta, <strong>enviar más de 50 mensajes seguidos provocará un bloqueo de 24 horas.</strong> Debe ejecutarse la estrategia de envío progresivo dividida en bloques de 10 mensajes.
+        </p>
+        
+        <!-- Daily Dispatch Schedule Table -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
+          <div class="bg-slate-950/90 p-3 rounded-lg border border-slate-800">
+            <div class="text-amber-400 font-bold">10:00 - 11:00 hs</div>
+            <div class="text-white font-semibold">10 Mensajes</div>
+            <div class="text-[10px] text-slate-400">Deudores 1-2 meses</div>
+          </div>
+          <div class="bg-slate-950/90 p-3 rounded-lg border border-slate-800">
+            <div class="text-amber-400 font-bold">15:00 - 16:00 hs</div>
+            <div class="text-white font-semibold">10 Mensajes</div>
+            <div class="text-[10px] text-slate-400">Deudores 1-2 meses</div>
+          </div>
+          <div class="bg-slate-950/90 p-3 rounded-lg border border-slate-800">
+            <div class="text-amber-400 font-bold">18:00 - 19:00 hs</div>
+            <div class="text-white font-semibold">10 Mensajes</div>
+            <div class="text-[10px] text-slate-400">Ex-Socios Históricos</div>
+          </div>
+          <div class="bg-slate-950/90 p-3 rounded-lg border border-slate-800">
+            <div class="text-amber-400 font-bold">20:00 - 21:00 hs</div>
+            <div class="text-white font-semibold">10 Llamadas Directas</div>
+            <div class="text-[10px] text-slate-400">Deudores 3-5 meses</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Simulator & Shortcuts Hub -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Interactive Emulator Mobile Phone (Left/Center) -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          <div class="w-full max-w-sm bg-slate-900 border-4 border-slate-800 rounded-[36px] overflow-hidden shadow-2xl relative">
+            
+            <!-- Phone Header -->
+            <div class="bg-aldosivi-darkgreen p-4 flex items-center justify-between text-white border-b border-emerald-800">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-aldosivi-yellow text-slate-950 font-bold flex items-center justify-center text-sm shadow">
+                  🦈
+                </div>
+                <div>
+                  <div class="font-bold text-sm leading-tight">Aldosivi Socios 🦈</div>
+                  <div class="text-[10px] text-emerald-200">Oficial WhatsApp Business</div>
+                </div>
+              </div>
+              <i class="fa-solid fa-ellipsis-vertical text-slate-300"></i>
+            </div>
+
+            <!-- Chat Screen Body -->
+            <div id="whatsappChatBody" class="p-4 h-[420px] overflow-y-auto space-y-3 bg-[#0b141a] text-xs">
+              <!-- System Time Marker -->
+              <div class="text-center text-[10px] text-slate-500 my-1">HOY • MENSAJE AUTOMÁTICO DE BIENVENIDA</div>
+              
+              <!-- Initial Welcome Message -->
+              <div class="chat-bubble-received p-3 text-slate-200 max-w-[85%] space-y-1.5 shadow">
+                <p>¡Hola! 🦈 Bienvenido a <strong>Aldosivi Socios</strong>.</p>
+                <p>Hacerse socio del Tiburón tarda <strong>2 minutos</strong> y es 100% online:</p>
+                <p>📱 aldosivi.com.ar/socio<br>💳 Tarjeta o transferencia (Mercado Pago)<br>✅ Carné digital directo a tu celu</p>
+                <p class="text-emerald-400 font-semibold">Débito auto: $38.000/mes (Ahorrás $108k/año)</p>
+                <p>🎁 <strong>PRIMER MES GRATIS</strong> hasta el 31/10/2026.</p>
+                <div class="text-[9px] text-slate-400 text-right">10:00</div>
+              </div>
+            </div>
+
+            <!-- Phone Input Box -->
+            <div class="p-3 bg-slate-900 border-t border-slate-800 flex items-center space-x-2">
+              <div class="bg-slate-950 text-slate-400 text-xs px-3 py-2 rounded-full flex-grow flex items-center space-x-1">
+                <span>Escribí un shortcut (ej: /alta)...</span>
+              </div>
+              <div class="w-8 h-8 rounded-full bg-aldosivi-green text-white flex items-center justify-center text-xs">
+                <i class="fa-solid fa-paper-plane"></i>
+              </div>
+            </div>
+
+          </div>
+          <p class="text-[11px] text-slate-500 mt-2 text-center">Hacé clic en cualquiera de los botones de la derecha para simular la respuesta automática o plantilla 1 a 1.</p>
+        </div>
+
+        <!-- Shortcuts & Response Templates List (Right) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-white font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-bolt text-aldosivi-yellow"></i>
+              <span>Respuestas Rápidas & Plantillas 1 a 1</span>
+            </h3>
+            <span class="text-xs text-slate-400">Teclas /Shortcut</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[500px] overflow-y-auto pr-1">
+            
+            <!-- Shortcut /alta -->
+            <div onclick="simulateShortcut('/alta')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-aldosivi-yellow">/alta</span>
+                <span class="text-[10px] text-slate-500">Alta Express</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Link directo aldosivi.com.ar/socio. 2 minutos, carné digital inmediato...</p>
+            </div>
+
+            <!-- Shortcut /precios -->
+            <div onclick="simulateShortcut('/precios')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-aldosivi-yellow">/precios</span>
+                <span class="text-[10px] text-slate-500">Tabla Precios</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Activo $38k, Cadete $27k, Jubilado $22k. Primer mes GRATIS con débito auto...</p>
+            </div>
+
+            <!-- Shortcut /deudores (Frente A) -->
+            <div onclick="simulateShortcut('/deudores')" class="p-3 rounded-xl bg-slate-900 hover:bg-emerald-950/40 border border-amber-500/40 hover:border-amber-400 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-amber-400">/deuda_1a2</span>
+                <span class="text-[10px] text-amber-300 font-bold">PRIORIDAD #1</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Hola [Nombre], vimos que tu cuota está pendiente. Te hacemos débito $38k + 1er mes gratis...</p>
+            </div>
+
+            <!-- Shortcut /beneficios -->
+            <div onclick="simulateShortcut('/beneficios')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-aldosivi-yellow">/beneficios</span>
+                <span class="text-[10px] text-slate-500">20+ Comercios MDP</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Entradas, 20+ comercios MDP, carné digital, actividades sociales mensuales...</p>
+            </div>
+
+            <!-- Shortcut /familia -->
+            <div onclick="simulateShortcut('/familia')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-aldosivi-yellow">/familia</span>
+                <span class="text-[10px] text-slate-500">Pack Familiar -10%</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">2 o más socios mismo grupo = 10% OFF cada uno ($34.200 c/u/mes en débito)...</p>
+            </div>
+
+            <!-- Shortcut /referido -->
+            <div onclick="simulateShortcut('/referido')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-aldosivi-yellow">/referido</span>
+                <span class="text-[10px] text-slate-500">Programa Referidos</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Programa "Socios Traen Socios": Vos 1 mes gratis + El nuevo 1 mes gratis...</p>
+            </div>
+
+            <!-- Shortcut /actividades -->
+            <div onclick="simulateShortcut('/actividades')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-aldosivi-yellow">/actividades</span>
+                <span class="text-[10px] text-slate-500">Eventos Sociales</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Entrenamientos abiertos, asados, charlas con ídolos, visita museo y peñas...</p>
+            </div>
+
+            <!-- Shortcut /exsocio -->
+            <div onclick="simulateShortcut('/exsocio')" class="p-3 rounded-xl bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold font-mono text-emerald-400">/exsocio</span>
+                <span class="text-[10px] text-slate-500">Reactivación</span>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">Hola [Nombre], te extrañamos en la tribuna. Volvé con débito $38k + 1er mes gratis...</p>
+            </div>
+
+          </div>
+
+          <!-- Onboarding 30 Days Mini Timeline -->
+          <div class="p-4 bg-slate-900/90 rounded-xl border border-slate-800 space-y-2">
+            <div class="text-xs font-bold text-white uppercase tracking-wider flex items-center justify-between">
+              <span>Secuencia Onboarding 30 Días</span>
+              <span class="text-emerald-400 font-normal">Fidelización Automática</span>
+            </div>
+            <div class="grid grid-cols-5 gap-1 text-[10px] text-center pt-1">
+              <div class="p-1.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300">
+                <div class="font-bold">Día 0</div>
+                <div>Carné + Guía</div>
+              </div>
+              <div class="p-1.5 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                <div class="font-bold">Día 3</div>
+                <div>Beneficios</div>
+              </div>
+              <div class="p-1.5 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                <div class="font-bold">Día 7</div>
+                <div>Partido Local</div>
+              </div>
+              <div class="p-1.5 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                <div class="font-bold">Día 15</div>
+                <div>Check Débito</div>
+              </div>
+              <div class="p-1.5 rounded bg-aldosivi-darkgreen border border-aldosivi-yellow/40 text-aldosivi-yellow font-bold">
+                <div>Día 30</div>
+                <div>Referí Amigo</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 4: PLAN ACCIÓN INMEDIATO & PRESUPUESTO -->
+    <div id="tab-plan" class="tab-content hidden space-y-8">
+      
+      <!-- Immediate Action Roadmap (19/08 - 22/08) -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-800">
+          <div>
+            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-bolt text-aldosivi-yellow"></i>
+              <span>Plan de Acción Inmediato (19 al 22 de Agosto 2026)</span>
+            </h3>
+            <p class="text-xs text-slate-400">Puesta en marcha prioritaria antes del lanzamiento oficial del lunes 25/08/2026.</p>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-aldosivi-green text-white">4 Días Clave</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          
+          <!-- HOY 19/08 -->
+          <div class="bg-slate-900 p-5 rounded-xl border-t-4 border-emerald-500 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-emerald-400 font-montserrat">HOY 19/08</span>
+              <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white">Validación & Solicitud</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> <span>Reunión con admin oficina socios.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-aldosivi-yellow mt-0.5"></i> <span>Solicitar export completo 1.200 deudores.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-aldosivi-yellow mt-0.5"></i> <span>Solicitar export ex-socios históricos.</span></li>
+            </ul>
+          </div>
+
+          <!-- MIÉRCOLES 20/08 -->
+          <div class="bg-slate-900 p-5 rounded-xl border-t-4 border-amber-500 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-amber-400 font-montserrat">MIÉRCOLES 20/08</span>
+              <i class="fa-solid fa-database text-amber-400"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white">Carga & Segmentación</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-amber-400 mt-0.5"></i> <span>Cargar base en Google Sheets (3 pestañas).</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-amber-400 mt-0.5"></i> <span>Asignar 1 coord. + 2 op. WA + 1 llamadas.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-amber-400 mt-0.5"></i> <span>Configurar horarios Anti-Ban.</span></li>
+            </ul>
+          </div>
+
+          <!-- JUEVES 21/08 -->
+          <div class="bg-slate-900 p-5 rounded-xl border-t-4 border-blue-500 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-blue-400 font-montserrat">JUEVES 21/08</span>
+              <i class="fa-solid fa-graduation-cap text-blue-400"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white">Capacitación & Flujo</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-blue-400 mt-0.5"></i> <span>Capacitar operadores con scripts.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-blue-400 mt-0.5"></i> <span>Preparar landing/link UTM ?ref=deudor.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-blue-400 mt-0.5"></i> <span>Cargar respuestas rápidas WA.</span></li>
+            </ul>
+          </div>
+
+          <!-- VIERNES 22/08 -->
+          <div class="bg-slate-900 p-5 rounded-xl border-t-4 border-aldosivi-yellow space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-aldosivi-yellow font-montserrat">VIERNES 22/08</span>
+              <i class="fa-solid fa-rocket text-aldosivi-yellow"></i>
+            </div>
+            <h4 class="text-sm font-bold text-white">Lanzamiento Frente A</h4>
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-aldosivi-yellow mt-0.5"></i> <span>Enviar primeros 50 WA a deudores.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-aldosivi-yellow mt-0.5"></i> <span>Testear flujo: envío → respuesta → alta.</span></li>
+              <li class="flex items-start space-x-2"><i class="fa-solid fa-arrow-right text-aldosivi-yellow mt-0.5"></i> <span>Medir tasa de respuesta inicial.</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Adjusted Budget Comparison Table -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div>
+            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-coins text-aldosivi-yellow"></i>
+              <span>Reajuste de Presupuesto (Ahorro de $403.500)</span>
+            </h3>
+            <p class="text-xs text-slate-400">Reorientación de recursos: Menos publicidad fría y folletería, más foco en recuperación 1 a 1 sin costo.</p>
+          </div>
+          <div class="bg-emerald-950 border border-emerald-500/40 px-4 py-2 rounded-xl text-right">
+            <div class="text-[10px] text-emerald-300 font-bold uppercase">CPA Promedio Ajustado</div>
+            <div class="text-xl font-black text-emerald-400 font-montserrat">~$1.550 / socio</div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left text-slate-300">
+            <thead class="text-[11px] uppercase bg-slate-900 text-slate-400 font-montserrat border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Rubro Presupuestario</th>
+                <th class="py-3 px-4 text-slate-500">Original (1.100 Nuevos)</th>
+                <th class="py-3 px-4 text-emerald-400 font-bold">Ajustado (Fuerza 1a1)</th>
+                <th class="py-3 px-4 text-amber-400">Diferencia / Ahorro</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Material gráfico & Flyers</td>
+                <td class="py-3 px-4 text-slate-500">$150.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$80.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$70.000</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Stands & Eventos Estadio</td>
+                <td class="py-3 px-4 text-slate-500">$200.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$150.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$50.000</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Digital (Meta Ads & Pauta)</td>
+                <td class="py-3 px-4 text-slate-500">$200.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$80.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$120.000</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Merch de Bienvenida</td>
+                <td class="py-3 px-4 text-slate-500">$180.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$100.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$80.000</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Viáticos Voluntarios</td>
+                <td class="py-3 px-4 text-slate-500">$80.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$60.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$20.000</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Prensa & Producción Video</td>
+                <td class="py-3 px-4 text-slate-500">$100.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$80.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$20.000</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Actividades Sociales (6 Meses)</td>
+                <td class="py-3 px-4 text-slate-500">$280.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$280.000</td>
+                <td class="py-3 px-4 text-slate-500">$0</td>
+              </tr>
+              <tr class="hover:bg-slate-900/50">
+                <td class="py-3 px-4 font-semibold text-white">Contingencia (15%)</td>
+                <td class="py-3 px-4 text-slate-500">$163.500</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">$120.000</td>
+                <td class="py-3 px-4 text-emerald-400 font-semibold">-$43.500</td>
+              </tr>
+              <tr class="bg-aldosivi-darkgreen/80 font-bold text-white text-sm">
+                <td class="py-3.5 px-4">PRESUPUESTO TOTAL 6 MESES</td>
+                <td class="py-3.5 px-4 text-slate-300 line-through">$1.353.500</td>
+                <td class="py-3.5 px-4 text-aldosivi-yellow text-base font-montserrat">$950.000</td>
+                <td class="py-3.5 px-4 text-emerald-300">-$403.500 (-30%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 5: KIT DE PRENSA & SOCIAL MEDIA -->
+    <div id="tab-prensa" class="tab-content hidden space-y-8">
+      
+      <!-- Social Media Copies Generator -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
+            <i class="fa-solid fa-copy text-aldosivi-yellow"></i>
+            <span>Generador de Copys para Redes Sociales</span>
+          </h3>
+          <span class="text-xs text-slate-400">Copiar con 1 clic</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Feed Copy -->
+          <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3 relative">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-emerald-400">FEED POST (IG / FB)</span>
+              <button onclick="copyToClipboard('copyFeedText')" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1 rounded transition flex items-center space-x-1">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+            <textarea id="copyFeedText" readonly class="w-full h-40 bg-slate-950 p-3 rounded-lg text-xs text-slate-300 font-mono resize-none border border-slate-800 focus:outline-none">🦈 Sos del Tiburón. Hacéte socio AHORA.
+
+2 minutos. Sin filas. Sin vueltas. Link en bio.
+
+Débito auto: $38.000/mes (ahorrás $108k/año)
+🎁 Primer mes GRATIS hasta 31/10/2026
+
+Entradas, 20+ descuentos en MDP, actividades sociales, carné digital.
+
+¿Qué esperás? Dale.
+
+#AldosiviSosVos #VolvéASerParte #PrimerMesGratis</textarea>
+          </div>
+
+          <!-- TikTok Caption -->
+          <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3 relative">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-amber-400">TIKTOK CAPTION</span>
+              <button onclick="copyToClipboard('copyTiktokText')" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1 rounded transition flex items-center space-x-1">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+            <textarea id="copyTiktokText" readonly class="w-full h-40 bg-slate-950 p-3 rounded-lg text-xs text-slate-300 font-mono resize-none border border-slate-800 focus:outline-none">¿Te gusta el fútbol? ¿Sos de Aldosivi? Entonces mirá esto.
+
+2 minutos. $38.000/mes. Primer mes gratis. Dale.
+
+#HinchaAldosivi #FútbolArgentino #MarDelPlata #SoySocio #PrimeraNacional</textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Press Release Gacetilla -->
+      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+          <div>
+            <h3 class="text-lg font-bold text-white font-montserrat">Gacetilla Oficial de Prensa</h3>
+            <p class="text-xs text-slate-400">Para distribución a medios de Mar del Plata (La Capital, LU6, LU9, TV Local)</p>
+          </div>
+          <button onclick="copyToClipboard('copyPressText')" class="bg-aldosivi-green hover:bg-emerald-600 text-white text-xs px-4 py-2 rounded-lg font-bold transition flex items-center space-x-2">
+            <i class="fa-solid fa-file-export"></i>
+            <span>Copiar Gacetilla Completa</span>
+          </button>
+        </div>
+
+        <textarea id="copyPressText" readonly class="w-full h-64 bg-slate-950 p-4 rounded-xl text-xs text-slate-300 font-mono leading-relaxed border border-slate-800 focus:outline-none">TÍTULO: Aldosivi lanza campaña de captación de socios "Volvé a ser parte. Aldosivi sos vos."
+
+BAJADA: Con alta 100% online desde $38.000/mes con débito automático y primer mes gratis hasta el 31 de octubre de 2026, el Club Atlético Aldosivi busca sumar 1.100 socios nuevos en 6 meses y alcanzar la meta de 10.000 socios activos.
+
+MAR DEL PLATA (19/08/2026) — El Club Atlético Aldosivi presentó hoy su nueva campaña institucional de captación y recuperación de asociados denominada "Volvé a ser parte. Aldosivi sos vos."
+
+La iniciativa introduce un esquema moderno y digitalizado: alta en solo 2 minutos desde cualquier dispositivo, carné digital inmediato, un ahorro de $108.000 al año mediante débito automático y beneficios tangibles que incluyen más de 20 convenios comerciales en Mar del Plata.
+
+Asimismo, la institución pondrá foco prioritario en la recuperación de 1.200 socios que mantienen cuotas pendientes, ofreciendo planes de regularización amigables y facilidades de pago sin penalidades.
+
+"Esta campaña no es solo vender cuotas sociales. Es volver a llenar la tribuna, el carné digital, el grupo de WhatsApp, el asado del sábado. Es Aldosivi sos vos", destacaron desde la coordinación.
+
+Contacto de Prensa:
+Email: prensa@aldosivi.com.ar / socios@aldosivi.com.ar
+Web: aldosivi.com.ar/socio</textarea>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast Notification Bar -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 bg-emerald-500 text-slate-950 font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-2 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none z-50">
+    <i class="fa-solid fa-check-circle text-lg"></i>
+    <span id="toastMessage">¡Copiado al portapapeles con éxito!</span>
+  </div>
+
+  <script>
+    // --- VIDEO SCRIPTS DATABASE ---
+    const scriptsData = {
+      'reel-a': {
+        title: 'Reel 60s — Variante A (Emocional / Identidad)',
+        type: 'Instagram Reels / TikTok / FB Reels',
+        duration: '60 Segundos Exactos',
+        music: '"La Bifurcada" o Instrumental Épico Tribal (Subir en 0:08)',
+        locutor: 'Voz cálida, marplatense, hincha de verdad.',
+        scenes: [
+          { time: '0:00-0:05', visual: 'Close-up cara hincha joven (18-25), camiseta Aldosivi, mirando a cámara. Tribuna desenfocada.', audio: '[Música baja + ruido estadio] 🎙️ "Sos de Aldosivi... y te gusta el fútbol."' },
+          { time: '0:05-0:12', visual: 'Quick cut: Hincha saltando en la popular, cantos, banderas desplegadas.', audio: '🎙️ "Te gusta gritar los goles..."' },
+          { time: '0:12-0:18', visual: 'Quick cut: Hincha abrazando padre/hijo emocionado en tribuna.', audio: '🎙️ "Te gusta estar con tu familia..."' },
+          { time: '0:18-0:25', visual: 'Quick cut: Hincha en bar con amigos viendo partido visitante en celular.', audio: '🎙️ "...y compartir con amigos."' },
+          { time: '0:25-0:30', visual: 'Corte a negro. Texto overlay: "Pero... ¿te acordás cuando eras socio?"', audio: '[Silencio 2s] 🎙️ "...pero te acordás cuando eras socio."' },
+          { time: '0:30-0:40', visual: 'Slide: Tabla precios. Socio Activo $38.000 con débito auto. PRIMER MES GRATIS.', audio: '🎙️ "Ser socio del Tiburón cuesta $38.000 por mes con débito. Y la cuota se paga sola."' },
+          { time: '0:40-0:48', visual: 'Slide: 3 iconos. Entradas + 20 descuentos MDP + Carné digital.', audio: '🎙️ "Entradas, eventos exclusivos, 20 descuentos en toda la ciudad, carné digital."' },
+          { time: '0:48-0:52', visual: 'Padre registrando hijo en celular web / Voluntario entregando carné.', audio: '🎙️ "...hacéte socio en 2 minutos. Sin filas, sin vueltas."' },
+          { time: '0:52-1:00', visual: 'Pantalla verde final. Logo Aldosivi + QR gigante + aldosivi.com.ar/socio', audio: '🎙️ "Aldosivi sos vos. Link en bio. Dale."' }
+        ]
+      },
+      'reel-b': {
+        title: 'Reel 60s — Variante B (Rápida Paso a Paso - Joven 18-30)',
+        type: 'TikTok / IG Reels',
+        duration: '60 Segundos',
+        music: 'Trending audio upbeat (Loop rápido)',
+        locutor: 'Joven dinámico / selfie a cámara.',
+        scenes: [
+          { time: '0:00-0:03', visual: 'Selfie celular. Hincha joven apuntando a cámara.', audio: '🎙️ "¿Querés ser socio de Aldosivi en 2 minutos?"' },
+          { time: '0:03-0:10', visual: 'Dedo señalando pantalla: 1. Link bio 2. Datos 3. Pago.', audio: '🎙️ "Uno: link en bio. Dos: datos. Tres: pagás con tarjeta. Listo."' },
+          { time: '0:10-0:18', visual: 'Captura pantalla web autogestión: Débito $38k + 1er mes gratis.', audio: '🎙️ "Con débito automático: 38 lucas. Primer mes GRATIS hasta octubre."' },
+          { time: '0:18-0:30', visual: 'Textos grandes rápidos: 🏟️ Entradas 🛒 20 Descuentos 🎉 Eventos.', audio: '🎙️ "Entradas, 20 descuentos en MDP, actividades sociales. ¿Qué esperás?"' },
+          { time: '0:30-0:60', visual: 'QR gigante + URL aldosivi.com.ar/socio.', audio: '🎙️ "Link en bio. Dale, tiburón. Primer mes gratis."' }
+        ]
+      },
+      'reel-c': {
+        title: 'Reel 60s — Variante C (Nostálgica Ex-Socio)',
+        type: 'Instagram / Facebook Reels',
+        duration: '60 Segundos',
+        music: 'Acústica suave / piano emotivo',
+        locutor: 'Voz madura, pausada, nostálgica.',
+        scenes: [
+          { time: '0:00-0:12', visual: 'Fotos viejas: socio en tribuna años atrás, carné físico antiguo.', audio: '🎙️ "Te acordás de ir al Minella..."' },
+          { time: '0:12-0:28', visual: 'Estadio al atardecer, previa con amigos comiendo choripán.', audio: '🎙️ "...de cantar en la popular... Nos extrañamos."' },
+          { time: '0:28-0:45', visual: 'Texto: "¿Te fuiste por X motivo? Cambiamos." Mostrar carné digital.', audio: '🎙️ "Ahora tenés débito $38k, 20 descuentos y carné digital."' },
+          { time: '0:45-1:00', visual: 'CTA: Volvé. Primer mes gratis hasta 31/10/2026.', audio: '🎙️ "Volvé a ser parte. Te esperamos, tiburón."' }
+        ]
+      },
+      'manifiesto': {
+        title: 'Video Manifiesto 3 Minutos — "Aldosivi sos vos"',
+        type: 'YouTube / Web / Prensa / Cine',
+        duration: '3:00 Minutos',
+        music: 'Banda sonora orquestal / Épica emotiva progresiva',
+        locutor: 'Voz masculina grave, marplatense (Socio histórico / Relator)',
+        scenes: [
+          { time: '0:00-0:35', visual: 'Negro total → Aparece "Aldosivi sos vos." Close-up a 8 socios reales.', audio: '🎙️ "Yo soy de Aldosivi. No es solo un equipo. Es los domingos en la popular..."' },
+          { time: '0:35-1:05', visual: 'Transición a rutina diaria: laburo, celular. Foto carné viejo B&N.', audio: '🎙️ "Pero hubo un tiempo en que no fuiste más. Y te olvidaste lo que valía."' },
+          { time: '1:05-1:40', visual: 'Captura web autogestión, QR gigante, mapa de 20 descuentos MDP.', audio: '🎙️ "Pero ahora es más fácil que nunca. Alta en 2 minutos desde el celu."' },
+          { time: '1:40-2:15', visual: 'Museo, inferiores jugando, asado de socios, voto en asambleas.', audio: '🎙️ "Eventos exclusivos, charlas con ídolos, tu voz en el club."' },
+          { time: '2:15-3:00', visual: 'Los 8 protagonistas abrazados en el Minella con bandera gigante.', audio: '🎙️ "Yo volví. Aldosivi sos vos. Hacéte socio. Ahora."' }
+        ]
+      }
+    };
+
+    // --- SHORTCUT SIMULATOR DATABASE ---
+    const shortcutsMap = {
+      '/alta': 'Link directo: aldosivi.com.ar/socio 👈\n\n2 minutos. Tarjeta o transferencia. Carné digital inmediato.\n\nDébito auto: $38.000/mes.\n🎁 Primer mes GRATIS hasta 31/10/2026.',
+      '/precios': 'Categorías en débito auto:\n\n🦈 Socio Activo (≥18): $38.000/mes\n🦈 Cadete (13-17): $27.000/mes\n🦈 Jubilado: $22.000/mes\n\n🎁 Promo: Primer mes GRATIS hasta 31/10/2026.',
+      '/deudores': 'Hola [Nombre]! 🦈 Vimos que tu cuota está pendiente. Te hacemos débito auto $38k + primer mes gratis para ponerte al día. Escribime "ACTUALIZAR" y te activo.',
+      '/beneficios': 'Ser socio de Aldosivi te da:\n\n🏟️ Entradas según disponibilidad\n🛒 20+ convenios comercios MDP\n📱 Carné digital + WhatsApp oficial\n🎉 Actividades sociales mensuales',
+      '/familia': '🆕 CATEGORÍA FAMILIAR:\n\n2 o más socios del mismo grupo = 10% OFF cada uno ($34.200 c/u/mes en débito). Escribinos "FAMILIA".',
+      '/referido': '🦈 PROGRAMA "SOCIOS TRAEN SOCIOS":\n\nTraé un nuevo socio:\n✅ Vos: 1 mes GRATIS\n✅ El nuevo: 1 mes GRATIS',
+      '/actividades': '🎉 ACTIVIDADES SOCIALES:\n\n🏟️ Entrenamientos abiertos\n🎤 Charlas con ídolos\n🏛️ Visita museo y estadio\n🥩 Asados socios "Tiburón"',
+      '/exsocio': 'Hola [Nombre]! Te extrañamos en la tribuna. Volvé con débito auto $38.000/mes + primer mes GRATIS hasta el 31/10/2026.'
+    };
+
+    // --- TAB SWITCHING LOGIC ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-aldosivi-green', 'text-white', 'shadow-md');
+        btn.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+      });
+
+      document.getElementById(tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+        activeBtn.classList.add('bg-aldosivi-green', 'text-white', 'shadow-md');
+      }
+    }
+
+    // --- ROI CALCULATOR LOGIC ---
+    function updateRoiCalculator(val) {
+      document.getElementById('recoveryPercentLabel').innerText = val + '%';
+      
+      const totalDeudores = 1200;
+      const cuota = 38000;
+      const recoveredCount = Math.round(totalDeudores * (val / 100));
+      const monthlyAmount = recoveredCount * cuota;
+      const annualAmount = monthlyAmount * 12;
+
+      document.getElementById('recoveredCount').innerText = recoveredCount + ' socios';
+      document.getElementById('monthlyRecovered').innerText = '$' + monthlyAmount.toLocaleString('es-AR');
+      document.getElementById('annualRecovered').innerText = '$' + annualAmount.toLocaleString('es-AR');
+    }
+
+    // --- SCRIPT PLAYER LOGIC ---
+    function selectVideoScript(scriptKey) {
+      document.querySelectorAll('.script-btn').forEach(btn => {
+        btn.classList.remove('bg-aldosivi-green', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+      document.getElementById('btn-script-' + scriptKey).classList.add('bg-aldosivi-green', 'text-white');
+      document.getElementById('btn-script-' + scriptKey).classList.remove('text-slate-400');
+
+      const data = scriptsData[scriptKey];
+      if (!data) return;
+
+      // Header render
+      document.getElementById('scriptHeader').innerHTML = `
+        <div>
+          <span class="text-xs font-bold text-aldosivi-yellow uppercase tracking-widest">${data.type}</span>
+          <h3 class="text-xl font-extrabold text-white font-montserrat">${data.title}</h3>
+          <p class="text-xs text-slate-400 mt-1"><strong>Música:</strong> ${data.music} | <strong>Locución:</strong> ${data.locutor}</p>
+        </div>
+        <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs text-emerald-400 font-bold font-mono">
+          ⏱️ ${data.duration}
+        </div>
+      `;
+
+      // Timeline render
+      const container = document.getElementById('scriptTimelineContainer');
+      container.innerHTML = '';
+      data.scenes.forEach(scene => {
+        const item = document.createElement('div');
+        item.className = 'p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col md:flex-row gap-4 items-start md:items-center text-xs';
+        item.innerHTML = `
+          <div class="font-mono font-bold text-amber-400 bg-slate-950 px-2.5 py-1 rounded border border-slate-800 min-w-[90px] text-center">
+            ${scene.time}
+          </div>
+          <div class="flex-1 space-y-1">
+            <div class="text-slate-300"><strong>Visual:</strong> ${scene.visual}</div>
+            <div class="text-emerald-300 font-medium"><strong>Audio / Voz:</strong> ${scene.audio}</div>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // --- WHATSAPP SIMULATOR LOGIC ---
+    function simulateShortcut(shortcutKey) {
+      const text = shortcutsMap[shortcutKey];
+      if (!text) return;
+
+      const chatBody = document.getElementById('whatsappChatBody');
+      
+      // User query message
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble-sent p-3 text-white max-w-[80%] ml-auto space-y-1 shadow text-xs';
+      userBubble.innerHTML = `<p class="font-mono font-bold text-aldosivi-yellow">${shortcutKey}</p><div class="text-[9px] text-emerald-200 text-right">Ahora</div>`;
+      chatBody.appendChild(userBubble);
+
+      // Bot answer
+      setTimeout(() => {
+        const botBubble = document.createElement('div');
+        botBubble.className = 'chat-bubble-received p-3 text-slate-200 max-w-[85%] space-y-1 shadow text-xs';
+        botBubble.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p><div class="text-[9px] text-slate-400 text-right">Ahora</div>`;
+        chatBody.appendChild(botBubble);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 300);
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // --- CLIPBOARD COPY HELPER ---
+    function copyToClipboard(elementId) {
+      const copyText = document.getElementById(elementId);
+      if (!copyText) return;
+
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand("copy");
+
+      // Show toast
+      const toast = document.getElementById('toastNotification');
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // --- ON LOAD INITIALIZATION ---
+    window.onload = function() {
+      // Initialize Default Video Script View
+      selectVideoScript('reel-a');
+      // Initialize ROI Calculator with 50% default
+      updateRoiCalculator(50);
+    };
+  </script>
+</body>
+</html>
