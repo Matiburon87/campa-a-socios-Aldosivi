@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario 4: Encuesta de Regularización y Medios de Pago — Club Atlético Aldosivi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            aldosivi: {
+              forest: '#14532d',
+              green: '#166534',
+              midgreen: '#15803d',
+              mint: '#f0fdf4',
+              mintborder: '#bbf7d0',
+              yellow: '#facc15',
+              gold: '#eab308'
+            }
+          },
+          fontFamily: {
+            montserrat: ['Montserrat', 'sans-serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #f1f5f2;
+      color: #1e293b;
+    }
+    .pdf-page {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(20, 83, 45, 0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #d1fae5;
+    }
+    .inst-header {
+      background: linear-gradient(135deg, #14532d 0%, #166534 65%, #0f3f22 100%);
+      color: #ffffff;
+    }
+    .callout-mint {
+      background-color: #f0fdf4;
+      border-left: 4px solid #166534;
+    }
+    .callout-urgent {
+      background-color: #fef2f2;
+      border-left: 4px solid #dc2626;
+    }
+    .q-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      transition: all 0.15s ease;
+    }
+    .q-card:hover {
+      border-color: #166534;
+      box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
+    }
+    @media print {
+      body {
+        background: #ffffff !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .pdf-page {
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+      }
+      .q-card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased pb-12">
+
+  <!-- Top Action Bar (Hidden on Print/PDF) -->
+  <div class="no-print sticky top-0 z-50 bg-[#14532d] text-white border-b border-yellow-400/30 shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="inline-flex items-center space-x-2 text-xs font-bold bg-white/10 hover:bg-white/20 text-white px-3.5 py-2 rounded-lg transition">
+          <i class="fa-solid fa-arrow-left text-yellow-400"></i>
+          <span>Volver al Dashboard</span>
+        </a>
+        <div class="hidden sm:flex items-center space-x-1.5 text-xs text-emerald-100">
+          <span>Formularios:</span>
+          <a href="formulario-socios-activos.html" class="px-2 py-1 rounded hover:bg-white/10 ">1. Activos</a>
+          <a href="formulario-leads-potenciales.html" class="px-2 py-1 rounded hover:bg-white/10 ">2. Leads</a>
+          <a href="formulario-ex-socios.html" class="px-2 py-1 rounded hover:bg-white/10 ">3. Ex-Socios</a>
+          <a href="formulario-deudores-regularizacion.html" class="px-2 py-1 rounded hover:bg-white/10 bg-yellow-400 text-slate-950 font-bold">4. Deudores</a>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <a href="templates/campana_recuperacion_ex_socios_aldosivi.pdf" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold bg-emerald-800 hover:bg-emerald-700 text-yellow-300 px-3 py-2 rounded-lg border border-yellow-400/30 transition">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>PDF Ex-Socios</span>
+        </a>
+        <button onclick="window.print()" class="inline-flex items-center space-x-2 text-xs font-bold bg-yellow-400 hover:bg-yellow-300 text-slate-950 px-4 py-2 rounded-lg shadow transition">
+          <i class="fa-solid fa-print"></i>
+          <span>Imprimir / Guardar PDF</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pdf-page">
+    <div class="inst-header p-8">
+      <div class="flex items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded bg-yellow-400 text-slate-950 text-xs font-extrabold uppercase tracking-wider">
+            <span>Formulario Oficial #4 • Regularización</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold font-montserrat tracking-tight text-white">
+            Formulario de Facilidades y Adhesión a Medios Web — Socios con Cuotas Pendientes
+          </h1>
+          <p class="text-emerald-100 text-sm">
+            Programa "Te acompañamos, no te damos de baja" • Recuperación de Padrón (1 a 5 meses)
+          </p>
+        </div>
+        <div class="w-16 h-16 rounded-full bg-white/10 p-1.5 border-2 border-yellow-400 flex items-center justify-center shrink-0">
+          <img src="escudo-aldosivi.png" alt="Escudo Oficial Aldosivi" class="w-full h-full object-contain" onerror="this.src='Escudo Oficial Aldosivi.png'" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-4 border-t border-emerald-700/60 text-xs">
+        <div>
+          <span class="text-yellow-300 font-bold uppercase block text-[10px]">CLUB:</span>
+          <span class="text-white font-medium">Club Atlético Aldosivi</span>
+        </div>
+        <div>
+          <span class="text-yellow-300 font-bold uppercase block text-[10px]">UNIVERSO:</span>
+          <span class="text-white font-medium">1.200 Socios (Mora 1 a 5 meses)</span>
+        </div>
+        <div>
+          <span class="text-yellow-300 font-bold uppercase block text-[10px]">META OBJETIVO:</span>
+          <span class="text-white font-medium">600 Socios Regularizados ($22.8M/mes)</span>
+        </div>
+        <div>
+          <span class="text-yellow-300 font-bold uppercase block text-[10px]">CANALES DE PAGO:</span>
+          <span class="text-white font-medium">Web Online / Predio / Tienda Olavarría</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 sm:p-8 space-y-6">
+      
+      <div class="callout-mint p-5 rounded-r-xl space-y-2 text-sm">
+        <div class="font-bold text-[#14532d] flex items-center gap-2">
+          <i class="fa-solid fa-handshake-angle text-[#166534]"></i>
+          <span>Tono de Ayuda Institucional (Sin Intimación)</span>
+        </div>
+        <p class="text-slate-700 italic">
+          "Hola <strong>[Nombre]</strong>! 🦈 Sabemos que a veces se complica acercarse a pagar o recordar los vencimientos. Hoy ya no necesitás moverte de tu casa: podés ponerte al día <strong>100% por medios web</strong>, o si preferís atención presencial, te esperamos en el <strong>Predio Deportivo de Punta Mogotes</strong> o en la <strong>Tienda Oficial de la calle Olavarría</strong>."
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Nombre del Socio:</label>
+          <input type="text" placeholder="Nombre y Apellido" class="w-full p-2 rounded border border-slate-300 bg-white" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">N° de Socio:</label>
+          <input type="text" placeholder="Ej: #18200" class="w-full p-2 rounded border border-slate-300 bg-white" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Meses Pendientes:</label>
+          <select class="w-full p-2 rounded border border-slate-300 bg-white">
+            <option>Bloque 1: 1 a 2 meses (~400 socios)</option>
+            <option>Bloque 2: 3 a 5 meses (~800 socios)</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">WhatsApp:</label>
+          <input type="text" placeholder="+54 9 223 XXX-XXXX" class="w-full p-2 rounded border border-slate-300 bg-white" />
+        </div>
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- Q1 -->
+        <div class="q-card p-5 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-6 h-6 rounded-full bg-[#14532d] text-yellow-300 font-bold text-xs flex items-center justify-center">1</span>
+            <h3 class="font-bold text-slate-900 text-sm">¿Cuál fue el motivo principal por el que quedaron cuotas pendientes?</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700 pl-8">
+            <label class="flex items-center space-x-2"><input type="radio" name="dq1" class="accent-[#166534]" /><span><strong>Olvido o falta de tiempo</strong> para ir a pagar en persona</span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq1" class="accent-[#166534]" /><span><strong>Vencimiento o cambio de plástico</strong> de mi tarjeta anterior</span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq1" class="accent-[#166534]" /><span><strong>Dificultad económica</strong> temporal en estos meses</span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq1" class="accent-[#166534]" /><span>No sabía cómo abonar por la nueva plataforma web</span></label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="q-card p-5 space-y-3 bg-[#f0fdf4] border-[#166534]/40">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-6 h-6 rounded-full bg-[#14532d] text-yellow-300 font-bold text-xs flex items-center justify-center">2</span>
+            <h3 class="font-bold text-[#14532d] text-sm">¿Qué opción de regularización te resulta más cómoda para mantener tu antigüedad?</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pl-8 pt-1">
+            <label class="p-3 rounded-lg bg-white border border-emerald-300 space-y-1 cursor-pointer">
+              <div class="font-bold text-[#14532d] flex items-center gap-1.5">
+                <input type="radio" name="dq2" checked class="accent-[#166534]" />
+                <span>Opción A: Adhesión a Débito Automático ($38.000/mes)</span>
+              </div>
+              <p class="text-slate-600 text-[11px] pl-5">Ahorrás $108.000 al año (19% OFF respecto a ventanilla) + <strong>1er mes BONIFICADO</strong> (se descuenta del 2do débito).</p>
+            </label>
+            <label class="p-3 rounded-lg bg-white border border-emerald-300 space-y-1 cursor-pointer">
+              <div class="font-bold text-[#14532d] flex items-center gap-1.5">
+                <input type="radio" name="dq2" class="accent-[#166534]" />
+                <span>Opción B: Plan "Te Acompañamos" (Deuda 3-5 meses)</span>
+              </div>
+              <p class="text-slate-600 text-[11px] pl-5">Plan de facilidades personalizado en hasta 3 cuotas sin interés + mantenimiento de tu número de socio histórico.</p>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="q-card p-5 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-6 h-6 rounded-full bg-[#14532d] text-yellow-300 font-bold text-xs flex items-center justify-center">3</span>
+            <h3 class="font-bold text-slate-900 text-sm">¿Por dónde preferís realizar el pago o la adhesión?</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700 pl-8">
+            <label class="flex items-center space-x-2"><input type="radio" name="dq3" checked class="accent-[#166534]" /><span>🌐 <strong>100% Online por Medios Web</strong> (Link por WhatsApp / aldosivi.com.ar/socio)</span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq3" class="accent-[#166534]" /><span>🏟️ Presencial en el <strong>Predio Deportivo de Punta Mogotes</strong></span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq3" class="accent-[#166534]" /><span>🛍️ Presencial en la <strong>Tienda Oficial de calle Olavarría</strong></span></label>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="q-card p-5 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-6 h-6 rounded-full bg-[#14532d] text-yellow-300 font-bold text-xs flex items-center justify-center">4</span>
+            <h3 class="font-bold text-slate-900 text-sm">¿Te gustaría sumar a tu grupo familiar con 10% de descuento adicional ($34.200 c/u)?</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700 pl-8">
+            <label class="flex items-center space-x-2"><input type="radio" name="dq4" class="accent-[#166534]" /><span>Sí, quiero consultar por el Pack Familiar</span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq4" class="accent-[#166534]" /><span>Solo regularizar mi carné individual</span></label>
+            <label class="flex items-center space-x-2"><input type="radio" name="dq4" class="accent-[#166534]" /><span>Necesito que me llame un operador en 5 minutos</span></label>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="q-card p-5 space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-6 h-6 rounded-full bg-[#14532d] text-yellow-300 font-bold text-xs flex items-center justify-center">5</span>
+            <h3 class="font-bold text-slate-900 text-sm">Observaciones / Horario preferido para que te contactemos:</h3>
+          </div>
+          <div class="pl-8">
+            <textarea rows="2" placeholder="Ej: Prefiero que me escriban por WhatsApp después de las 15 hs..." class="w-full p-2.5 rounded-lg border border-slate-300 text-xs bg-slate-50"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Institutional Footer -->
+      <div class="mt-10 pt-6 border-t-2 border-[#14532d]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+        <div class="flex items-center space-x-3">
+          <img src="escudo-aldosivi.png" alt="Escudo Aldosivi" class="w-8 h-8 object-contain" onerror="this.src='Escudo Oficial Aldosivi.png'" />
+          <div>
+            <div class="font-bold text-[#14532d]">Club Atlético Aldosivi — Campaña Oficial de Socios 2026-2027</div>
+            <div class="text-[11px] text-slate-500">
+              Atención y Pagos: <strong>100% Online Web (aldosivi.com.ar/socio)</strong> • Presencial: <strong>Predio Deportivo de Punta Mogotes</strong> y <strong>Tienda Oficial Calle Olavarría</strong>
+            </div>
+          </div>
+        </div>
+        <div class="text-right shrink-0">
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold bg-[#14532d] text-yellow-300">
+            <i class="fa-solid fa-code mr-1.5"></i> Firma Creador: Maty_Asaro_Dev
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

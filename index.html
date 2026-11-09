@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<html lang="es" class="h-full">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Centro de Comunicación y Campaña — Club Atlético Aldosivi</title>
+  <title>Centro de Comunicación, Campaña y Dashboard — Club Atlético Aldosivi</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,17 +16,19 @@
 
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
             aldosivi: {
-              green: '#006b3c',
-              darkgreen: '#004d2b',
-              lightgreen: '#009956',
-              yellow: '#ffd700',
-              gold: '#e6c200',
-              accent: '#ffef70'
+              forest: '#14532d',
+              green: '#166534',
+              midgreen: '#15803d',
+              lightgreen: '#22c55e',
+              mint: '#f0fdf4',
+              mintborder: '#bbf7d0',
+              yellow: '#facc15',
+              gold: '#eab308',
+              accent: '#fde047'
             }
           },
           fontFamily: {
@@ -39,129 +41,181 @@
   </script>
 
   <style>
-    /* Custom scrollbar & glassmorphism */
+    body {
+      background-color: #f1f5f2;
+      color: #1e293b;
+    }
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #0f172a;
+      background: #e2e8f0;
     }
     ::-webkit-scrollbar-thumb {
-      background: #006b3c;
+      background: #14532d;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #009956;
+      background: #166534;
     }
-    .glass-panel {
-      background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 215, 0, 0.15);
+    .inst-header-gradient {
+      background: linear-gradient(135deg, #14532d 0%, #166534 60%, #0f3f22 100%);
     }
-    .aldosivi-gradient {
-      background: linear-gradient(135deg, #004d2b 0%, #006b3c 50%, #002b18 100%);
+    .inst-card {
+      background: #ffffff;
+      border: 1px solid #dce5df;
+      box-shadow: 0 4px 20px rgba(20, 83, 45, 0.06);
+    }
+    .callout-mint {
+      background-color: #f0fdf4;
+      border-left: 4px solid #166534;
+    }
+    .callout-urgent {
+      background-color: #fef2f2;
+      border-left: 4px solid #dc2626;
     }
     .yellow-glow {
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.28);
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.35);
     }
     .chat-bubble-received {
-      background: #1e293b;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
       border-radius: 0px 12px 12px 12px;
     }
     .chat-bubble-sent {
-      background: #004d2b;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #14532d;
       border-radius: 12px 0px 12px 12px;
     }
   </style>
 </head>
-<body class="h-full flex flex-col font-sans antialiased text-slate-100 bg-slate-950">
+<body class="min-h-full flex flex-col font-sans antialiased text-slate-800">
 
-  <!-- Top Navigation Bar -->
-  <header class="glass-panel sticky top-0 z-50 border-b border-emerald-900/40 bg-slate-950/95">
+  <!-- ================================================= -->
+  <!-- TOP INSTITUTIONAL HEADER (PDF GREEN & GOLD STYLE) -->
+  <!-- ================================================= -->
+  <header class="inst-header-gradient sticky top-0 z-50 border-b-2 border-aldosivi-yellow shadow-lg text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex flex-wrap items-center justify-between py-3.5 gap-4">
         
-        <!-- Logo & Title -->
+        <!-- Logo & Institutional Title -->
         <div class="flex items-center space-x-3.5">
-          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-aldosivi-yellow via-amber-400 to-amber-600 p-0.5 shadow-xl yellow-glow flex items-center justify-center shrink-0">
-            <div class="w-full h-full rounded-full bg-slate-950/90 backdrop-blur flex items-center justify-center overflow-hidden p-1">
+          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-aldosivi-yellow via-amber-300 to-amber-500 p-0.5 shadow-xl yellow-glow flex items-center justify-center shrink-0">
+            <div class="w-full h-full rounded-full bg-[#14532d] flex items-center justify-center overflow-hidden p-1">
               <img src="escudo-aldosivi.png" alt="Escudo Oficial Club Atlético Aldosivi" class="w-full h-full object-contain filter drop-shadow hover:scale-105 transition-transform" onerror="this.src='Escudo Oficial Aldosivi.png'" />
             </div>
           </div>
           <div>
-            <div class="flex items-center space-x-2">
-              <span class="text-xs font-bold uppercase tracking-widest px-2.5 py-0.5 rounded bg-aldosivi-green text-aldosivi-yellow flex items-center gap-1.5 border border-emerald-500/30">
-                <span class="w-2 h-2 rounded-full bg-aldosivi-yellow animate-ping"></span>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded bg-aldosivi-yellow text-[#14532d] flex items-center gap-1.5 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#14532d] animate-ping"></span>
                 Campaña 2026-2027
               </span>
-              <span class="text-xs text-slate-400 hidden sm:inline">Validado CD • Noviembre 2026</span>
+              <span class="text-xs text-emerald-100 hidden sm:inline">Predio Deportivo Punta Mogotes • Tienda Olavarría • Pagos 100% Web</span>
             </div>
-            <h1 class="text-lg sm:text-xl font-extrabold font-montserrat text-white tracking-tight">
-              Club Atlético Aldosivi <span class="text-aldosivi-yellow font-normal">| Centro de Campaña & Dashboard</span>
+            <h1 class="text-lg sm:text-xl font-extrabold font-montserrat text-white tracking-tight mt-0.5">
+              Club Atlético Aldosivi <span class="text-aldosivi-yellow font-normal">| Centro Estratégico & Dashboard</span>
             </h1>
           </div>
         </div>
 
-        <!-- Quick Metrics Overview -->
-        <div class="hidden lg:flex items-center space-x-5 border-l border-slate-800 pl-6">
-          <div class="text-right">
-            <div class="text-[11px] text-slate-400 font-semibold uppercase">Socios Activos</div>
-            <div class="text-lg font-bold font-montserrat text-emerald-400">5.100</div>
+        <!-- Quick Metrics & PDF Direct Button -->
+        <div class="flex items-center space-x-4">
+          <div class="hidden xl:flex items-center space-x-5 border-r border-emerald-700/80 pr-5">
+            <div class="text-right">
+              <div class="text-[10px] text-emerald-200 font-semibold uppercase">Socios Activos</div>
+              <div class="text-base font-extrabold font-montserrat text-white">5.100</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-emerald-200 font-semibold uppercase">Mora (1-5m)</div>
+              <div class="text-base font-extrabold font-montserrat text-aldosivi-yellow">1.200</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-emerald-200 font-semibold uppercase">Meta Campaña</div>
+              <div class="text-base font-extrabold font-montserrat text-aldosivi-yellow">1.100</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-emerald-200 font-semibold uppercase">Meta CD</div>
+              <div class="text-base font-extrabold font-montserrat text-emerald-200">10.000</div>
+            </div>
           </div>
-          <div class="text-right">
-            <div class="text-[11px] text-slate-400 font-semibold uppercase">En Deuda (1-5m)</div>
-            <div class="text-lg font-bold font-montserrat text-amber-400">1.200</div>
-          </div>
-          <div class="text-right">
-            <div class="text-[11px] text-slate-400 font-semibold uppercase">Meta Campaña</div>
-            <div class="text-lg font-bold font-montserrat text-aldosivi-yellow">1.100 <span class="text-[10px] font-normal text-slate-400">nuevos</span></div>
-          </div>
-          <div class="text-right">
-            <div class="text-[11px] text-slate-400 font-semibold uppercase">Meta Oficial CD</div>
-            <div class="text-lg font-bold font-montserrat text-emerald-300">10.000 <span class="text-[10px] font-normal text-slate-400">socios</span></div>
-          </div>
+
+          <!-- Direct Button to PDF in templates -->
+          <a href="templates/campana_recuperacion_ex_socios_aldosivi.pdf" target="_blank" class="inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-extrabold bg-aldosivi-yellow hover:bg-yellow-300 text-[#14532d] shadow-md transition transform hover:-translate-y-0.5 shrink-0">
+            <i class="fa-solid fa-file-pdf text-red-700 text-sm"></i>
+            <span>PDF Ex-Socios</span>
+          </a>
         </div>
 
       </div>
     </div>
 
     <!-- Navigation Tabs -->
-    <div class="bg-slate-900/90 border-t border-slate-800/80">
+    <div class="bg-[#0f3f22] border-t border-emerald-800/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex space-x-2 overflow-x-auto py-2 scrollbar-none" id="mainTabNav">
-          <button onclick="switchTab('tab-diagnostico')" id="btn-tab-diagnostico" class="tab-btn active px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 bg-aldosivi-green text-white shadow-md">
+        <nav class="flex space-x-1.5 overflow-x-auto py-2 scrollbar-none" id="mainTabNav">
+          <button onclick="switchTab('tab-diagnostico')" id="btn-tab-diagnostico" class="tab-btn active px-3.5 py-2 text-xs sm:text-sm font-bold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 bg-aldosivi-yellow text-[#14532d] shadow-md">
             <i class="fa-solid fa-chart-pie"></i>
             <span>1. Diagnóstico & ROI</span>
           </button>
-          <button onclick="switchTab('tab-kpi')" id="btn-tab-kpi" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+          <button onclick="switchTab('tab-kpi')" id="btn-tab-kpi" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-emerald-100 hover:text-white hover:bg-white/10">
             <i class="fa-solid fa-gauge-high text-aldosivi-yellow"></i>
-            <span>2. 📊 KPI Dashboard Ejecutivo</span>
+            <span>2. 📊 KPI Dashboard</span>
           </button>
-          <button onclick="switchTab('tab-sondaje')" id="btn-tab-sondaje" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
-            <i class="fa-solid fa-clipboard-question text-amber-400"></i>
-            <span>3. 📋 Sondaje & Paradoja (Google Forms)</span>
+          <button onclick="switchTab('tab-sondaje')" id="btn-tab-sondaje" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-emerald-100 hover:text-white hover:bg-white/10">
+            <i class="fa-solid fa-clipboard-list text-aldosivi-yellow"></i>
+            <span>3. 📋 Encuestas (4 Formularios) & Paradoja</span>
           </button>
-          <button onclick="switchTab('tab-whatsapp')" id="btn-tab-whatsapp" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
-            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-            <span>4. 📲 WhatsApp 1 a 1 & Scoring</span>
+          <button onclick="switchTab('tab-whatsapp')" id="btn-tab-whatsapp" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-emerald-100 hover:text-white hover:bg-white/10">
+            <i class="fa-brands fa-whatsapp text-emerald-300"></i>
+            <span>4. 📲 WhatsApp 1 a 1 & PDF Ex-Socios</span>
           </button>
-          <button onclick="switchTab('tab-plan')" id="btn-tab-plan" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+          <button onclick="switchTab('tab-plan')" id="btn-tab-plan" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-emerald-100 hover:text-white hover:bg-white/10">
             <i class="fa-solid fa-bullseye text-aldosivi-yellow"></i>
-            <span>5. 🎯 Plan & Meta 10.000 Socios</span>
+            <span>5. 🎯 Plan & Meta 10.000</span>
           </button>
-          <button onclick="switchTab('tab-video')" id="btn-tab-video" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+          <button onclick="switchTab('tab-video')" id="btn-tab-video" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-emerald-100 hover:text-white hover:bg-white/10">
             <i class="fa-solid fa-film"></i>
             <span>6. Guiones Video & Reels</span>
           </button>
-          <button onclick="switchTab('tab-prensa')" id="btn-tab-prensa" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-slate-300 hover:text-white hover:bg-slate-800">
+          <button onclick="switchTab('tab-prensa')" id="btn-tab-prensa" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg flex items-center space-x-2 whitespace-nowrap transition-all duration-150 text-emerald-100 hover:text-white hover:bg-white/10">
             <i class="fa-solid fa-bullhorn"></i>
-            <span>7. Kit de Prensa & Social</span>
+            <span>7. Kit de Prensa & Redes</span>
           </button>
         </nav>
       </div>
     </div>
   </header>
+
+  <!-- Quick Bar: 4 Printable Forms + PDF Template Access -->
+  <div class="bg-emerald-900/10 border-b border-emerald-800/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div class="flex items-center space-x-2 font-bold text-[#14532d]">
+        <i class="fa-solid fa-folder-open text-[#166534]"></i>
+        <span>Documentos y Formularios Completos (HTML / Imprimibles PDF):</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="formulario-socios-activos.html" target="_blank" class="px-2.5 py-1 rounded-md bg-white hover:bg-[#14532d] hover:text-white text-[#14532d] border border-emerald-700/30 font-semibold transition shadow-sm">
+          <i class="fa-solid fa-file-lines mr-1"></i> 1. Form Socios Activos
+        </a>
+        <a href="formulario-leads-potenciales.html" target="_blank" class="px-2.5 py-1 rounded-md bg-white hover:bg-[#14532d] hover:text-white text-[#14532d] border border-emerald-700/30 font-semibold transition shadow-sm">
+          <i class="fa-solid fa-file-lines mr-1"></i> 2. Form Leads / No-Socios
+        </a>
+        <a href="formulario-ex-socios.html" target="_blank" class="px-2.5 py-1 rounded-md bg-white hover:bg-[#14532d] hover:text-white text-[#14532d] border border-emerald-700/30 font-semibold transition shadow-sm">
+          <i class="fa-solid fa-file-lines mr-1"></i> 3. Form Ex-Socios
+        </a>
+        <a href="formulario-deudores-regularizacion.html" target="_blank" class="px-2.5 py-1 rounded-md bg-white hover:bg-[#14532d] hover:text-white text-[#14532d] border border-emerald-700/30 font-semibold transition shadow-sm">
+          <i class="fa-solid fa-file-lines mr-1"></i> 4. Form Regularización Deudores
+        </a>
+        <a href="templates/campana_recuperacion_ex_socios_aldosivi.pdf" target="_blank" class="px-2.5 py-1 rounded-md bg-[#14532d] hover:bg-[#166534] text-aldosivi-yellow font-bold transition shadow-sm">
+          <i class="fa-solid fa-file-pdf mr-1"></i> Manual PDF Ex-Socios
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content Area -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -171,39 +225,51 @@
     <!-- ========================================== -->
     <div id="tab-diagnostico" class="tab-content space-y-8">
       
-      <!-- Key Alert Banner -->
-      <div class="bg-gradient-to-r from-amber-950/80 via-slate-900 to-slate-900 border-l-4 border-amber-400 p-6 rounded-2xl glass-panel shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div class="space-y-1">
+      <!-- Institutional Green Banner (Matches PDF Header) -->
+      <div class="inst-header-gradient p-6 sm:p-8 rounded-2xl shadow-lg text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="space-y-2">
           <div class="flex items-center space-x-2">
-            <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-400/20 text-amber-400 border border-amber-400/30">
+            <span class="px-2.5 py-0.5 rounded text-xs font-extrabold bg-aldosivi-yellow text-[#14532d]">
               HALLAZGO ESTRATÉGICO PRINCIPAL
             </span>
-            <span class="text-xs text-slate-400">Base auditada: 19/08/2026</span>
+            <span class="text-xs text-emerald-200">Padrón Auditado • Campaña 2026-2027</span>
           </div>
-          <h2 class="text-xl font-bold font-montserrat text-white">1.200 Socios Activos con Deuda de 1 a 5 meses</h2>
-          <p class="text-xs text-slate-300 max-w-3xl leading-relaxed">
-            El mayor impacto de caja inmediato <strong>NO es salir a buscar hinchas fríos</strong> con publicidad costosa, sino recuperar los socios que ya manifestaron adhesión pero quedaron trabados en pagos manuales de ventanilla.
+          <h2 class="text-xl sm:text-2xl font-extrabold font-montserrat text-white">
+            1.200 Socios Activos con Mora de 1 a 5 Meses + 300 Ex-Socios Objetivo
+          </h2>
+          <p class="text-xs sm:text-sm text-emerald-100 max-w-3xl leading-relaxed">
+            El mayor impacto de caja inmediato consiste en facilitar la regularización mediante <strong>pago 100% online por medios web</strong> (débito automático CBU/tarjeta), complementado con la atención presencial en el <strong>Predio Deportivo de Punta Mogotes</strong> y en la <strong>Tienda Oficial de la calle Olavarría</strong>.
           </p>
         </div>
-        <div class="bg-slate-950/90 border border-amber-500/30 p-4 rounded-xl text-center min-w-[200px] shrink-0">
-          <div class="text-[11px] text-slate-400 uppercase font-semibold">Recuperación estimada</div>
-          <div class="text-2xl font-black font-montserrat text-aldosivi-yellow">$22.8M <span class="text-xs font-normal text-slate-400">/ mes</span></div>
-          <div class="text-[10px] text-emerald-400 font-semibold mt-1">Con 50% adhesión al débito</div>
+        <div class="bg-white text-[#14532d] p-5 rounded-xl text-center min-w-[220px] shrink-0 shadow-md border-2 border-aldosivi-yellow">
+          <div class="text-[11px] text-slate-500 uppercase font-bold">Recuperación Mensual</div>
+          <div class="text-3xl font-black font-montserrat text-[#14532d]">$22.8M <span class="text-xs font-normal text-slate-500">/ mes</span></div>
+          <div class="text-[11px] text-[#166534] font-bold mt-1">Con 50% adhesión al débito</div>
         </div>
       </div>
 
+      <!-- Mint Callout Box (Matches PDF Page 1 Callout) -->
+      <div class="callout-mint p-5 rounded-r-xl text-sm space-y-1.5 shadow-sm">
+        <div class="font-bold text-[#14532d]">
+          <i class="fa-solid fa-bullseye mr-1.5"></i> Enfoque Operativo: Contacto 1 a 1 personalizado y Autogestión Web
+        </div>
+        <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">
+          <strong>Fundamento:</strong> El socio que dejó de abonar por olvido o incomodidad vuelve cuando el club le ofrece resolverlo desde el celular en 2 minutos por medios web, o cuando se acerca al <strong>Predio Deportivo de Punta Mogotes</strong> o la <strong>Tienda de calle Olavarría</strong>.
+        </p>
+      </div>
+
       <!-- ROI Interactive Calculator -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-800">
+      <div class="inst-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-200">
           <div>
-            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-              <i class="fa-solid fa-calculator text-aldosivi-yellow"></i>
-              <span>Simulador Interactivo de Recuperación de Deudores</span>
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-calculator text-[#166534]"></i>
+              <span>Simulador Interactivo de Recuperación de Socios con Mora</span>
             </h3>
-            <p class="text-xs text-slate-400">Ajustá el porcentaje de recuperados para simular ingresos inmediatos.</p>
+            <p class="text-xs text-slate-500">Deslizá el porcentaje de socios recuperados para proyectar el ingreso mensual y anual.</p>
           </div>
-          <span class="text-xs font-mono bg-aldosivi-green/30 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/40">
-            Cuota Débito: $38.000 / mes
+          <span class="text-xs font-bold bg-[#f0fdf4] text-[#14532d] px-3.5 py-1.5 rounded-full border border-emerald-300">
+            Cuota Débito Web: $38.000 / mes
           </span>
         </div>
 
@@ -211,9 +277,9 @@
           <!-- Slider Controls -->
           <div class="lg:col-span-2 space-y-5">
             <div class="space-y-2">
-              <div class="flex justify-between text-sm font-semibold">
-                <span class="text-slate-300">Tasa de Adhesión / Recuperación:</span>
-                <span id="recoveryPercentLabel" class="text-aldosivi-yellow font-montserrat text-lg font-bold">50%</span>
+              <div class="flex justify-between text-sm font-bold">
+                <span class="text-slate-700">Tasa de Adhesión / Recuperación:</span>
+                <span id="recoveryPercentLabel" class="text-[#14532d] bg-aldosivi-yellow px-2.5 py-0.5 rounded font-montserrat text-lg font-black">50%</span>
               </div>
               <input 
                 type="range" 
@@ -223,47 +289,46 @@
                 value="50" 
                 step="5"
                 oninput="updateRoiCalculator(this.value)"
-                class="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-aldosivi-yellow"
+                class="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#14532d]"
               />
-              <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+              <div class="flex justify-between text-[11px] text-slate-500 font-semibold">
                 <span>10% (Pesimista: 120 socios)</span>
                 <span>50% (Meta Plan: 600 socios)</span>
                 <span>90% (Óptimo: 1.080 socios)</span>
               </div>
             </div>
 
-            <!-- Context Info -->
-            <div class="grid grid-cols-2 gap-4 pt-2">
-              <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-xs">
-                <div class="text-slate-400">Costo de la Campaña:</div>
-                <div class="text-white font-bold font-montserrat text-sm mt-0.5">$950.000 <span class="text-[10px] text-slate-500">(Total 6 meses)</span></div>
-                <div class="text-[10px] text-emerald-400 mt-1">Se paga con solo 25 socios recuperados</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
+                <div class="text-slate-500 font-medium">Inversión Total Campaña (6 meses):</div>
+                <div class="text-[#14532d] font-extrabold font-montserrat text-base mt-0.5">$950.000</div>
+                <div class="text-[11px] text-[#166534] font-semibold mt-1">Se recupera con apenas 25 socios adheridos</div>
               </div>
-              <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-xs">
-                <div class="text-slate-400">Retorno sobre Inversión (ROI):</div>
-                <div id="roiMultiplier" class="text-emerald-400 font-bold font-montserrat text-sm mt-0.5">24x Costo Total</div>
-                <div class="text-[10px] text-slate-400 mt-1">Multiplicador directo en mes 1</div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
+                <div class="text-slate-500 font-medium">Retorno sobre Inversión (ROI):</div>
+                <div id="roiMultiplier" class="text-[#166534] font-extrabold font-montserrat text-base mt-0.5">24x Costo Total</div>
+                <div class="text-[11px] text-slate-500 mt-1">Impacto neto desde el primer mes</div>
               </div>
             </div>
           </div>
 
           <!-- Result Card -->
-          <div class="bg-gradient-to-br from-aldosivi-darkgreen to-slate-900 p-6 rounded-2xl border border-aldosivi-yellow/30 shadow-2xl space-y-4 text-center">
-            <div class="text-xs font-bold text-aldosivi-yellow uppercase tracking-wider">Impacto de Caja Estimado</div>
+          <div class="inst-header-gradient p-6 rounded-2xl border-2 border-aldosivi-yellow shadow-xl space-y-4 text-center text-white">
+            <div class="text-xs font-extrabold text-aldosivi-yellow uppercase tracking-wider">Impacto de Caja Proyectado</div>
             
             <div class="space-y-1">
-              <div class="text-[11px] text-emerald-200">Socios que Vuelven a Pagar:</div>
+              <div class="text-[11px] text-emerald-100">Socios Recuperados al Padrón:</div>
               <div id="recoveredCount" class="text-3xl font-black font-montserrat text-white">600 socios</div>
             </div>
 
-            <div class="py-3 border-y border-emerald-800/60 space-y-1">
-              <div class="text-[11px] text-emerald-200">Ingreso Mensual Recurrente:</div>
-              <div id="recoveredMonthly" class="text-2xl font-bold font-montserrat text-aldosivi-yellow">$22.800.000</div>
+            <div class="py-3 border-y border-emerald-700/80 space-y-1">
+              <div class="text-[11px] text-emerald-100">Ingreso Mensual Recurrente:</div>
+              <div id="recoveredMonthly" class="text-2xl font-black font-montserrat text-aldosivi-yellow">$22.800.000</div>
             </div>
 
             <div class="space-y-1">
-              <div class="text-[11px] text-emerald-200">Ingreso Anualizado Proyectado:</div>
-              <div id="recoveredAnnual" class="text-xl font-bold font-montserrat text-emerald-300">$273.600.000</div>
+              <div class="text-[11px] text-emerald-100">Ingreso Anualizado:</div>
+              <div id="recoveredAnnual" class="text-xl font-bold font-montserrat text-emerald-200">$273.600.000</div>
             </div>
           </div>
         </div>
@@ -271,46 +336,44 @@
 
       <!-- Problem vs Solution Breakdown -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Problem Card -->
-        <div class="glass-panel p-6 rounded-2xl border-l-4 border-red-500/80 space-y-4">
-          <div class="flex items-center space-x-2 text-red-400 font-bold font-montserrat text-sm">
+        <div class="inst-card p-6 rounded-2xl border-l-4 border-l-red-600 space-y-4">
+          <div class="flex items-center space-x-2 text-red-700 font-extrabold font-montserrat text-sm">
             <i class="fa-solid fa-triangle-exclamation"></i>
-            <span>LOS 3 CUELLOS DE BOTELLA HISTÓRICOS</span>
+            <span>LOS 3 PROBLEMAS QUE GENERABAN CAÍDAS</span>
           </div>
-          <ul class="space-y-3 text-xs text-slate-300">
+          <ul class="space-y-3 text-xs text-slate-700">
             <li class="flex items-start space-x-2">
-              <span class="text-red-400 font-bold">•</span>
-              <span><strong>Cobro Manual y Filas en Sede:</strong> El socio tiene que trasladarse hasta El Cano 3321 para pagar en efectivo o posnet. Si llueve o trabaja, no paga.</span>
+              <span class="text-red-600 font-bold">•</span>
+              <span><strong>Dependencia del Pago Presencial:</strong> Muchos socios creían que solo podían abonar yendo físicamente en horario comercial.</span>
             </li>
             <li class="flex items-start space-x-2">
-              <span class="text-red-400 font-bold">•</span>
-              <span><strong>Falta de Débito Automático Promocionado:</strong> Menos del 25% de la masa societaria está bancarizada en débito automático, lo que produce una deserción del 15% mensual.</span>
+              <span class="text-red-600 font-bold">•</span>
+              <span><strong>Baja Adhesión al Débito Automático:</strong> Menos del 25% del padrón estaba adherido a débito automático, generando mora por simple olvido.</span>
             </li>
             <li class="flex items-start space-x-2">
-              <span class="text-red-400 font-bold">•</span>
-              <span><strong>Cero Comunicación Post-Baja:</strong> Cuando un socio deja de pagar 60 días, nadie lo contacta con un mensaje empático ni facilidades para regularizar.</span>
+              <span class="text-red-600 font-bold">•</span>
+              <span><strong>Falta de Seguimiento 1 a 1:</strong> Al acumularse 2 o 3 cuotas sin pagar, no existía un contacto cercano con facilidades de pago web.</span>
             </li>
           </ul>
         </div>
 
-        <!-- Solution Card -->
-        <div class="glass-panel p-6 rounded-2xl border-l-4 border-aldosivi-green space-y-4">
-          <div class="flex items-center space-x-2 text-emerald-400 font-bold font-montserrat text-sm">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>LA SOLUCIÓN OPERATIVA IMPLEMENTADA</span>
+        <div class="inst-card p-6 rounded-2xl border-l-4 border-l-[#166534] space-y-4">
+          <div class="flex items-center space-x-2 text-[#14532d] font-extrabold font-montserrat text-sm">
+            <i class="fa-solid fa-circle-check text-[#166534]"></i>
+            <span>NUEVO ECOSISTEMA DE CANALES DE PAGO Y ATENCIÓN</span>
           </div>
-          <ul class="space-y-3 text-xs text-slate-300">
+          <ul class="space-y-3 text-xs text-slate-700">
             <li class="flex items-start space-x-2">
-              <span class="text-emerald-400 font-bold">•</span>
-              <span><strong>Web Autogestión en 2 Minutos:</strong> Alta online desde el celular, integración con Mercado Pago / Débito CBU, y entrega de carné digital instantáneo.</span>
+              <span class="text-[#166534] font-bold">•</span>
+              <span><strong>Medios de Pago 100% Web (`aldosivi.com.ar/socio`):</strong> Alta, renovación y pago online en 2 minutos desde el celular con carné digital inmediato.</span>
             </li>
             <li class="flex items-start space-x-2">
-              <span class="text-emerald-400 font-bold">•</span>
-              <span><strong>Incentivo Débito Automático:</strong> Primer mes bonificado y cuota fija de $38.000 vs $47.000 en ventanilla (ahorro real de $108.000 anuales).</span>
+              <span class="text-[#166534] font-bold">•</span>
+              <span><strong>Atención en Predio Deportivo de Punta Mogotes y Tienda Calle Olavarría:</strong> Puntos estratégicos de cercanía para el hincha marplatense.</span>
             </li>
             <li class="flex items-start space-x-2">
-              <span class="text-emerald-400 font-bold">•</span>
-              <span><strong>Protocolo WhatsApp 1 a 1 Anti-Ban:</strong> Mensajes segmentados por antigüedad de deuda con respuestas rápidas y links directos de pago.</span>
+              <span class="text-[#166534] font-bold">•</span>
+              <span><strong>Incentivo Débito Automático ($38.000/mes):</strong> Primer mes bonificado y ahorro anual de $108.000 frente al pago manual.</span>
             </li>
           </ul>
         </div>
@@ -319,735 +382,467 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- TAB 2: 📊 KPI DASHBOARD EJECUTIVO (NUEVO)  -->
+    <!-- TAB 2: 📊 KPI DASHBOARD EJECUTIVO          -->
     <!-- ========================================== -->
     <div id="tab-kpi" class="tab-content hidden space-y-8">
       
-      <!-- KPI Executive Header Banner -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4 border-l-4 border-aldosivi-yellow relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
-          <img src="escudo-aldosivi.png" alt="" class="w-64 h-64 object-contain" />
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-aldosivi-yellow/20 text-aldosivi-yellow border border-aldosivi-yellow/30">
-                HOJA MAESTRA CONSOLIDADA
-              </span>
-              <span class="text-xs text-slate-400">Fuente: Google Sheets — Campaña Socios Aldosivi 2026</span>
-            </div>
-            <h2 class="text-xl sm:text-2xl font-bold font-montserrat text-white mt-1">
-              Tablero de Control de KPIs & Funnel de Conversión
-            </h2>
-            <p class="text-xs text-slate-300 max-w-3xl leading-relaxed mt-1">
-              Métricas ejecutivas actualizadas en tiempo real con disparadores de alerta temprana, seguimiento diario de funnel y balance de objetivos semanales y mensuales.
-            </p>
-          </div>
-          <div class="flex items-center space-x-3 shrink-0">
-            <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-200">
-              <i class="fa-solid fa-file-excel text-emerald-400 mr-2"></i> 12 Pestañas Vinculadas
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8 Primary Executive KPI Cards Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        
-        <!-- Card 1 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">Socios Nuevos</span>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Meta: 1.100</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-white">1.100</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Ritmo requerido:</span>
-            <span class="text-emerald-300 font-semibold">&ge; 150 / mes</span>
-          </div>
-          <div class="text-[10px] text-amber-400 font-medium">Alerta: &lt; 150/mes</div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">Leads Totales</span>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Meta: 3.000</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-white">3.000</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Ritmo requerido:</span>
-            <span class="text-emerald-300 font-semibold">&ge; 400 / mes</span>
-          </div>
-          <div class="text-[10px] text-amber-400 font-medium">Alerta: &lt; 400/mes</div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">Conversión Lead&rarr;Socio</span>
-            <span class="text-[10px] bg-aldosivi-yellow/20 text-aldosivi-yellow px-2 py-0.5 rounded font-mono font-bold">Meta: 37%</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-aldosivi-yellow">37%</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Fórmula:</span>
-            <span class="font-mono text-slate-300">Socios / Leads</span>
-          </div>
-          <div class="text-[10px] text-red-400 font-medium">Alerta crítica: &lt; 25%</div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">% Débito Automático</span>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Meta: 75%</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-emerald-400">75%</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Ahorro socio:</span>
-            <span class="text-emerald-300 font-semibold">$108k/año</span>
-          </div>
-          <div class="text-[10px] text-red-400 font-medium">Alerta crítica: &lt; 60%</div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">CPA Adquisición</span>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Meta: &lt; $8.000</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-white">&lt; $8.000</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Cálculo:</span>
-            <span class="font-mono text-slate-300">Gasto / Nuevos</span>
-          </div>
-          <div class="text-[10px] text-red-400 font-medium">Alerta roja: &gt; $12.000</div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">Churn Rate (30d)</span>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Meta: &lt; 10%</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-white">&lt; 10%</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Fórmula:</span>
-            <span class="font-mono text-slate-300">Bajas / Altas</span>
-          </div>
-          <div class="text-[10px] text-red-400 font-medium">Alerta: &gt; 15%</div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">Referidos Activos</span>
-            <span class="text-[10px] bg-aldosivi-yellow/20 text-aldosivi-yellow px-2 py-0.5 rounded font-mono font-bold">Meta: 200</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-white">200</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Incentivo:</span>
-            <span class="text-emerald-300 font-semibold">1 mes gratis c/u</span>
-          </div>
-          <div class="text-[10px] text-amber-400 font-medium">Alerta: &lt; 20/mes</div>
-        </div>
-
-        <!-- Card 8 -->
-        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/50 transition space-y-2 relative">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-slate-400 uppercase">Ex-Socios Recontactados</span>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Meta: 300</span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black font-montserrat text-emerald-400">300</div>
-          <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-800">
-            <span>Canal:</span>
-            <span class="text-emerald-300 font-semibold">WhatsApp 1 a 1</span>
-          </div>
-          <div class="text-[10px] text-amber-400 font-medium">Alerta: &lt; 50/mes</div>
-        </div>
-
-      </div>
-
-      <!-- Funnel Diario Visualizer -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-800">
-          <div>
-            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-              <i class="fa-solid fa-filter text-aldosivi-yellow"></i>
-              <span>Funnel Completo Día a Día (De Lead a Socio Activo Fidelizado)</span>
-            </h3>
-            <p class="text-xs text-slate-400">Pérdidas y conversiones en cada etapa del embudo de captación.</p>
-          </div>
-          <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
-            Eficiencia Global: 33.3%
+      <div class="inst-header-gradient p-6 sm:p-8 rounded-2xl text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-lg">
+        <div>
+          <span class="px-2.5 py-0.5 rounded text-xs font-extrabold bg-aldosivi-yellow text-[#14532d]">
+            HOJA MAESTRA CONSOLIDADA
           </span>
+          <h2 class="text-xl sm:text-2xl font-extrabold font-montserrat mt-1">
+            Tablero de Control de KPIs & Funnel de Conversión
+          </h2>
+          <p class="text-xs text-emerald-100 mt-1">
+            Estructura integral de 12 pestañas en Google Sheets con seguimiento diario de altas web, Predio Punta Mogotes y Tienda Olavarría.
+          </p>
         </div>
-
-        <!-- Funnel Stages Graphic -->
-        <div class="space-y-4">
-          
-          <!-- Stage 1 -->
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-semibold">
-              <span class="text-slate-300 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px] font-bold">1</span>
-                <span>LEADS TOTALES GENERADOS (Web, QR Estadio, Redes, Terreno, WhatsApp)</span>
-              </span>
-              <span class="text-white font-montserrat font-bold">3.000 leads (100%)</span>
-            </div>
-            <div class="w-full bg-slate-900 rounded-full h-4 overflow-hidden border border-slate-800">
-              <div class="bg-gradient-to-r from-emerald-600 to-aldosivi-green h-full rounded-full transition-all duration-500" style="width: 100%"></div>
-            </div>
-          </div>
-
-          <!-- Stage 2 -->
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-semibold">
-              <span class="text-slate-300 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px] font-bold">2</span>
-                <span>CLICK EN PAGO / INICIO DE FORMULARIO AUTOGESTIÓN</span>
-              </span>
-              <span class="text-emerald-400 font-montserrat font-bold">1.800 (60% del funnel)</span>
-            </div>
-            <div class="w-full bg-slate-900 rounded-full h-4 overflow-hidden border border-slate-800">
-              <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 h-full rounded-full transition-all duration-500" style="width: 60%"></div>
-            </div>
-          </div>
-
-          <!-- Stage 3 -->
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-semibold">
-              <span class="text-slate-300 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px] font-bold">3</span>
-                <span>PAGO VALIDADO (Tarjeta de Crédito / CBU Débito Automático)</span>
-              </span>
-              <span class="text-aldosivi-yellow font-montserrat font-bold">1.200 (40% del funnel)</span>
-            </div>
-            <div class="w-full bg-slate-900 rounded-full h-4 overflow-hidden border border-slate-800">
-              <div class="bg-gradient-to-r from-amber-500 to-aldosivi-yellow h-full rounded-full transition-all duration-500" style="width: 40%"></div>
-            </div>
-          </div>
-
-          <!-- Stage 4 -->
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-semibold">
-              <span class="text-slate-300 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px] font-bold">4</span>
-                <span>ALTA CONFIRMADA & EMISIÓN CARNÉ DIGITAL</span>
-              </span>
-              <span class="text-white font-montserrat font-bold">1.100 (37% meta alcanzada)</span>
-            </div>
-            <div class="w-full bg-slate-900 rounded-full h-4 overflow-hidden border border-slate-800">
-              <div class="bg-gradient-to-r from-emerald-400 to-aldosivi-green h-full rounded-full transition-all duration-500" style="width: 37%"></div>
-            </div>
-          </div>
-
-          <!-- Stage 5 -->
-          <div class="space-y-1.5">
-            <div class="flex justify-between text-xs font-semibold">
-              <span class="text-slate-300 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px] font-bold">5</span>
-                <span>SOCIO ACTIVO AL DÍA 30 (Cobro segundo mes exitoso)</span>
-              </span>
-              <span class="text-emerald-300 font-montserrat font-bold">1.000 socios retenidos (91% retención)</span>
-            </div>
-            <div class="w-full bg-slate-900 rounded-full h-4 overflow-hidden border border-slate-800">
-              <div class="bg-gradient-to-r from-emerald-300 to-emerald-500 h-full rounded-full transition-all duration-500" style="width: 33.3%"></div>
-            </div>
-          </div>
-
+        <div class="bg-white/10 border border-yellow-400/40 px-4 py-2 rounded-xl text-xs font-bold text-aldosivi-yellow shrink-0">
+          <i class="fa-solid fa-table mr-1.5"></i> 12 Pestañas Operativas
         </div>
       </div>
 
-      <!-- Google Sheets Architecture Interactive Explorer -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-800">
+      <!-- KPI Table (Matching PDF Table Style) -->
+      <div class="inst-card rounded-2xl overflow-hidden">
+        <div class="p-5 border-b border-slate-200 flex justify-between items-center">
+          <h3 class="font-extrabold text-[#14532d] font-montserrat text-base">
+            1. Indicadores Clave de Rendimiento (KPIs Principales)
+          </h3>
+          <span class="text-xs text-slate-500">Actualización Diaria / Semanal</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#14532d] text-white font-montserrat uppercase text-[11px]">
+              <tr>
+                <th class="py-3.5 px-4">Indicador (KPI)</th>
+                <th class="py-3.5 px-4">Fórmula / Fuente</th>
+                <th class="py-3.5 px-4">Meta (6 Meses)</th>
+                <th class="py-3.5 px-4">Umbral de Alerta</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr class="hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">Socios Nuevos Totales</td>
+                <td class="py-3 px-4 font-mono text-slate-600">=SOCIOS!B:B (Web + Predio + Tienda Olavarría)</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">1.100 socios</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&lt; 150 / mes</td>
+              </tr>
+              <tr class="bg-slate-50/70 hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">Leads Totales Captados</td>
+                <td class="py-3 px-4 font-mono text-slate-600">=LEADS!B:B</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">3.000 leads</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&lt; 400 / mes</td>
+              </tr>
+              <tr class="hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">Conversión Lead &rarr; Socio</td>
+                <td class="py-3 px-4 font-mono text-slate-600">Socios Nuevos / Leads Totales</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">37%</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&lt; 25%</td>
+              </tr>
+              <tr class="bg-slate-50/70 hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">% Adhesión Débito Automático</td>
+                <td class="py-3 px-4 font-mono text-slate-600">COUNTIF(SOCIOS!F:F,"Débito")/COUNT(A:A)</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">75%</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&lt; 60%</td>
+              </tr>
+              <tr class="hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">CPA (Costo por Adquisición)</td>
+                <td class="py-3 px-4 font-mono text-slate-600">PRESUPUESTO!Total_Gastado / Socios_Nuevos</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">&lt; $8.000 ARS</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&gt; $12.000 ARS</td>
+              </tr>
+              <tr class="bg-slate-50/70 hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">Ex-Socios Recuperados</td>
+                <td class="py-3 px-4 font-mono text-slate-600">COUNTIF(WHATSAPP_1A1!G:G,"Ex-socio")</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">300 reactivados</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&lt; 50 / mes</td>
+              </tr>
+              <tr class="hover:bg-emerald-50/50">
+                <td class="py-3 px-4 font-bold text-[#14532d]">NPS Satisfacción del Socio</td>
+                <td class="py-3 px-4 font-mono text-slate-600">PROMEDIO(SONDAJE_ACTIVOS!O:O)</td>
+                <td class="py-3 px-4 font-bold text-[#166534]">&gt; 50 puntos</td>
+                <td class="py-3 px-4 text-red-600 font-semibold">&lt; 30 puntos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Google Sheets Architecture Explorer -->
+      <div class="inst-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-200">
           <div>
-            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-              <i class="fa-solid fa-table-cells text-aldosivi-yellow"></i>
-              <span>Arquitectura del Google Sheets Maestro (12 Pestañas)</span>
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-table-cells text-[#166534]"></i>
+              <span>Explorador de Columnas de la Planilla Google Sheets</span>
             </h3>
-            <p class="text-xs text-slate-400">Seleccioná una pestaña para inspeccionar su estructura de columnas y automatizaciones.</p>
+            <p class="text-xs text-slate-500">Hacé clic en cada pestaña para inspeccionar sus campos y validaciones.</p>
           </div>
-          <span class="text-xs font-semibold text-slate-300 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800">
-            Estructura V2.0 Consolidada
-          </span>
         </div>
 
-        <!-- Sheet Tab Buttons -->
-        <div class="flex flex-wrap gap-2 pb-2">
-          <button onclick="switchSheetTab('leads')" id="sbtn-leads" class="sheet-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-aldosivi-green text-white shadow">📈 LEADS (Funnel)</button>
-          <button onclick="switchSheetTab('socios')" id="sbtn-socios" class="sheet-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300">👥 SOCIOS</button>
-          <button onclick="switchSheetTab('wa1a1')" id="sbtn-wa1a1" class="sheet-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300">📲 WHATSAPP 1 A 1</button>
-          <button onclick="switchSheetTab('sondaje')" id="sbtn-sondaje" class="sheet-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300">🎲 SONDAJE (Forms)</button>
-          <button onclick="switchSheetTab('presupuesto')" id="sbtn-presupuesto" class="sheet-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300">💰 PRESUPUESTO</button>
-          <button onclick="switchSheetTab('config')" id="sbtn-config" class="sheet-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300">⚙️ CONFIG</button>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchSheetTab('leads')" id="sbtn-leads" class="sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-[#14532d] text-white shadow">📈 LEADS (Funnel)</button>
+          <button onclick="switchSheetTab('socios')" id="sbtn-socios" class="sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700">👥 SOCIOS</button>
+          <button onclick="switchSheetTab('wa1a1')" id="sbtn-wa1a1" class="sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700">📲 WHATSAPP 1 A 1</button>
+          <button onclick="switchSheetTab('sondaje')" id="sbtn-sondaje" class="sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700">🎲 SONDAJE (Forms)</button>
+          <button onclick="switchSheetTab('presupuesto')" id="sbtn-presupuesto" class="sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700">💰 PRESUPUESTO</button>
+          <button onclick="switchSheetTab('config')" id="sbtn-config" class="sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700">⚙️ CONFIG</button>
         </div>
 
-        <!-- Sheet Detail View Container -->
-        <div id="sheetDetailBox" class="bg-slate-950/80 p-5 rounded-xl border border-slate-800 text-xs space-y-4">
-          <!-- Default loaded content dynamically via JS -->
+        <div id="sheetDetailBox" class="bg-[#f0fdf4] p-5 rounded-xl border border-emerald-200 text-xs space-y-4">
         </div>
       </div>
 
     </div>
 
-    <!-- ========================================== -->
-    <!-- TAB 3: 📋 SONDAJE & PARADOJA (GOOGLE FORMS)-->
-    <!-- ========================================== -->
+    <!-- ========================================================== -->
+    <!-- TAB 3: 📋 ENCUESTAS (4 FORMULARIOS COMPLETOS) & PARADOJA    -->
+    <!-- ========================================================== -->
     <div id="tab-sondaje" class="tab-content hidden space-y-8">
       
-      <!-- Sondaje Header Banner -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4 border-l-4 border-amber-400 relative overflow-hidden">
-        <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
-          <img src="escudo-aldosivi.png" alt="" class="w-60 h-60 object-contain" />
+      <div class="inst-header-gradient p-6 sm:p-8 rounded-2xl text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-lg">
+        <div>
+          <span class="px-2.5 py-0.5 rounded text-xs font-extrabold bg-aldosivi-yellow text-[#14532d]">
+            SISTEMA DE ENCUESTAS LISTO PARA MOSTRAR E IMPRIMIR
+          </span>
+          <h2 class="text-xl sm:text-2xl font-extrabold font-montserrat mt-1">
+            Los 4 Formularios Oficiales de Encuesta & Matriz de la Paradoja
+          </h2>
+          <p class="text-xs text-emerald-100 mt-1">
+            Cada formulario está armado en formato documento completo e interactivo (HTML / PDF Imprimible) con todas sus preguntas y opciones.
+          </p>
         </div>
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-400/20 text-amber-400 border border-amber-400/30">
-                MÓDULO DE INTELIGENCIA DE MERCADO
+      </div>
+
+      <!-- 4 Standalone Forms Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Form 1 Card -->
+        <div class="inst-card p-6 rounded-2xl border-t-4 border-t-[#14532d] flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-extrabold bg-[#f0fdf4] text-[#14532d] border border-emerald-300">
+                FORMULARIO OFICIAL #1
               </span>
-              <span class="text-xs text-slate-400">Google Forms + Encuesta WhatsApp 1 a 1</span>
+              <span class="text-xs font-bold text-[#166534]">13 Preguntas + Escala NPS</span>
             </div>
-            <h2 class="text-xl sm:text-2xl font-bold font-montserrat text-white mt-1">
-              Sondaje de Socios Activos, Leads & Matriz de la Paradoja
-            </h2>
-            <p class="text-xs text-slate-300 max-w-3xl leading-relaxed mt-1">
-              Instrumentos validados para capturar la voz del hincha de Aldosivi, eliminar fricciones de cobro y resolver la paradoja del valor percibido versus ahorro real.
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat">
+              1. Encuesta para Socios Activos
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Evalúa antigüedad, frecuencia de asistencia al Minella y al Predio de Punta Mogotes, uso real de beneficios, percepción de la cuota, canales de comunicación y cálculo del NPS (0 a 10).
             </p>
           </div>
-          <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl text-center shrink-0">
-            <div class="text-[10px] text-slate-400 uppercase font-semibold">Meta de Respuestas</div>
-            <div class="text-xl font-bold font-montserrat text-aldosivi-yellow">500 a 900</div>
-            <div class="text-[10px] text-emerald-400">300 activos + 400 leads</div>
+          <div class="pt-2 flex items-center gap-3">
+            <a href="formulario-socios-activos.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-[#14532d] hover:bg-[#166534] text-white font-bold text-xs shadow transition">
+              <i class="fa-solid fa-up-right-from-square mr-1.5 text-aldosivi-yellow"></i> Abrir Formulario #1 Completo (HTML / PDF)
+            </a>
           </div>
         </div>
-      </div>
 
-      <!-- Survey Switcher Sub-nav -->
-      <div class="flex border-b border-slate-800 space-x-4">
-        <button onclick="switchSondajeView('activos')" id="sondaje-btn-activos" class="pb-3 text-sm font-semibold border-b-2 border-aldosivi-yellow text-aldosivi-yellow flex items-center gap-2">
-          <i class="fa-solid fa-users text-aldosivi-yellow"></i>
-          <span>1. Encuesta Socios Activos (NPS & Valor)</span>
-        </button>
-        <button onclick="switchSondajeView('leads')" id="sondaje-btn-leads" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-2">
-          <i class="fa-solid fa-user-plus text-emerald-400"></i>
-          <span>2. Encuesta Leads & No-Socios (Barreras)</span>
-        </button>
-        <button onclick="switchSondajeView('paradoja')" id="sondaje-btn-paradoja" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-2">
-          <i class="fa-solid fa-diagram-project text-amber-400"></i>
-          <span>3. Matriz de Paradoja & Ajuste de Plan</span>
-        </button>
-      </div>
-
-      <!-- VIEW 1: SONDAJE SOCIOS ACTIVOS -->
-      <div id="view-sondaje-activos" class="space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Survey Questions Preview -->
-          <div class="glass-panel p-6 rounded-2xl space-y-4">
-            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
-              <h4 class="font-bold text-white text-sm font-montserrat flex items-center gap-2">
-                <i class="fa-brands fa-google text-amber-400"></i>
-                <span>Preguntas Clave del Google Form (Activos)</span>
-              </h4>
-              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Tiempo: 2 min</span>
+        <!-- Form 2 Card -->
+        <div class="inst-card p-6 rounded-2xl border-t-4 border-t-[#166534] flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-extrabold bg-[#f0fdf4] text-[#14532d] border border-emerald-300">
+                FORMULARIO OFICIAL #2
+              </span>
+              <span class="text-xs font-bold text-[#166534]">12 Preguntas de Captación</span>
             </div>
-
-            <div class="space-y-3.5 text-xs">
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-amber-400 font-bold">P1. ¿Hace cuántos años sos socio de Aldosivi?</div>
-                <div class="text-slate-300">&bull; Menos de 1 año &bull; 1 a 3 años &bull; 3 a 5 años &bull; Más de 5 años</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-amber-400 font-bold">P2. ¿Con qué frecuencia vas al José María Minella?</div>
-                <div class="text-slate-300">&bull; Todos los partidos de local &bull; Partidos clave &bull; Rara vez &bull; No voy (apoyo a la distancia)</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-amber-400 font-bold">P3. NPS: ¿Qué tan probable es que recomiendes hacerse socio a un amigo? (Escala 1 al 10)</div>
-                <div class="text-slate-300">Métrica clave de satisfacción y fidelidad comunitaria (Meta: NPS &gt; 50).</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-amber-400 font-bold">P4. La cuota con débito ($38.000/mes) te parece:</div>
-                <div class="text-slate-300">&bull; Muy accesible &bull; Precio justo por lo que ofrece &bull; Un poco cara &bull; Muy cara</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-amber-400 font-bold">P5. ¿Qué actividades sociales te gustaría que sume el club?</div>
-                <div class="text-slate-300">&bull; Entrenamientos abiertos &bull; Asados de socios &bull; Charlas con ídolos &bull; Visitas al predio</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Analysis & Strategy Implication -->
-          <div class="glass-panel p-6 rounded-2xl space-y-4">
-            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
-              <h4 class="font-bold text-white text-sm font-montserrat flex items-center gap-2">
-                <i class="fa-solid fa-chart-line text-emerald-400"></i>
-                <span>Metas de Gestión & Cruce Operativo</span>
-              </h4>
-              <span class="text-[10px] text-slate-400">Reunión CD Lunes</span>
-            </div>
-
-            <div class="space-y-4 text-xs">
-              <div class="bg-slate-950 p-4 rounded-xl border border-emerald-900/40 space-y-2">
-                <div class="flex justify-between items-center">
-                  <span class="font-bold text-emerald-400">NPS Promedio Activos</span>
-                  <span class="font-mono font-bold text-white text-sm">&gt; 50 pts</span>
-                </div>
-                <p class="text-slate-400 text-[11px] leading-relaxed">
-                  Si el NPS cae por debajo de 30, dispara automáticamente la revisión de convenios comerciales y la calidad de atención en sede.
-                </p>
-              </div>
-
-              <div class="bg-slate-950 p-4 rounded-xl border border-emerald-900/40 space-y-2">
-                <div class="flex justify-between items-center">
-                  <span class="font-bold text-aldosivi-yellow">Uso de 3+ Beneficios MDP</span>
-                  <span class="font-mono font-bold text-white text-sm">&gt; 45%</span>
-                </div>
-                <p class="text-slate-400 text-[11px] leading-relaxed">
-                  El socio que utiliza al menos 3 convenios (carnicería, súper, indumentaria) recupera hasta $25.000 mensuales de cuota.
-                </p>
-              </div>
-
-              <div class="bg-slate-950 p-4 rounded-xl border border-emerald-900/40 space-y-2">
-                <div class="flex justify-between items-center">
-                  <span class="font-bold text-amber-400">Programa Referidos Activos</span>
-                  <span class="font-mono font-bold text-white text-sm">200 socios</span>
-                </div>
-                <p class="text-slate-400 text-[11px] leading-relaxed">
-                  Premio "1 mes gratis para vos y 1 mes gratis para el nuevo socio". Se activa con los socios de más de 3 años de antigüedad.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- VIEW 2: SONDAJE LEADS Y NO-SOCIOS -->
-      <div id="view-sondaje-leads" class="hidden space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Questions Preview -->
-          <div class="glass-panel p-6 rounded-2xl space-y-4">
-            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
-              <h4 class="font-bold text-white text-sm font-montserrat flex items-center gap-2">
-                <i class="fa-solid fa-user-xmark text-red-400"></i>
-                <span>Detección de Barreras de Entrada (Leads)</span>
-              </h4>
-              <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Captura en Web & Redes</span>
-            </div>
-
-            <div class="space-y-3.5 text-xs">
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-emerald-400 font-bold">P1. ¿Por qué motivo principal todavía no sos socio?</div>
-                <div class="text-slate-300">&bull; No sé cómo hacer el trámite (38%) &bull; La cuota me resulta cara (32%) &bull; No tengo tiempo para ir a la sede (20%) &bull; Voy poco a la cancha (10%)</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-emerald-400 font-bold">P2. ¿Sabías que el trámite ahora se hace en 2 minutos desde el celular?</div>
-                <div class="text-slate-300">&bull; No, creía que tenía que ir personalmente a El Cano 3321 con fotocopias.</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-emerald-400 font-bold">P3. ¿Qué beneficio te motivaría a asociarte hoy mismo?</div>
-                <div class="text-slate-300">&bull; Primer mes 100% bonificado en débito &bull; Descuentos en comercios de MDP &bull; Carné digital directo</div>
-              </div>
-              <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
-                <div class="text-emerald-400 font-bold">P4. ¿Por qué canal preferís que te asesoremos?</div>
-                <div class="text-slate-300">&bull; WhatsApp 1 a 1 personalizado (64%) &bull; Instagram Direct (22%) &bull; Llamada telefónica (14%)</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Lead Solution Strategy -->
-          <div class="glass-panel p-6 rounded-2xl space-y-4">
-            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
-              <h4 class="font-bold text-white text-sm font-montserrat flex items-center gap-2">
-                <i class="fa-solid fa-unlock-keyhole text-aldosivi-yellow"></i>
-                <span>Respuestas Tácticas Inmediatas</span>
-              </h4>
-              <span class="text-[10px] text-emerald-400">Estrategia Anti-Fricción</span>
-            </div>
-
-            <div class="space-y-4 text-xs">
-              <div class="bg-slate-950 p-4 rounded-xl border border-amber-900/40 space-y-2">
-                <div class="font-bold text-aldosivi-yellow">Barrera: "No sé cómo hacerme socio"</div>
-                <p class="text-slate-300 text-[11px] leading-relaxed">
-                  Se ataca con la simplificación a 3 pasos en el landing page: <strong>1. Elegir categoría &rarr; 2. Cargar DNI &rarr; 3. Cargar tarjeta/CBU</strong>. Sin filas, sin firmas en papel y con carné digital inmediato en Apple Wallet / Google Wallet.
-                </p>
-              </div>
-
-              <div class="bg-slate-950 p-4 rounded-xl border border-emerald-900/40 space-y-2">
-                <div class="font-bold text-emerald-400">Barrera: "La cuota es cara"</div>
-                <p class="text-slate-300 text-[11px] leading-relaxed">
-                  Se combate mostrando la <strong>paradoja económica</strong>: 2 entradas populares en boletería cuestan más que 1 mes de cuota con débito automático ($38.000). Además, 2 compras al mes en comercios con descuento pagan el 50% de la cuota.
-                </p>
-              </div>
-
-              <div class="bg-slate-950 p-4 rounded-xl border border-cyan-900/40 space-y-2">
-                <div class="font-bold text-cyan-400">Canal Predilecto: WhatsApp Directo</div>
-                <p class="text-slate-300 text-[11px] leading-relaxed">
-                  El 64% de los leads solicita resolución por WhatsApp. Por eso se implementa el módulo operativo 1 a 1 sin bots fríos con enlace directo al pago.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- VIEW 3: MATRIZ DE PARADOJA Y AJUSTE DE PLAN -->
-      <div id="view-sondaje-paradoja" class="hidden space-y-6">
-        <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-          <div class="border-b border-slate-800 pb-4">
-            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-              <i class="fa-solid fa-arrows-split-up-and-left text-aldosivi-yellow"></i>
-              <span>Matriz de Análisis de la Paradoja & Ajuste de Plan Estratégico</span>
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat">
+              2. Encuesta para Leads Potenciales y No-Socios
             </h3>
-            <p class="text-xs text-slate-400">Cruce metodológico de 3 bloques para toma de decisiones en reunión de Comisión Directiva.</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Releva edad, barrio en Mar del Plata, barreras de entrada ("no sabía que se paga por web", "precio"), disposición de pago mensual, "hechito" disparador de alta y preferencia entre Web, Predio o Tienda Olavarría.
+            </p>
+          </div>
+          <div class="pt-2 flex items-center gap-3">
+            <a href="formulario-leads-potenciales.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-[#14532d] hover:bg-[#166534] text-white font-bold text-xs shadow transition">
+              <i class="fa-solid fa-up-right-from-square mr-1.5 text-aldosivi-yellow"></i> Abrir Formulario #2 Completo (HTML / PDF)
+            </a>
+          </div>
+        </div>
+
+        <!-- Form 3 Card -->
+        <div class="inst-card p-6 rounded-2xl border-t-4 border-t-amber-500 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-extrabold bg-amber-50 text-amber-900 border border-amber-300">
+                FORMULARIO OFICIAL #3
+              </span>
+              <span class="text-xs font-bold text-amber-700">Segmentos A, B y C (Ex-Socios)</span>
+            </div>
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat">
+              3. Encuesta de Recuperación de Ex-Socios
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Diseñada en conjunto con el PDF de Recuperación de Ex-Socios: identifica el dolor puntual de la baja (económico, mudanza, poco uso) y ofrece las promos "Volvé a ser parte", "Extrañamos tu bandera" y "Volvé sin riesgo".
+            </p>
+          </div>
+          <div class="pt-2 flex items-center gap-2">
+            <a href="formulario-ex-socios.html" target="_blank" class="flex-1 text-center py-2.5 px-3 rounded-xl bg-[#14532d] hover:bg-[#166534] text-white font-bold text-xs shadow transition">
+              <i class="fa-solid fa-up-right-from-square mr-1 text-aldosivi-yellow"></i> Abrir Formulario #3
+            </a>
+            <a href="templates/campana_recuperacion_ex_socios_aldosivi.pdf" target="_blank" class="py-2.5 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shadow transition">
+              <i class="fa-solid fa-file-pdf mr-1"></i> Ver PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Form 4 Card -->
+        <div class="inst-card p-6 rounded-2xl border-t-4 border-t-emerald-600 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-extrabold bg-[#f0fdf4] text-[#14532d] border border-emerald-300">
+                FORMULARIO OFICIAL #4
+              </span>
+              <span class="text-xs font-bold text-[#166534]">Mora 1 a 5 Meses (1.200 Socios)</span>
+            </div>
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat">
+              4. Formulario de Regularización y Medios de Pago Web
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Permite al socio con cuotas pendientes adherirse al débito automático web ($38.000 con 1er mes gratis) o solicitar un plan de facilidades en cuotas sin perder su antigüedad ni su número de socio.
+            </p>
+          </div>
+          <div class="pt-2 flex items-center gap-3">
+            <a href="formulario-deudores-regularizacion.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-[#14532d] hover:bg-[#166534] text-white font-bold text-xs shadow transition">
+              <i class="fa-solid fa-up-right-from-square mr-1.5 text-aldosivi-yellow"></i> Abrir Formulario #4 Completo (HTML / PDF)
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Paradox Analysis Matrix (3 Bloques) -->
+      <div class="inst-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat flex items-center space-x-2">
+            <i class="fa-solid fa-arrows-split-up-and-left text-[#166534]"></i>
+            <span>Matriz de Análisis de Sondaje & Paradoja del Plan</span>
+          </h3>
+          <p class="text-xs text-slate-500">Cómo se traducen las respuestas de los 4 formularios en acciones concretas cada lunes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-[#f0fdf4] p-5 rounded-xl border border-emerald-200 space-y-2.5">
+            <div class="font-extrabold text-[#14532d] text-xs uppercase flex items-center gap-2">
+              <i class="fa-solid fa-users"></i>
+              <span>Bloque 1: Fidelización y Uso</span>
+            </div>
+            <p class="text-xs text-slate-700"><strong>Hallazgo:</strong> Socios de más de 5 años abonan su cuota pero desconocen los descuentos comerciales.</p>
+            <div class="p-3 rounded-lg bg-white border border-emerald-200 text-[11px] text-[#14532d]">
+              <strong>Acción:</strong> Enviar catálogo digital por WhatsApp e invitación a eventos en el <strong>Predio Deportivo de Punta Mogotes</strong>.
+            </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- Bloque 1 -->
-            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-              <div class="flex items-center space-x-2 text-aldosivi-yellow font-bold text-xs uppercase">
-                <i class="fa-solid fa-users-viewfinder"></i>
-                <span>Bloque 1: Demografía & Fidelidad</span>
-              </div>
-              <div class="space-y-2 text-xs text-slate-300">
-                <p><strong>Hallazgo:</strong> Socios de &gt;5 años van a la cancha pero no usan beneficios.</p>
-                <p><strong>Paradoja:</strong> Pagan religiosamente pero sienten que el club les ofrece poco fuera del partido.</p>
-                <div class="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
-                  <strong>Acción:</strong> Activar invitación personalizada a asados de socios, entrenamientos de inferiores y guía digital de beneficios en WhatsApp.
-                </div>
-              </div>
+          <div class="bg-[#f0fdf4] p-5 rounded-xl border border-emerald-200 space-y-2.5">
+            <div class="font-extrabold text-[#14532d] text-xs uppercase flex items-center gap-2">
+              <i class="fa-solid fa-scale-balanced"></i>
+              <span>Bloque 2: La Paradoja del Precio</span>
             </div>
-
-            <!-- Bloque 2 -->
-            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-              <div class="flex items-center space-x-2 text-amber-400 font-bold text-xs uppercase">
-                <i class="fa-solid fa-scale-balanced"></i>
-                <span>Bloque 2: Precio, Barreras & Oferta</span>
-              </div>
-              <div class="space-y-2 text-xs text-slate-300">
-                <p><strong>Hallazgo:</strong> 32% percibe la cuota como cara mientras compran entradas sueltas.</p>
-                <p><strong>Paradoja:</strong> Comprar 2 entradas generales sale más caro que todo el mes de cuota en débito.</p>
-                <div class="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] text-aldosivi-yellow">
-                  <strong>Acción:</strong> Campaña pedagógica "La Matemática del Tiburón": Débito auto $38k = Ahorro $108k/año + 1er mes bonificado.
-                </div>
-              </div>
+            <p class="text-xs text-slate-700"><strong>Paradoja:</strong> El hincha percibe la cuota como cara pero gasta más comprando entradas sueltas por partido.</p>
+            <div class="p-3 rounded-lg bg-white border border-emerald-200 text-[11px] text-[#14532d]">
+              <strong>Acción:</strong> Demostrar que el débito web ($38.000) ahorra <strong>$108.000/año</strong> + 1er mes gratis + recupero en comercios.
             </div>
+          </div>
 
-            <!-- Bloque 3 -->
-            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-              <div class="flex items-center space-x-2 text-emerald-400 font-bold text-xs uppercase">
-                <i class="fa-solid fa-bullhorn"></i>
-                <span>Bloque 3: Canales & Experiencia</span>
-              </div>
-              <div class="space-y-2 text-xs text-slate-300">
-                <p><strong>Hallazgo:</strong> El 38% no se asocia porque no quiere trasladarse hasta la sede.</p>
-                <p><strong>Paradoja:</strong> El club cuenta con web de autogestión pero no está comunicada en la calle.</p>
-                <div class="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
-                  <strong>Acción:</strong> Colocar banners con QR gigante "Asociate acá en 2 min" en accesos del Minella y comercios amigos de Mar del Plata.
-                </div>
-              </div>
+          <div class="bg-[#f0fdf4] p-5 rounded-xl border border-emerald-200 space-y-2.5">
+            <div class="font-extrabold text-[#14532d] text-xs uppercase flex items-center gap-2">
+              <i class="fa-solid fa-globe"></i>
+              <span>Bloque 3: Canales sin Fricción</span>
             </div>
-
+            <p class="text-xs text-slate-700"><strong>Hallazgo:</strong> El 38% no se asociaba pensando que debía hacer trámites presenciales engorrosos.</p>
+            <div class="p-3 rounded-lg bg-white border border-emerald-200 text-[11px] text-[#14532d]">
+              <strong>Acción:</strong> Comunicar que hoy el pago es <strong>100% online por web</strong>, o presencial en <strong>Predio Punta Mogotes</strong> y <strong>Tienda calle Olavarría</strong>.
+            </div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- ========================================== -->
-    <!-- TAB 4: 📲 WHATSAPP 1 A 1 & SCORING        -->
-    <!-- ========================================== -->
+    <!-- ======================================================= -->
+    <!-- TAB 4: 📲 WHATSAPP 1 A 1, SCORING & PDF EX-SOCIOS       -->
+    <!-- ======================================================= -->
     <div id="tab-whatsapp" class="tab-content hidden space-y-8">
       
-      <!-- Anti-Ban Alert Box -->
-      <div class="bg-gradient-to-r from-red-950/80 via-slate-900 to-slate-900 border-l-4 border-red-500 p-6 rounded-2xl glass-panel space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">
-              PROTOCOLOS CRÍTICOS ANTI-BAN
-            </span>
-            <span class="text-xs text-slate-400">Meta WhatsApp Business Reglas 2026</span>
+      <!-- Featured Banner for the PDF uploaded to templates -->
+      <div class="inst-header-gradient p-6 sm:p-8 rounded-2xl text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-lg">
+        <div class="space-y-2">
+          <div class="inline-flex items-center space-x-2 px-2.5 py-0.5 rounded bg-aldosivi-yellow text-[#14532d] text-xs font-extrabold uppercase">
+            <i class="fa-solid fa-file-pdf mr-1"></i> Documento Oficial en Templates
           </div>
-          <span class="text-xs text-emerald-400 font-mono font-bold"><i class="fa-solid fa-shield-halved"></i> Límite: Max 10 msg / hora (40 / día por chip)</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold font-montserrat">
+            Campaña de Recuperación de Ex-Socios (WhatsApp Directo 1 a 1)
+          </h2>
+          <p class="text-xs sm:text-sm text-emerald-100 max-w-2xl">
+            Manual operativo completo de 8 páginas con diagnóstico de motivos de baja, segmentación A/B/C/D, secuencias de mensajes Día 1, Día 3 y Día 10, flujo diario y matriz de objeciones.
+          </p>
         </div>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          Dado que el número oficial no cuenta con verificación verde de Meta, <strong>enviar mensajes masivos fríos provocará el bloqueo de la línea.</strong> La operación se basa en rotar 2 números oficiales y utilizar el sistema de <strong>Lead Scoring (0 a 5)</strong> individualizado.
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a href="templates/campana_recuperacion_ex_socios_aldosivi.pdf" target="_blank" class="inline-flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-aldosivi-yellow hover:bg-yellow-300 text-[#14532d] font-extrabold text-xs shadow-lg transition">
+            <i class="fa-solid fa-file-pdf text-red-700 text-base"></i>
+            <span>Abrir PDF Completo (8 Págs)</span>
+          </a>
+          <a href="formulario-ex-socios.html" target="_blank" class="inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white border border-white/30 font-bold text-xs transition">
+            <i class="fa-solid fa-clipboard-check text-aldosivi-yellow"></i>
+            <span>Ver Formulario Ex-Socios</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Urgent Anti-Ban Callout (Matches PDF Urgent Box) -->
+      <div class="callout-urgent p-5 rounded-r-xl space-y-1.5 text-xs sm:text-sm shadow-sm">
+        <div class="font-extrabold text-red-800 flex items-center justify-between">
+          <span><i class="fa-solid fa-shield-halved mr-1.5"></i> REGLA DE ORO ANTI-BAN (META WHATSAPP 2026)</span>
+          <span class="font-mono bg-red-100 text-red-800 px-2.5 py-0.5 rounded text-xs">Máx: 10 msg/hora • 40/día por línea</span>
+        </div>
+        <p class="text-red-950/80 text-xs leading-relaxed">
+          Contacto 1 a 1 artesanal, <strong>NO broadcast frío</strong>. Cada mensaje incluye nombre de pila, dato contextual real y link de pago web (<code>aldosivi.com.ar/socio</code>). Enviar en lotes de 5 para evitar detección automática.
         </p>
       </div>
 
-      <!-- Lead Scoring Matrix (0 a 5) Interactivo -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-800">
+      <!-- Lead Scoring Matrix (1 to 5) -->
+      <div class="inst-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-200">
           <div>
-            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-              <i class="fa-solid fa-ranking-star text-aldosivi-yellow"></i>
-              <span>Centro Operativo: Scoring de Leads & SLAs de Respuesta</span>
+            <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat flex items-center space-x-2">
+              <i class="fa-solid fa-ranking-star text-[#166534]"></i>
+              <span>Centro Operativo: Scoring de Prioridad (1 a 5) & Plantillas 1 a 1</span>
             </h3>
-            <p class="text-xs text-slate-400">Hacé clic en cada puntaje para cargar la plantilla de mensaje personalizada y ver la acción prioritaria.</p>
+            <p class="text-xs text-slate-500">Seleccioná un nivel de prioridad para cargar el script personalizado y copiarlo con un clic.</p>
           </div>
-          <span class="text-xs font-semibold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
-            Conversión Objetivo: &gt; 30%
-          </span>
         </div>
 
-        <!-- Score Selector Pills -->
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-          <button onclick="selectLeadScore(5)" id="score-btn-5" class="score-btn p-3 rounded-xl bg-aldosivi-green text-white border border-aldosivi-yellow/40 text-left transition space-y-1">
+          <button onclick="selectLeadScore(5)" id="score-btn-5" class="score-btn p-3.5 rounded-xl bg-[#14532d] text-white border-2 border-aldosivi-yellow text-left transition space-y-1 shadow">
             <div class="flex justify-between items-center">
               <span class="font-black text-sm font-montserrat">SCORE 5</span>
-              <span class="text-[10px] bg-aldosivi-yellow text-slate-950 px-1.5 py-0.5 rounded font-bold">&lt; 10 min</span>
+              <span class="text-[10px] bg-aldosivi-yellow text-[#14532d] px-1.5 py-0.5 rounded font-extrabold">&lt; 10 min</span>
             </div>
-            <div class="text-[11px] font-semibold text-emerald-200">Lead Caliente</div>
-            <div class="text-[9px] text-slate-300">Clickeó pago / preguntó precio</div>
+            <div class="text-xs font-bold text-aldosivi-yellow">Lead Caliente</div>
+            <div class="text-[10px] text-emerald-100">Inició trámite web</div>
           </button>
 
-          <button onclick="selectLeadScore(4)" id="score-btn-4" class="score-btn p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-left transition space-y-1">
+          <button onclick="selectLeadScore(4)" id="score-btn-4" class="score-btn p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-700 border border-slate-200 text-left transition space-y-1">
             <div class="flex justify-between items-center">
-              <span class="font-black text-sm font-montserrat">SCORE 4</span>
-              <span class="text-[10px] bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-bold">&lt; 1 hora</span>
+              <span class="font-black text-sm font-montserrat text-[#14532d]">SCORE 4</span>
+              <span class="text-[10px] bg-emerald-100 text-[#14532d] px-1.5 py-0.5 rounded font-bold">&lt; 1 hora</span>
             </div>
-            <div class="text-[11px] font-semibold text-slate-200">Socio Inactivo</div>
-            <div class="text-[9px] text-slate-400">Alta &gt;3 meses sin pago</div>
+            <div class="text-xs font-bold text-slate-800">Socio Inactivo</div>
+            <div class="text-[10px] text-slate-500">Segmento D (&gt;3m sin pago)</div>
           </button>
 
-          <button onclick="selectLeadScore(3)" id="score-btn-3" class="score-btn p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-left transition space-y-1">
+          <button onclick="selectLeadScore(3)" id="score-btn-3" class="score-btn p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-700 border border-slate-200 text-left transition space-y-1">
             <div class="flex justify-between items-center">
-              <span class="font-black text-sm font-montserrat">SCORE 3</span>
-              <span class="text-[10px] bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded font-bold">&lt; 4 horas</span>
+              <span class="font-black text-sm font-montserrat text-[#14532d]">SCORE 3</span>
+              <span class="text-[10px] bg-emerald-100 text-[#14532d] px-1.5 py-0.5 rounded font-bold">&lt; 4 horas</span>
             </div>
-            <div class="text-[11px] font-semibold text-slate-200">Ex-Socio Reciente</div>
-            <div class="text-[9px] text-slate-400">Baja &lt;6m / Deudor 1-2m</div>
+            <div class="text-xs font-bold text-slate-800">Ex-Socio Reciente</div>
+            <div class="text-[10px] text-slate-500">Segmento A (&lt;6 meses)</div>
           </button>
 
-          <button onclick="selectLeadScore(2)" id="score-btn-2" class="score-btn p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-left transition space-y-1">
+          <button onclick="selectLeadScore(2)" id="score-btn-2" class="score-btn p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-700 border border-slate-200 text-left transition space-y-1">
             <div class="flex justify-between items-center">
-              <span class="font-black text-sm font-montserrat">SCORE 2</span>
-              <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-bold">&lt; 48 horas</span>
+              <span class="font-black text-sm font-montserrat text-[#14532d]">SCORE 2</span>
+              <span class="text-[10px] bg-emerald-100 text-[#14532d] px-1.5 py-0.5 rounded font-bold">&lt; 24 horas</span>
             </div>
-            <div class="text-[11px] font-semibold text-slate-200">Deudor 3-5 Meses</div>
-            <div class="text-[9px] text-slate-400">Posible baja inminente</div>
+            <div class="text-xs font-bold text-slate-800">Ex-Socio Media</div>
+            <div class="text-[10px] text-slate-500">Segmento B (6-18 meses)</div>
           </button>
 
-          <button onclick="selectLeadScore(1)" id="score-btn-1" class="score-btn p-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-left transition space-y-1">
+          <button onclick="selectLeadScore(1)" id="score-btn-1" class="score-btn p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-700 border border-slate-200 text-left transition space-y-1">
             <div class="flex justify-between items-center">
-              <span class="font-black text-sm font-montserrat">SCORE 1</span>
-              <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-bold">&lt; 7 días</span>
+              <span class="font-black text-sm font-montserrat text-[#14532d]">SCORE 1</span>
+              <span class="text-[10px] bg-emerald-100 text-[#14532d] px-1.5 py-0.5 rounded font-bold">&lt; 48 horas</span>
             </div>
-            <div class="text-[11px] font-semibold text-slate-200">Lead Frío</div>
-            <div class="text-[9px] text-slate-400">Vio video / no contestó</div>
+            <div class="text-xs font-bold text-slate-800">Baja Antigua</div>
+            <div class="text-[10px] text-slate-500">Segmento C (&gt;18 meses)</div>
           </button>
         </div>
 
-        <!-- Selected Score Workspace Card -->
-        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-4">
+        <!-- Selected Score Template Box -->
+        <div class="bg-[#f0fdf4] p-6 rounded-2xl border border-emerald-300 space-y-4">
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div>
-              <div id="scoreTargetTitle" class="text-base font-bold text-aldosivi-yellow font-montserrat">
+              <div id="scoreTargetTitle" class="text-base font-extrabold text-[#14532d] font-montserrat">
                 SCORE 5: Lead Caliente (SLA: Inmediato &lt; 10 Minutos)
               </div>
-              <div id="scoreTargetDesc" class="text-xs text-slate-400">
-                El usuario ya inició el checkout en la web o preguntó explícitamente cómo asociarse.
+              <div id="scoreTargetDesc" class="text-xs text-slate-600">
+                El usuario inició el trámite en la web o consultó precios hoy.
               </div>
             </div>
-            <button onclick="copyToClipboard('scoreMessageTemplate')" class="text-xs bg-aldosivi-green hover:bg-emerald-600 text-white px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
+            <button onclick="copyToClipboard('scoreMessageTemplate')" class="text-xs bg-[#14532d] hover:bg-[#166534] text-aldosivi-yellow font-bold px-4 py-2 rounded-lg shadow transition flex items-center space-x-1.5">
               <i class="fa-regular fa-copy"></i>
-              <span>Copiar Plantilla</span>
+              <span>Copiar Mensaje</span>
             </button>
           </div>
 
-          <textarea id="scoreMessageTemplate" readonly class="w-full h-32 bg-slate-900 p-4 rounded-xl text-xs text-slate-200 font-mono resize-none border border-slate-800 focus:outline-none leading-relaxed">¡Hola [Nombre]! 🦈 Vimos que empezaste tu trámite de socio en la web y no lo completaste. 
-
-Te reservamos la promo especial con débito automático por $38.000/mes y el PRIMER MES 100% GRATIS hasta el 31/10.
-
-Completalo en 1 minuto acá: aldosivi.com.ar/socio 👈
-Si tenés cualquier duda con el pago, avisame y te ayudo ahora mismo.</textarea>
+          <textarea id="scoreMessageTemplate" readonly class="w-full h-36 bg-white p-4 rounded-xl text-xs text-slate-800 font-mono resize-none border border-emerald-300 focus:outline-none leading-relaxed"></textarea>
         </div>
       </div>
 
-      <!-- Live Chat Simulator & Quick Shortcuts -->
+      <!-- Simulator & Shortcuts -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- Shortcuts Sidebar -->
         <div class="lg:col-span-1 space-y-3">
-          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Atajos Rápidos de WhatsApp</div>
-          
+          <div class="text-xs font-extrabold text-[#14532d] uppercase tracking-wider">Atajos Rápidos WhatsApp Business</div>
           <div class="space-y-2">
-            <button onclick="simulateShortcut('/alta')" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-xs flex justify-between items-center group">
+            <button onclick="simulateShortcut('/alta')" class="w-full text-left p-3 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 transition text-xs flex justify-between items-center shadow-sm">
               <div>
-                <div class="font-mono font-bold text-aldosivi-yellow">/alta</div>
-                <div class="text-slate-400 text-[10px]">Link directo autogestión + primer mes gratis</div>
+                <div class="font-mono font-bold text-[#14532d]">/alta</div>
+                <div class="text-slate-500 text-[10px]">Alta web en 2 min + Predio y Tienda Olavarría</div>
               </div>
-              <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-aldosivi-yellow transition"></i>
+              <i class="fa-solid fa-paper-plane text-[#166534]"></i>
             </button>
-
-            <button onclick="simulateShortcut('/precios')" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-xs flex justify-between items-center group">
+            <button onclick="simulateShortcut('/precios')" class="w-full text-left p-3 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 transition text-xs flex justify-between items-center shadow-sm">
               <div>
-                <div class="font-mono font-bold text-aldosivi-yellow">/precios</div>
-                <div class="text-slate-400 text-[10px]">Categorías (Activo, Cadete, Jubilado)</div>
+                <div class="font-mono font-bold text-[#14532d]">/precios</div>
+                <div class="text-slate-500 text-[10px]">Categorías en débito auto + 1er mes gratis</div>
               </div>
-              <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-aldosivi-yellow transition"></i>
+              <i class="fa-solid fa-paper-plane text-[#166534]"></i>
             </button>
-
-            <button onclick="simulateShortcut('/deudores')" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-xs flex justify-between items-center group">
+            <button onclick="simulateShortcut('/deudores')" class="w-full text-left p-3 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 transition text-xs flex justify-between items-center shadow-sm">
               <div>
-                <div class="font-mono font-bold text-aldosivi-yellow">/deudores</div>
-                <div class="text-slate-400 text-[10px]">Plan facilidades + regularización débito</div>
+                <div class="font-mono font-bold text-[#14532d]">/deudores</div>
+                <div class="text-slate-500 text-[10px]">Regularización online o en Predio/Tienda</div>
               </div>
-              <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-aldosivi-yellow transition"></i>
+              <i class="fa-solid fa-paper-plane text-[#166534]"></i>
             </button>
-
-            <button onclick="simulateShortcut('/beneficios')" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-xs flex justify-between items-center group">
+            <button onclick="simulateShortcut('/ubicacion')" class="w-full text-left p-3 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 transition text-xs flex justify-between items-center shadow-sm">
               <div>
-                <div class="font-mono font-bold text-aldosivi-yellow">/beneficios</div>
-                <div class="text-slate-400 text-[10px]">20+ descuentos comercios MDP + carné</div>
+                <div class="font-mono font-bold text-[#14532d]">/ubicacion</div>
+                <div class="text-slate-500 text-[10px]">Web 24hs, Predio Punta Mogotes y Tienda Olavarría</div>
               </div>
-              <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-aldosivi-yellow transition"></i>
-            </button>
-
-            <button onclick="simulateShortcut('/referido')" class="w-full text-left p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-xs flex justify-between items-center group">
-              <div>
-                <div class="font-mono font-bold text-aldosivi-yellow">/referido</div>
-                <div class="text-slate-400 text-[10px]">Promo Socios traen Socios (1 mes gratis)</div>
-              </div>
-              <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-aldosivi-yellow transition"></i>
+              <i class="fa-solid fa-paper-plane text-[#166534]"></i>
             </button>
           </div>
         </div>
 
-        <!-- Chat Simulator Box -->
-        <div class="lg:col-span-2 glass-panel p-6 rounded-2xl space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="lg:col-span-2 inst-card p-6 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200">
             <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white text-lg">
+              <div class="w-10 h-10 rounded-full bg-[#14532d] flex items-center justify-center text-aldosivi-yellow text-lg">
                 <i class="fa-brands fa-whatsapp"></i>
               </div>
               <div>
-                <div class="text-xs font-bold text-white">Atención Oficial Aldosivi Socios</div>
-                <div class="text-[10px] text-emerald-400 flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  En línea (Simulador)
-                </div>
+                <div class="text-xs font-extrabold text-[#14532d]">Simulador de Atención Oficial Aldosivi Socios</div>
+                <div class="text-[10px] text-[#166534] font-semibold">En línea • Respuesta artesanal 1 a 1</div>
               </div>
             </div>
-            <button onclick="document.getElementById('whatsappChatBody').innerHTML=''" class="text-[10px] text-slate-400 hover:text-white bg-slate-900 px-2 py-1 rounded">
-              Limpiar Chat
+            <button onclick="document.getElementById('whatsappChatBody').innerHTML=''" class="text-[11px] text-slate-500 hover:text-slate-800 bg-slate-100 px-2.5 py-1 rounded">
+              Limpiar
             </button>
           </div>
 
-          <div id="whatsappChatBody" class="h-64 overflow-y-auto space-y-3 p-3 bg-slate-950/70 rounded-xl border border-slate-800">
-            <div class="chat-bubble-received p-3 text-slate-200 max-w-[85%] space-y-1 shadow text-xs">
-              <p>👋 ¡Hola! Soy del equipo de socios de Aldosivi. Hacé clic en los atajos de la izquierda para simular las respuestas rápidas que envían nuestros operadores.</p>
-              <div class="text-[9px] text-slate-400 text-right">09:00 hs</div>
+          <div id="whatsappChatBody" class="h-64 overflow-y-auto space-y-3 p-4 bg-slate-100 rounded-xl border border-slate-200">
+            <div class="chat-bubble-received p-3 max-w-[85%] space-y-1 shadow-sm text-xs">
+              <p>👋 ¡Hola! Seleccioná un atajo a la izquierda para previsualizar cómo reciben la información los socios y simpatizantes por WhatsApp.</p>
+              <div class="text-[9px] text-slate-400 text-right">10:00 hs</div>
             </div>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -1057,199 +852,118 @@ Si tenés cualquier duda con el pago, avisame y te ayudo ahora mismo.</textarea>
     <!-- ========================================== -->
     <div id="tab-plan" class="tab-content hidden space-y-8">
       
-      <!-- Meta 10.000 Socios Strategic Card -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6 border-l-4 border-emerald-400 relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
-          <img src="escudo-aldosivi.png" alt="" class="w-64 h-64 object-contain" />
+      <div class="inst-header-gradient p-6 sm:p-8 rounded-2xl text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-lg">
+        <div>
+          <span class="px-2.5 py-0.5 rounded text-xs font-extrabold bg-aldosivi-yellow text-[#14532d]">
+            META COMISIÓN DIRECTIVA: 10.000 SOCIOS ACTIVOS
+          </span>
+          <h2 class="text-xl sm:text-2xl font-extrabold font-montserrat mt-1">
+            Plan Operativo en 4 Frentes Orgánicos & Presupuesto Mínimo
+          </h2>
+          <p class="text-xs text-emerald-100 mt-1 max-w-3xl">
+            De 5.100 socios actuales a 10.000 socios consolidando pagos por medios web, eventos en el Predio Deportivo de Punta Mogotes y presencia en la Tienda de calle Olavarría.
+          </p>
         </div>
-        
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                OBJETIVO COMISIÓN DIRECTIVA TILLOUS
-              </span>
-              <span class="text-xs text-slate-400">Plan de Crecimiento & Presupuesto Mínimo</span>
-            </div>
-            <h2 class="text-xl sm:text-2xl font-bold font-montserrat text-white mt-1">
-              Camino Sostenible a los 10.000 Socios Activos
-            </h2>
-            <p class="text-xs text-slate-300 max-w-3xl leading-relaxed mt-1">
-              Realidad matemática: Base inicial de <strong>5.100 socios activos</strong>. Brecha a cubrir: <strong>4.900 socios</strong>. Para no quemar el presupuesto en publicidad masiva ineficiente, el plan se apoya en <strong>3 frentes orgánicos de alta conversión</strong>.
-            </p>
-          </div>
-          <div class="bg-slate-900/90 border border-emerald-500/40 p-4 rounded-xl text-center min-w-[190px] shrink-0">
-            <div class="text-[10px] text-slate-400 uppercase font-semibold">Brecha a Cubrir</div>
-            <div class="text-2xl font-black font-montserrat text-aldosivi-yellow">+4.900 <span class="text-xs font-normal text-slate-300">socios</span></div>
-            <div class="text-[10px] text-emerald-400 mt-1">De 5.100 a 10.000</div>
-          </div>
-        </div>
-
-        <!-- 3 Core Fronts Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-2">
-          
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="font-bold text-emerald-400 text-xs">1. Deudores 1-5 Meses</span>
-              <span class="text-xs font-mono font-bold text-white">600 socios</span>
-            </div>
-            <div class="text-[11px] text-slate-300">WhatsApp 1 a 1 + facilidades débito.</div>
-            <div class="text-[10px] text-aldosivi-yellow font-semibold">CPA: ~$1.200 (Sin pauta)</div>
-          </div>
-
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="font-bold text-emerald-400 text-xs">2. Actividades Sociales</span>
-              <span class="text-xs font-mono font-bold text-white">500 socios</span>
-            </div>
-            <div class="text-[11px] text-slate-300">Asados, charlas con ídolos, museo.</div>
-            <div class="text-[10px] text-aldosivi-yellow font-semibold">CPA: ~$800 (Auto-financiado)</div>
-          </div>
-
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="font-bold text-emerald-400 text-xs">3. Ex-Socios Históricos</span>
-              <span class="text-xs font-mono font-bold text-white">500 socios</span>
-            </div>
-            <div class="text-[11px] text-slate-300">Reenganche empático y 1er mes gratis.</div>
-            <div class="text-[10px] text-aldosivi-yellow font-semibold">CPA: ~$1.000</div>
-          </div>
-
-          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="font-bold text-emerald-400 text-xs">4. Captación Digital</span>
-              <span class="text-xs font-mono font-bold text-white">500 socios</span>
-            </div>
-            <div class="text-[11px] text-slate-300">Web autogestión + TikTok + Reels orgánicos.</div>
-            <div class="text-[10px] text-aldosivi-yellow font-semibold">CPA: ~$1.000</div>
-          </div>
-
-        </div>
-
-        <div class="bg-slate-900/90 p-4 rounded-xl border border-emerald-900/40 text-xs text-slate-300 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div>
-            <strong class="text-white">Proyección por Etapas:</strong> 
-            <span>2.100 socios sumados en 6 meses consolidan <strong>~7.200 activos</strong>. Los 2.800 restantes se alcanzan en 12 a 18 meses con el motor de referidos activo y fidelización continua.</span>
-          </div>
-          <span class="px-3 py-1 bg-aldosivi-green text-white text-xs font-bold rounded-lg shrink-0">Plan Sostenible</span>
+        <div class="bg-white text-[#14532d] px-4 py-3 rounded-xl text-center shrink-0 font-montserrat border-2 border-aldosivi-yellow">
+          <div class="text-[10px] uppercase font-bold text-slate-500">Meta 6 Meses</div>
+          <div class="text-xl font-black">+2.100 Socios</div>
         </div>
       </div>
 
-      <!-- Human Team & Resource Allocation -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="inst-card p-5 rounded-xl border-t-4 border-t-[#14532d] space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-extrabold text-[#14532d] text-xs">1. Recuperación Mora</span>
+            <span class="text-xs font-bold bg-emerald-100 text-[#14532d] px-2 py-0.5 rounded">600 socios</span>
+          </div>
+          <p class="text-xs text-slate-600">WhatsApp 1 a 1 + adhesión a débito automático web.</p>
+          <div class="text-[11px] font-bold text-[#166534]">CPA: ~$1.200 (Sin pauta)</div>
+        </div>
+
+        <div class="inst-card p-5 rounded-xl border-t-4 border-t-[#166534] space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-extrabold text-[#14532d] text-xs">2. Actividades Predio</span>
+            <span class="text-xs font-bold bg-emerald-100 text-[#14532d] px-2 py-0.5 rounded">500 socios</span>
+          </div>
+          <p class="text-xs text-slate-600">Asados, entrenamientos abiertos y visitas en Punta Mogotes.</p>
+          <div class="text-[11px] font-bold text-[#166534]">CPA: ~$800</div>
+        </div>
+
+        <div class="inst-card p-5 rounded-xl border-t-4 border-t-amber-500 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-extrabold text-[#14532d] text-xs">3. Ex-Socios (PDF)</span>
+            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">500 socios</span>
+          </div>
+          <p class="text-xs text-slate-600">Reenganche por segmentos A, B y C con 1er mes bonificado.</p>
+          <div class="text-[11px] font-bold text-[#166534]">CPA: ~$1.000</div>
+        </div>
+
+        <div class="inst-card p-5 rounded-xl border-t-4 border-t-emerald-500 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-extrabold text-[#14532d] text-xs">4. Web & Tienda Olavarría</span>
+            <span class="text-xs font-bold bg-emerald-100 text-[#14532d] px-2 py-0.5 rounded">500 socios</span>
+          </div>
+          <p class="text-xs text-slate-600">Autogestión web 24/7 + QR en Tienda Oficial calle Olavarría.</p>
+          <div class="text-[11px] font-bold text-[#166534]">CPA: ~$1.000</div>
+        </div>
+      </div>
+
+      <!-- Team & Budget -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Team Structure -->
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <div class="flex items-center space-x-2 text-white font-bold font-montserrat text-sm border-b border-slate-800 pb-3">
-            <i class="fa-solid fa-users-gear text-aldosivi-yellow"></i>
-            <span>Equipo Operativo Mínimo (10 a 12 Personas)</span>
-          </div>
-
-          <div class="space-y-3 text-xs">
-            <div class="flex justify-between items-center p-2.5 bg-slate-900 rounded-lg border border-slate-800">
-              <div>
-                <strong class="text-white">1. Coordinador/a General</strong>
-                <div class="text-slate-400 text-[10px]">Estrategia, metas diarias, CD, KPIs</div>
-              </div>
-              <span class="text-emerald-400 font-mono font-bold">15-20 h/sem</span>
+        <div class="inst-card p-6 rounded-2xl space-y-4">
+          <h3 class="font-extrabold text-[#14532d] font-montserrat text-sm border-b border-slate-200 pb-3">
+            <i class="fa-solid fa-users-gear mr-1.5 text-[#166534]"></i> Equipo Mínimo Operativo (10 a 12 Personas)
+          </h3>
+          <div class="space-y-2.5 text-xs">
+            <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span><strong>1. Coordinador/a General</strong> (Estrategia, CD, KPIs)</span>
+              <span class="font-bold text-[#14532d]">15-20 h/sem</span>
             </div>
-
-            <div class="flex justify-between items-center p-2.5 bg-slate-900 rounded-lg border border-slate-800">
-              <div>
-                <strong class="text-white">2. Comunicador/a & Contenidos</strong>
-                <div class="text-slate-400 text-[10px]">Reels, TikTok, copys, comunidad</div>
-              </div>
-              <span class="text-emerald-400 font-mono font-bold">20 h/sem</span>
+            <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span><strong>2. Comunicador/a Digital</strong> (Reels, TikTok, Web)</span>
+              <span class="font-bold text-[#14532d]">20 h/sem</span>
             </div>
-
-            <div class="flex justify-between items-center p-2.5 bg-slate-900 rounded-lg border border-slate-800">
-              <div>
-                <strong class="text-white">3. Admin Datos & WhatsApp</strong>
-                <div class="text-slate-400 text-[10px]">Altas, CBU, WhatsApp 1a1, CRM</div>
-              </div>
-              <span class="text-emerald-400 font-mono font-bold">15-20 h/sem</span>
+            <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span><strong>3. Admin Datos & Pagos Web</strong> (WhatsApp 1a1, Padrón)</span>
+              <span class="font-bold text-[#14532d]">15-20 h/sem</span>
             </div>
-
-            <div class="flex justify-between items-center p-2.5 bg-slate-900 rounded-lg border border-slate-800">
-              <div>
-                <strong class="text-white">4. Operador de Terreno</strong>
-                <div class="text-slate-400 text-[10px]">Stands estadio, eventos, atención presencial</div>
-              </div>
-              <span class="text-emerald-400 font-mono font-bold">10 h/sem</span>
+            <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span><strong>4. Operador Predio Punta Mogotes & Tienda Olavarría</strong></span>
+              <span class="font-bold text-[#14532d]">10 h/sem</span>
             </div>
-
-            <div class="flex justify-between items-center p-2.5 bg-slate-900 rounded-lg border border-slate-800">
-              <div>
-                <strong class="text-white">5. Voluntarios de Captación</strong>
-                <div class="text-slate-400 text-[10px]">6 a 8 voluntarios rotativos con QR y viáticos</div>
-              </div>
-              <span class="text-aldosivi-yellow font-mono font-bold">2-4 h c/u</span>
+            <div class="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+              <span><strong>5. Voluntarios (6 a 8 rotativos con QR de alta web)</strong></span>
+              <span class="font-bold text-[#166534]">2-4 h c/u</span>
             </div>
           </div>
         </div>
 
-        <!-- Budget Table Summary -->
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <div class="flex items-center space-x-2 text-white font-bold font-montserrat text-sm border-b border-slate-800 pb-3">
-            <i class="fa-solid fa-coins text-aldosivi-yellow"></i>
-            <span>Presupuesto Mínimo Optimizado (6 Meses)</span>
-          </div>
-
-          <div class="overflow-x-auto text-xs">
-            <table class="w-full text-left">
-              <thead>
-                <tr class="text-slate-400 border-b border-slate-800">
-                  <th class="py-2">Rubro</th>
-                  <th class="py-2">Monto Optimizado</th>
-                  <th class="py-2">Ahorro</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-800/60 text-slate-200">
-                <tr>
-                  <td class="py-2">Gráfica & Flyers QR</td>
-                  <td class="py-2 text-emerald-400 font-bold">$130.000</td>
-                  <td class="py-2 text-emerald-300">-$120.000</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Publicidad Meta/TikTok</td>
-                  <td class="py-2 text-emerald-400 font-bold">$80.000</td>
-                  <td class="py-2 text-emerald-300">-$120.000</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Merchandising Bienvenida</td>
-                  <td class="py-2 text-emerald-400 font-bold">$100.000</td>
-                  <td class="py-2 text-emerald-300">-$80.000</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Viáticos Voluntarios</td>
-                  <td class="py-2 text-emerald-400 font-bold">$60.000</td>
-                  <td class="py-2 text-emerald-300">-$20.000</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Producción Video & Prensa</td>
-                  <td class="py-2 text-emerald-400 font-bold">$80.000</td>
-                  <td class="py-2 text-emerald-300">-$20.000</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Actividades Sociales (6m)</td>
-                  <td class="py-2 text-emerald-400 font-bold">$280.000</td>
-                  <td class="py-2 text-slate-400">$0</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Fondo de Contingencia</td>
-                  <td class="py-2 text-emerald-400 font-bold">$120.000</td>
-                  <td class="py-2 text-emerald-300">-$43.500</td>
-                </tr>
-                <tr class="bg-aldosivi-darkgreen/60 font-bold text-white text-sm">
-                  <td class="py-2.5 px-2">TOTAL INVERSIÓN</td>
-                  <td class="py-2.5 px-2 text-aldosivi-yellow">$950.000</td>
-                  <td class="py-2.5 px-2 text-emerald-300">-30% OFF</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="inst-card p-6 rounded-2xl space-y-4">
+          <h3 class="font-extrabold text-[#14532d] font-montserrat text-sm border-b border-slate-200 pb-3">
+            <i class="fa-solid fa-coins mr-1.5 text-[#166534]"></i> Presupuesto Optimizado 6 Meses
+          </h3>
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="bg-[#14532d] text-white">
+                <th class="py-2 px-3">Rubro</th>
+                <th class="py-2 px-3">Inversión 6m</th>
+                <th class="py-2 px-3">Optimización</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr><td class="py-2 px-3">Gráfica QR (Predio y Tienda Olavarría)</td><td class="py-2 px-3 font-bold">$130.000</td><td class="py-2 px-3 text-[#166534]">-$120.000</td></tr>
+              <tr><td class="py-2 px-3">Pauta Segmentada Redes</td><td class="py-2 px-3 font-bold">$80.000</td><td class="py-2 px-3 text-[#166534]">-$120.000</td></tr>
+              <tr><td class="py-2 px-3">Merchandising & Kits Bienvenida</td><td class="py-2 px-3 font-bold">$100.000</td><td class="py-2 px-3 text-[#166534]">-$80.000</td></tr>
+              <tr><td class="py-2 px-3">Viáticos Voluntarios & Producción</td><td class="py-2 px-3 font-bold">$140.000</td><td class="py-2 px-3 text-[#166534]">-$40.000</td></tr>
+              <tr><td class="py-2 px-3">Actividades Sociales + Contingencia</td><td class="py-2 px-3 font-bold">$400.000</td><td class="py-2 px-3 text-[#166534]">-$43.500</td></tr>
+              <tr class="bg-[#f0fdf4] font-extrabold text-[#14532d] text-sm">
+                <td class="py-2.5 px-3">TOTAL CAMPAÑA (6 MESES)</td>
+                <td class="py-2.5 px-3">$950.000</td>
+                <td class="py-2.5 px-3 text-[#166534]">-30% Ahorro</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
       </div>
 
     </div>
@@ -1258,297 +972,235 @@ Si tenés cualquier duda con el pago, avisame y te ayudo ahora mismo.</textarea>
     <!-- TAB 6: GUIONES VIDEO & REELS              -->
     <!-- ========================================== -->
     <div id="tab-video" class="tab-content hidden space-y-8">
-      
-      <!-- Video Selector Tabs -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-slate-800">
-          <div>
-            <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-              <i class="fa-solid fa-clapperboard text-aldosivi-yellow"></i>
-              <span>Guiones Técnicos de Producción Audiovisual</span>
-            </h3>
-            <p class="text-xs text-slate-400">Seleccioná una pieza para ver el desglose escena por escena, audios y visuales.</p>
-          </div>
-          <span class="text-xs font-mono bg-slate-900 text-slate-300 px-3 py-1 rounded-full border border-slate-800">
-            Formato: 9:16 Reels & 16:9 Manifiesto
-          </span>
+      <div class="inst-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat">
+            Guiones Técnicos de Producción Audiovisual (Reels & Manifiesto)
+          </h3>
+          <p class="text-xs text-slate-500">Piezas enfocadas en pago web en 2 minutos, vida social en el Predio de Punta Mogotes y pertenencia.</p>
         </div>
 
-        <!-- Script Buttons -->
         <div class="flex flex-wrap gap-2">
-          <button onclick="selectVideoScript('reel-a')" id="vbtn-reel-a" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-aldosivi-green text-white shadow">Reel A: "¿Por qué no sos socio?" (60s)</button>
-          <button onclick="selectVideoScript('reel-b')" id="vbtn-reel-b" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300">Reel B: "¿A dónde va tu cuota?" (60s)</button>
-          <button onclick="selectVideoScript('reel-c')" id="vbtn-reel-c" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300">Reel C: "Volvé al Tiburón" (60s)</button>
-          <button onclick="selectVideoScript('manifiesto')" id="vbtn-manifiesto" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300">Video Manifiesto: "Aldosivi sos vos" (3min)</button>
+          <button onclick="selectVideoScript('reel-a')" id="vbtn-reel-a" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#14532d] text-white shadow">Reel A: "¿Por qué no sos socio?" (60s)</button>
+          <button onclick="selectVideoScript('reel-b')" id="vbtn-reel-b" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700">Reel B: "Tu cuota en el Predio" (60s)</button>
+          <button onclick="selectVideoScript('reel-c')" id="vbtn-reel-c" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700">Reel C: "Volvé al Tiburón" (60s)</button>
+          <button onclick="selectVideoScript('manifiesto')" id="vbtn-manifiesto" class="vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700">Video Manifiesto (3min)</button>
         </div>
 
-        <!-- Script Render Box -->
-        <div id="videoScriptDisplay" class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-4">
-          <!-- Dynamically populated via JS -->
+        <div id="videoScriptDisplay" class="bg-[#f0fdf4] p-6 rounded-2xl border border-emerald-200 space-y-4">
         </div>
       </div>
-
     </div>
 
     <!-- ========================================== -->
-    <!-- TAB 7: KIT DE PRENSA & SOCIAL MEDIA       -->
+    <!-- TAB 7: KIT DE PRENSA & REDES SOCIALES     -->
     <!-- ========================================== -->
     <div id="tab-prensa" class="tab-content hidden space-y-8">
-      
-      <!-- Social Media Copies Generator -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-          <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-            <i class="fa-solid fa-copy text-aldosivi-yellow"></i>
-            <span>Generador de Copys para Redes Sociales</span>
+      <div class="inst-card p-6 sm:p-8 rounded-2xl space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+          <h3 class="text-lg font-extrabold text-[#14532d] font-montserrat">
+            Copys Oficiales para Redes & Gacetilla de Prensa
           </h3>
-          <span class="text-xs text-slate-400">Copiar con 1 clic</span>
+          <span class="text-xs text-slate-500">Actualizado: Medios Web, Predio Punta Mogotes y Tienda Olavarría</span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Feed Copy -->
-          <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3 relative">
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-emerald-400">FEED POST (IG / FB)</span>
-              <button onclick="copyToClipboard('copyFeedText')" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1 rounded transition flex items-center space-x-1">
-                <i class="fa-regular fa-copy"></i>
-                <span>Copiar</span>
-              </button>
+              <span class="text-xs font-extrabold text-[#14532d]">POST FEED (INSTAGRAM / FACEBOOK)</span>
+              <button onclick="copyToClipboard('copyFeedText')" class="text-xs bg-[#14532d] text-white px-3 py-1 rounded font-bold">Copiar</button>
             </div>
-            <textarea id="copyFeedText" readonly class="w-full h-40 bg-slate-950 p-3 rounded-lg text-xs text-slate-300 font-mono resize-none border border-slate-800 focus:outline-none">🦈 Sos del Tiburón. Hacéte socio AHORA.
+            <textarea id="copyFeedText" readonly class="w-full h-44 bg-white p-3 rounded-lg text-xs text-slate-700 font-mono resize-none border border-slate-300">🦈 Sos del Tiburón. Hacéte socio AHORA desde donde estés.
 
-¿Cuánto tardás en hacerte socio? Menos de lo que tarda el agua para el mate: 2 MINUTOS.
+Ya no hace falta hacer filas: hoy te asociás y pagás 100% online por medios web en 2 MINUTOS:
+🌐 Entrás a aldosivi.com.ar/socio
+💳 Adherís con tarjeta o débito automático
+📱 Recibís tu carné digital al instante
 
-📱 Entrás a aldosivi.com.ar/socio
-💳 Elegís tarjeta o débito CBU
-🎉 ¡Listo! Carné digital al instante en tu celular
+¿Preferís atención presencial? Te esperamos en:
+🏟️ Predio Deportivo de Punta Mogotes
+🛍️ Tienda Oficial de la calle Olavarría
 
-Beneficios reales en Mar del Plata:
-🏟️ Entradas según categoría
-🛒 20+ convenios con descuentos en MDP
-🎉 Asados de socios, entrenamientos abiertos y eventos
-📱 Canal de WhatsApp exclusivo
+🎁 PROMO DÉBITO AUTOMÁTICO ($38.000/mes): Primer mes 100% GRATIS y ahorrás $108.000 al año.
 
-💥 PROMO LANZAMIENTO: Adherite al débito automático ($38.000/mes) y el PRIMER MES ES GRATIS. Ahorrás $108.000 al año.
-
-Link directo en bio 👈
 Volvé a ser parte. Aldosivi sos vos. 🦈💚💛</textarea>
           </div>
 
-          <!-- Stories Copy -->
-          <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3 relative">
+          <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-xs font-bold text-aldosivi-yellow">STORIES / ESTADOS WHATSAPP</span>
-              <button onclick="copyToClipboard('copyStoryText')" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1 rounded transition flex items-center space-x-1">
-                <i class="fa-regular fa-copy"></i>
-                <span>Copiar</span>
-              </button>
+              <span class="text-xs font-extrabold text-[#14532d]">GACETILLA DE PRENSA OFICIAL</span>
+              <button onclick="copyToClipboard('pressReleaseText')" class="text-xs bg-[#14532d] text-white px-3 py-1 rounded font-bold">Copiar</button>
             </div>
-            <textarea id="copyStoryText" readonly class="w-full h-40 bg-slate-950 p-3 rounded-lg text-xs text-slate-300 font-mono resize-none border border-slate-800 focus:outline-none">🦈 HACÉTE SOCIO EN 2 MINUTOS 🦈
+            <textarea id="pressReleaseText" readonly class="w-full h-44 bg-white p-3 rounded-lg text-xs text-slate-700 font-mono resize-none border border-slate-300">COMUNICADO OFICIAL — CLUB ATLÉTICO ALDOSIVI
 
-Sin filas. Sin papeles. Desde tu sillón.
+ALDOSIVI LANZA SU PLATAFORMA DE PAGO WEB Y CAMPAÑA DE SOCIOS 2026-2027
 
-✅ Débito automático: $38.000/mes
-🎁 PRIMER MES 100% GRATIS hasta 31/10
-🛒 20+ descuentos en Mar del Plata
-📱 Carné digital inmediato
+Mar del Plata — El Club Atlético Aldosivi presenta su nueva campaña integral de captación y recuperación de socios bajo el lema "Volvé a ser parte. Aldosivi sos vos".
 
-👉 Deslizá o tocá el sticker para asociarte YA: aldosivi.com.ar/socio</textarea>
+A partir de ahora, los hinchas pueden asociarse, regularizar su situación y abonar sus cuotas 100% online por medios web en menos de dos minutos a través de aldosivi.com.ar/socio, obteniendo su carné digital instantáneo. Asimismo, la atención presencial se brinda en el Predio Deportivo de Punta Mogotes y en la Tienda Oficial de la calle Olavarría.
+
+Quienes se adhieran al débito automático ($38.000 mensuales) contarán con el primer mes 100% bonificado y acceso a más de 20 descuentos en comercios de Mar del Plata.</textarea>
           </div>
-
         </div>
       </div>
-
-      <!-- Press Release Box -->
-      <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-          <h3 class="text-lg font-bold text-white font-montserrat flex items-center space-x-2">
-            <i class="fa-solid fa-newspaper text-aldosivi-yellow"></i>
-            <span>Gacetilla de Prensa Oficial</span>
-          </h3>
-          <button onclick="copyToClipboard('pressReleaseText')" class="text-xs bg-aldosivi-green hover:bg-emerald-600 text-white px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
-            <i class="fa-regular fa-copy"></i>
-            <span>Copiar Gacetilla Completa</span>
-          </button>
-        </div>
-
-        <textarea id="pressReleaseText" readonly class="w-full h-48 bg-slate-950 p-4 rounded-xl text-xs text-slate-300 font-mono resize-none border border-slate-800 focus:outline-none leading-relaxed">COMUNICADO DE PRENSA — CLUB ATLÉTICO ALDOSIVI
-
-ALDOSIVI PRESENTA SU NUEVA PLATAFORMA DE AUTOGESTIÓN Y CAMPAÑA DE SOCIOS 2026-2027
-
-Mar del Plata, Noviembre de 2026. — En el marco de su plan integral de modernización institucional, el Club Atlético Aldosivi presentó oficialmente su nueva campaña de captación y recuperación de socios, junto al lanzamiento de su plataforma digital de autogestión.
-
-La iniciativa, diseñada bajo el lema "Volvé a ser parte. Aldosivi sos vos", permite a cualquier hincha asociarse en menos de dos minutos desde su teléfono móvil a través de aldosivi.com.ar/socio, accediendo a su carné digital instantáneo y a importantes beneficios en comercios de la ciudad.
-
-Como parte del lanzamiento, la institución anunció la bonificación del 100% del primer mes para quienes se adhieran al débito automático con cuota congelada en $38.000 mensuales, lo que representa un ahorro anual de $108.000 respecto del abono tradicional en ventanilla.
-
-Contacto de Prensa: prensa@aldosivi.com.ar | www.aldosivi.com.ar</textarea>
-      </div>
-
     </div>
 
   </main>
 
-  <!-- Global Footer -->
-  <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center space-x-2">
-        <img src="escudo-aldosivi.png" alt="" class="w-6 h-6 object-contain" />
-        <span class="font-bold text-slate-400">Club Atlético Aldosivi</span>
-        <span>— El Cano 3321, Mar del Plata</span>
+  <!-- ================================================= -->
+  <!-- INSTITUTIONAL FOOTER WITH CREATOR SIGNATURE       -->
+  <!-- ================================================= -->
+  <footer class="inst-header-gradient border-t-4 border-aldosivi-yellow py-6 text-white mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+      <div class="flex items-center space-x-3">
+        <img src="escudo-aldosivi.png" alt="Escudo Oficial Aldosivi" class="w-9 h-9 object-contain" onerror="this.src='Escudo Oficial Aldosivi.png'" />
+        <div>
+          <div class="font-extrabold font-montserrat text-sm text-white">
+            Club Atlético Aldosivi — Predio Deportivo de Punta Mogotes
+          </div>
+          <div class="text-emerald-200 text-[11px]">
+            Pagos y Autogestión 24/7 por Medios Web (aldosivi.com.ar/socio) • Atención Presencial: Predio Deportivo Punta Mogotes y Tienda Oficial Calle Olavarría
+          </div>
+        </div>
       </div>
-      <div>Plataforma de Campaña Socios 2026-2027 • Repositorio GitHub: Matiburon87/campa-a-socios-Aldosivi</div>
+      <div class="flex items-center space-x-3 shrink-0">
+        <span class="px-4 py-1.5 rounded-full bg-aldosivi-yellow text-[#14532d] font-extrabold tracking-wide shadow-md flex items-center gap-2">
+          <i class="fa-solid fa-laptop-code"></i>
+          <span>Creado por Maty_Asaro_Dev</span>
+        </span>
+      </div>
     </div>
   </footer>
 
   <!-- Toast Notification -->
-  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-aldosivi-green text-white px-5 py-3 rounded-xl shadow-2xl border border-aldosivi-yellow/40 flex items-center space-x-3 text-xs font-bold">
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-[#14532d] text-white px-5 py-3 rounded-xl shadow-2xl border-2 border-aldosivi-yellow flex items-center space-x-3 text-xs font-bold">
     <i class="fa-solid fa-circle-check text-aldosivi-yellow text-lg"></i>
-    <span id="toastMessage">¡Copiado al portapapeles exitosamente!</span>
+    <span id="toastMessage">¡Copiado al portapapeles!</span>
   </div>
 
   <!-- Javascript Logic -->
   <script>
-    // --- VIDEO SCRIPTS DATABASE ---
     const videoScripts = {
       'reel-a': {
-        title: 'Reel A — "¿Por qué todavía no sos socio de Aldosivi?"',
+        title: 'Reel A — "¿Por qué todavía no sos socio?" (Pago Web en 2 Minutos)',
         type: 'Instagram Reel / TikTok',
         duration: '60 Segundos',
-        music: 'Trap / Hip-hop dinámico con bajo marcado',
-        locutor: 'Voz joven, enérgica, con tono marplatense',
+        music: ' Urbano / Dinámico',
+        locutor: 'Voz joven marplatense',
         scenes: [
-          { time: '0:00-0:05', visual: 'Plano rápido a la bandera en la popular de Aldosivi. Texto en pantalla: "¿POR QUÉ NO SOS SOCIO?"', audio: '🎙️ "¿Sos del Tiburón pero vas a la cancha pagando general como si fueras un turista?"' },
-          { time: '0:05-0:18', visual: 'Primer plano a hincha con cara de duda. Pantalla dividida con precios de entradas sueltas.', audio: '🎙️ "Comprar entradas sueltas cada domingo es tirar la plata. Dos partidos te salen más caros que todo el mes de socio."' },
-          { time: '0:18-0:35', visual: 'Grabación de pantalla del celular mostrando la web aldosivi.com.ar/socio. 3 clics y carné digital listo.', audio: '🎙️ "Olvidate de hacer fila en El Cano. Entrás desde el celular, cargás tus datos y en 2 minutos ya tenés tu carné digital en el teléfono."' },
-          { time: '0:35-0:48', visual: 'Montaje veloz de logos de comercios de Mar del Plata (carnicería, café, ropa) con etiqueta de 15% y 20% OFF.', audio: '🎙️ "Y además: descuentos en más de 20 comercios de Mar del Plata. Con dos compras al mes, la cuota te sale gratis."' },
-          { time: '0:48-1:00', visual: 'Hincha festejando un gol en el Minella. Texto animado: PRIMER MES GRATIS CON DÉBITO AUTOMÁTICO.', audio: '🎙️ "Adherite al débito por $38.000 y el primer mes es GRATIS. Entrá al link de la bio. Aldosivi sos vos."' }
+          { time: '0:00-0:10', visual: 'Popular de Aldosivi llena en el Minella. Texto: "¿TODAVÍA NO SOS SOCIO?"', audio: '🎙️ "Dos entradas sueltas por mes te salen más caras que ser socio activo todo el mes."' },
+          { time: '0:10-0:30', visual: 'Celular mostrando el alta online en aldosivi.com.ar/socio sin moverse de casa.', audio: '🎙️ "Ya no tenés que moverte de tu casa: hoy pagás por medios web en 2 minutos, o pasás por el Predio de Punta Mogotes o la Tienda de calle Olavarría."' },
+          { time: '0:30-0:60', visual: 'Carné digital en pantalla + comercios adheridos.', audio: '🎙️ "Adherite al débito automático por $38.000 y tenés el primer mes GRATIS. Aldosivi sos vos."' }
         ]
       },
       'reel-b': {
-        title: 'Reel B — "¿A dónde va la plata de tu cuota?" (Transparencia)',
+        title: 'Reel B — "Tu cuota en el Predio Deportivo de Punta Mogotes"',
         type: 'Instagram Reel / TikTok',
         duration: '60 Segundos',
-        music: 'Lo-Fi acústico emotivo',
-        locutor: 'Voz institucional cercana, cálida',
+        music: 'Acústico emotivo',
+        locutor: 'Voz institucional cercana',
         scenes: [
-          { time: '0:00-0:08', visual: 'Chicos de las inferiores de Aldosivi entrenando al amanecer en el predio.', audio: '🎙️ "¿Alguna vez te preguntaste qué pasa cuando pagás tu cuota de socio?"' },
-          { time: '0:08-0:25', visual: 'Tomas de utilería, pelotas nuevas, gimnasio del predio y pecheras oficiales.', audio: '🎙️ "Tu cuota compra las pelotas de las inferiores, financia los viajes de los pibes y sostiene las obras del club."' },
-          { time: '0:25-0:45', visual: 'Vestuarios renovados y cancha principal del predio con cancheros trabajando.', audio: '🎙️ "Con débito automático ahorrás $108.000 al año y le das previsibilidad económica a Aldosivi."' },
-          { time: '0:45-1:00', visual: 'Escudo oficial de Aldosivi en el pecho de la camiseta. CTA: aldosivi.com.ar/socio.', audio: '🎙️ "El club no lo hacen los dirigentes. Lo hacés vos. Hacéte socio hoy en 2 minutos."' }
+          { time: '0:00-0:20', visual: 'Amanecer en el Predio Deportivo de Punta Mogotes con juveniles entrenando.', audio: '🎙️ "Cada cuota que abonás por la web o en el Predio sostiene el futuro de nuestras inferiores en Punta Mogotes."' },
+          { time: '0:20-0:60', visual: 'Escudo de Aldosivi y link aldosivi.com.ar/socio.', audio: '🎙️ "Con débito automático ahorrás $108.000 al año y hacés crecer al club. Sumate hoy."' }
         ]
       },
       'reel-c': {
         title: 'Reel C — "Volvé a ser parte" (Recuperación de Ex-Socios)',
         type: 'Instagram Reel / TikTok',
         duration: '60 Segundos',
-        music: 'Rock nostálgico que sube a festejo',
-        locutor: 'Voz de socio histórico de la popular',
+        music: 'Rock épico',
+        locutor: 'Socio histórico',
         scenes: [
-          { time: '0:00-0:12', visual: 'Fotos viejas: carné físico gastado de hace unos años.', audio: '🎙️ "Te acordás de ir al Minella con tu viejo... cantando en la tribuna. Nos extrañamos."' },
-          { time: '0:12-0:28', visual: 'Previa de partido con amigos en la banquina del puerto.', audio: '🎙️ "¿Dejaste de pagar porque era un lío ir hasta la sede o porque se complicó la mano? Cambiamos."' },
-          { time: '0:28-0:45', visual: 'Mostrar carné digital en el celular y facilidades de pago.', audio: '🎙️ "Ahora tenés débito $38k, facilidades para ponerte al día y más de 20 descuentos."' },
-          { time: '0:45-1:00', visual: 'CTA: Volvé. Primer mes gratis hasta 31/10.', audio: '🎙️ "Volvé a ser parte. Te esperamos en el Minella, tiburón."' }
+          { time: '0:00-0:30', visual: 'Previa con amigos en el puerto y carné digital nuevo.', audio: '🎙️ "Mucho cambió desde que te fuiste. Ahora reactivás tu carné 100% online por web o en la Tienda de Olavarría."' },
+          { time: '0:30-0:60', visual: 'Tribuna festejando. Promo 50% OFF ingreso + 1er mes gratis.', audio: '🎙️ "Te extrañamos en la tribuna. Volvé a ser parte del Tiburón."' }
         ]
       },
       'manifiesto': {
         title: 'Video Manifiesto 3 Minutos — "Aldosivi sos vos"',
-        type: 'YouTube / Web / Prensa / Cine',
+        type: 'YouTube / Web / Prensa',
         duration: '3:00 Minutos',
-        music: 'Banda sonora orquestal / Épica emotiva progresiva',
-        locutor: 'Voz masculina grave, marplatense (Socio histórico / Relator)',
+        music: 'Orquestal emotiva',
+        locutor: 'Relator marplatense',
         scenes: [
-          { time: '0:00-0:35', visual: 'Negro total &rarr; Aparece "Aldosivi sos vos." Close-up a 8 socios reales del puerto y la ciudad.', audio: '🎙️ "Yo soy de Aldosivi. No es solo un equipo de fútbol. Es los domingos en el puerto, el olor a mar y la popular llena..."' },
-          { time: '0:35-1:05', visual: 'Transición a rutina diaria: laburo, celular. Foto carné viejo en blanco y negro.', audio: '🎙️ "Pero hubo un tiempo en que dejaste de ir. Y te olvidaste lo que valía ser dueño de esta pasión."' },
-          { time: '1:05-1:40', visual: 'Captura web autogestión, QR gigante, mapa de 20 descuentos comerciales en Mar del Plata.', audio: '🎙️ "Pero ahora es más fácil que nunca. Alta en 2 minutos desde el celular, sin vueltas."' },
-          { time: '1:40-2:15', visual: 'Museo, inferiores jugando, asado de socios, voto democrático en asambleas.', audio: '🎙️ "Eventos exclusivos, charlas con ídolos, tu voz y tu voto en el club."' },
-          { time: '2:15-3:00', visual: 'Los 8 protagonistas abrazados en el Minella con bandera gigante desplegada.', audio: '🎙️ "Yo volví. Aldosivi sos vos. Hacéte socio ahora."' }
+          { time: '0:00-1:00', visual: 'El puerto, el mar y el Predio Deportivo de Punta Mogotes.', audio: '🎙️ "Aldosivi es el orgullo de Mar del Plata. Es nuestro lugar en Punta Mogotes y en cada barrio."' },
+          { time: '1:00-3:00', visual: 'Socios mostrando su carné digital en el celular y entrando a la cancha.', audio: '🎙️ "Asociate en 2 minutos por la web, en el Predio o en la Tienda de calle Olavarría. Aldosivi sos vos."' }
         ]
       }
     };
 
-    // --- SHORTCUT SIMULATOR DATABASE ---
     const shortcutsMap = {
-      '/alta': 'Link directo: aldosivi.com.ar/socio 👈\n\n2 minutos. Tarjeta o débito CBU. Carné digital inmediato.\n\nDébito auto: $38.000/mes.\n🎁 Primer mes GRATIS hasta 31/10/2026.',
-      '/precios': 'Categorías en débito auto:\n\n🦈 Socio Activo (≥18): $38.000/mes\n🦈 Cadete (13-17): $27.000/mes\n🦈 Jubilado: $22.000/mes\n\n🎁 Promo: Primer mes GRATIS hasta 31/10/2026.',
-      '/deudores': 'Hola [Nombre]! 🦈 Vimos que tu cuota está pendiente. Te hacemos débito auto $38k + primer mes gratis para ponerte al día. Escribime "ACTUALIZAR" y te activo.',
-      '/beneficios': 'Ser socio de Aldosivi te da:\n\n🏟️ Entradas según disponibilidad\n🛒 20+ convenios comercios MDP\n📱 Carné digital + WhatsApp oficial\n🎉 Actividades sociales mensuales',
-      '/familia': '🆕 CATEGORÍA FAMILIAR:\n\n2 o más socios del mismo grupo = 10% OFF cada uno ($34.200 c/u/mes en débito). Escribinos "FAMILIA".',
-      '/referido': '🦈 PROGRAMA "SOCIOS TRAEN SOCIOS":\n\nTraé un nuevo socio:\n✅ Vos: 1 mes GRATIS\n✅ El nuevo: 1 mes GRATIS',
-      '/actividades': '🎉 ACTIVIDADES SOCIALES:\n\n🏟️ Entrenamientos abiertos\n🎤 Charlas con ídolos\n🏛️ Visita museo y estadio\n🥩 Asados socios "Tiburón"',
-      '/exsocio': 'Hola [Nombre]! Te extrañamos en la tribuna. Volvé con débito auto $38.000/mes + primer mes GRATIS hasta el 31/10/2026.'
+      '/alta': '¡Hola! 🦈 Asociarte a Aldosivi toma 2 minutos y podés pagar 100% online por medios web:\n👉 aldosivi.com.ar/socio\n\nTambién podés acercarte al Predio Deportivo de Punta Mogotes o a la Tienda Oficial de calle Olavarría.\n🎁 Con débito auto ($38.000/mes) tenés el PRIMER MES GRATIS.',
+      '/precios': 'Valores vigentes con Débito Automático Web:\n\n🦈 Socio Activo: $38.000/mes (Ahorrás $108k/año)\n🦈 Pack Familiar: $34.200 c/u (10% OFF)\n🦈 Cadete: $27.000/mes\n🦈 Jubilado: $22.000/mes\n\n🎁 Primer mes GRATIS adhiriendo antes del 31/10.',
+      '/deudores': '¡Hola [Nombre]! 🦈 Vimos que tenés cuotas pendientes. Hoy podés regularizar 100% online por medios web sin moverte de tu casa, o en el Predio de Punta Mogotes / Tienda calle Olavarría.\n\nAdhiriendo a débito auto ($38k) tenés el primer mes GRATIS y plan de facilidades. Escribime ACTUALIZAR.',
+      '/ubicacion': '📍 Canales Oficiales de Atención y Pago:\n\n🌐 100% Online Web (24 hs): aldosivi.com.ar/socio\n🏟️ Predio Deportivo de Punta Mogotes\n🛍️ Tienda Oficial: Calle Olavarría, Mar del Plata'
     };
 
-    // --- LEAD SCORING DATABASE ---
     const leadScoreData = {
       5: {
         title: 'SCORE 5: Lead Caliente (SLA: Inmediato < 10 Minutos)',
-        desc: 'El usuario ya inició el checkout en la web o preguntó explícitamente cómo asociarse.',
-        template: '¡Hola [Nombre]! 🦈 Vimos que empezaste tu trámite de socio en la web y no lo completaste.\n\nTe reservamos la promo especial con débito automático por $38.000/mes y el PRIMER MES 100% GRATIS hasta el 31/10.\n\nCompletalo en 1 minuto acá: aldosivi.com.ar/socio 👈\nSi tenés cualquier duda con el pago, avisame y te ayudo ahora mismo.'
+        desc: 'El usuario inició el trámite en la web o consultó cómo pagar.',
+        template: '¡Hola [Nombre]! 🦈 Vimos que empezaste tu trámite de socio y te faltó el último paso.\n\nRecordá que podés abonar 100% online por medios web en 1 minuto con débito automático ($38.000/mes) y tenés el PRIMER MES GRATIS: aldosivi.com.ar/socio 👈\n\nSi preferís hacerlo presencial, te esperamos en el Predio Deportivo de Punta Mogotes o en la Tienda de calle Olavarría.'
       },
       4: {
-        title: 'SCORE 4: Socio Inactivo (SLA: < 1 Hora)',
-        desc: 'Alta de más de 3 meses sin pago registrado pero aún figura en base.',
-        template: '¡Hola [Nombre]! 🦈 Te escribimos del equipo de socios de Aldosivi. Vimos que tu cuota está pendiente desde [Mes]. Sabemos que a veces se complica la rutina.\n\nPara facilitarte las cosas, te activamos el débito automático en $38.000 (te ahorrás $108k al año respecto a ventanilla) y te bonificamos este mes para regularizarte.\n\n¿Querés que te pase el link rápido? Respondeme ACTUALIZAR y lo dejamos listo.'
+        title: 'SCORE 4: Socio Inactivo >3m sin pago (Segmento D — SLA < 1 Hora)',
+        desc: 'Socio con mora que aún no fue dado de baja del padrón.',
+        template: 'Hola [Nombre]! 🦈\nTe escribimos porque vimos que tu cuota está pendiente desde [MES_ULTIMO_PAGO]. Sabemos que a veces se complica.\n\nHoy ya podés ponerte al día por medios web desde el celular con nuestra propuesta "Te acompañamos":\n- Débito automático $38.000/mes (19% off)\n- Primer mes GRATIS (en el 2do débito)\n- Facilidades de pago sin perder tu antigüedad\n\nEscribime "ACTUALIZAR" y te paso el link directo.'
       },
       3: {
-        title: 'SCORE 3: Ex-Socio Reciente / Deudor 1-2 Meses (SLA: < 4 a 24 Horas)',
-        desc: 'Baja hace menos de 6 meses o deudor reciente con carné todavía emitido.',
-        template: '¡Hola [Nombre]! 🦈 En el club te extrañamos los fines de semana. Se viene una etapa deportiva decisiva y queremos que tengas tu lugar en la tribuna.\n\nTe dejamos la cuota congelada en $38.000/mes con débito automático y el primer mes BONIFICADO para que vuelvas sin complicaciones.\n\n¿Te reactivamos hoy? Link: aldosivi.com.ar/socio'
+        title: 'SCORE 3: Ex-Socio Baja Reciente <6 meses (Segmento A — SLA < 4 Horas)',
+        desc: 'Aún tiene fresco el vínculo con el club. Objetivo: Reactivación rápida.',
+        template: 'Hola [Nombre]! 🦈\nTe escribimos porque te extrañamos en la tribuna.\nTu carné de socio sigue registrado y queremos que vuelvas con la promo "Volvé a ser parte":\n- 50% OFF en cuota de reactivación\n- Primer mes GRATIS con débito automático web ($38.000/mes)\n- Carné digital activo en 2 minutos\n\nEscribinos por acá o acercate al Predio de Punta Mogotes o la Tienda de calle Olavarría.'
       },
       2: {
-        title: 'SCORE 2: Deudor 3 a 5 Meses (SLA: < 48 Horas)',
-        desc: 'Deuda prolongada, posible pase a baja definitiva en sistema.',
-        template: '¡Hola [Nombre]! 🦈 Te contactamos de la administración de Aldosivi. Notamos que acumulaste [X] cuotas pendientes y tu carné puede quedar suspendido para los próximos partidos.\n\nArmamos un plan especial de regularización en cuotas sin interés para que no pierdas tu antigüedad societaria.\n\nEscribinos PLAN y coordinamos la opción más cómoda para vos.'
+        title: 'SCORE 2: Ex-Socio Baja Media 6-18 meses (Segmento B — SLA < 24 Horas)',
+        desc: 'Se desenganchó de la rutina. Objetivo: Reconexión emocional + nuevos canales.',
+        template: 'Hola [Nombre]! 🦈\nMucho cambió desde que te fuiste. Ahora ser socio del Tiburón es mucho más fácil:\n- Pago y gestión 100% online por medios web en 2 minutos\n- Atención en Predio Deportivo Punta Mogotes y Tienda calle Olavarría\n- Débito auto $38.000/mes (ahorrás $108k/año) + 20 descuentos en MDP\n\n¿Te animás a probar el primer mes gratis? Respondé este mensaje y te pasamos el link.'
       },
       1: {
-        title: 'SCORE 1: Lead Frío (SLA: < 7 Días)',
-        desc: 'Descargó información o vio el video institucional pero no interactuó.',
-        template: '¡Hola [Nombre]! 🦈 Te invitamos a conocer las actividades sociales y entrenamientos abiertos que estamos organizando en el predio de Aldosivi este mes.\n\nSi querés formar parte de la familia del Tiburón con todos los beneficios de la ciudad, podés ver la info acá: aldosivi.com.ar/socio'
+        title: 'SCORE 1: Ex-Socio Baja Antigua >18 meses (Segmento C — SLA < 48 Horas)',
+        desc: 'Desconocimiento de la oferta actual. Promo "Volvé sin riesgo".',
+        template: 'Hola [Nombre]! 🦈\nTe escribimos porque sabemos que llevás a Aldosivi en el corazón.\nQueremos invitarte a probar el club hoy sin compromiso con la promo "Volvé sin riesgo":\n- Primer mes GRATIS con acceso a eventos en el Predio de Punta Mogotes y descuentos en MDP.\n- Todo digital desde la web o en nuestra Tienda de calle Olavarría.\n\nEscribime "PROBAR" y te activamos el pase.'
       }
     };
 
-    // --- SHEET TABS DATABASE ---
     const sheetTabsData = {
       'leads': {
-        title: 'Pestaña 2: 📈 LEADS (Funnel Diario de Adquisición)',
-        desc: 'Registro detallado día a día de cada contacto generado en cualquier canal.',
-        columns: ['Fecha (Auto =HOY())', 'ID Lead (LEAD-YYYYMMDD-###)', 'Origen (Web/QR/WhatsApp/Referido/Ads)', 'Medio (Flyer/LinkBio/Reel/Voluntario)', 'Campaña', 'Nombre', 'Teléfono (+54 9 223)', 'Email', 'Barrio/Zona MDP', 'Edad', 'Categoría Interés', 'Click Pago', 'Pago OK', 'Alta Confirmada', 'Débito Auto', 'Referido Por', 'Estado', 'Último Contacto', 'Próxima Acción', 'Responsable']
+        title: 'Pestaña 2: 📈 LEADS (Funnel Diario)',
+        desc: 'Seguimiento de cada contacto desde Web, QR en Predio Punta Mogotes, QR en Tienda Olavarría y Redes.',
+        columns: ['Fecha', 'ID Lead', 'Origen (Web / QR Predio / QR Tienda Olavarría / WA)', 'Nombre', 'Teléfono', 'Zona MDP', 'Categoría', 'Click Pago Web', 'Pago OK', 'Alta Confirmada', 'Responsable']
       },
       'socios': {
-        title: 'Pestaña 3: 👥 SOCIOS (Altas Confirmadas & Cartera)',
-        desc: 'Control maestro de la masa societaria, medios de cobro y retención.',
-        columns: ['N° Socio', 'Fecha Alta', 'Nombre Completo', 'DNI', 'Categoría', 'Medio Pago (Débito/Efectivo)', 'CBU/Tarjeta', 'Teléfono', 'Email', 'Barrio', 'Referidor', 'Estado (Al Día/Deudor/Baja)', 'Meses Deuda', 'Próximo Cobro', 'Tipo Comunicación Preferida (WA/Llamada)', 'Ex-Socio Reactivado (TRUE/FALSE)']
+        title: 'Pestaña 3: 👥 SOCIOS (Padrón Activo)',
+        desc: 'Control de medios de pago web, débito automático y retención.',
+        columns: ['N° Socio', 'Fecha Alta', 'Nombre', 'Categoría', 'Canal Pago (Web Online / Débito / Predio / Tienda Olavarría)', 'Estado', 'Meses Mora', 'Ex-Socio Reactivado']
       },
       'wa1a1': {
-        title: 'Pestaña 10: 📲 WHATSAPP 1 A 1 (Centro Operativo Individualizado)',
-        desc: 'Gestión de contacto directo sin broadcast frío, respetando el límite anti-ban de 10 msg/hora.',
-        columns: ['Fecha Contacto', 'ID Lead/Socio', 'Nombre', 'Teléfono', 'Tipo Contacto (Deudor/Ex-Socio/Lead)', 'Score Lead (1-5)', 'Plantilla Utilizada', 'Hora Envío', 'Respuesta (Positiva/Negativa/Sin Respuesta)', 'Link Pago Enviado', 'Fecha Seguimiento', 'Operador Responsable', 'Resultado Final']
+        title: 'Pestaña 10: 📲 WHATSAPP 1 A 1 (Recuperación Ex-Socios y Mora)',
+        desc: 'Columnas A-R según manual PDF de Recuperación de Ex-Socios.',
+        columns: ['[A] Fecha contacto', '[B] Nombre', '[C] Teléfono', '[D] N° socio ant.', '[E] Segmento (A/B/C/D)', '[F] Motivo baja', '[G] Antigüedad', '[H] Última cuota', '[I] Mensaje enviado', '[K] Respuesta (Positiva/Neutral/Negativa)', '[N] Resultado']
       },
       'sondaje': {
-        title: 'Pestaña 11: 🎲 SONDAJE (Módulo de Encuestas Google Forms)',
-        desc: 'Almacén de respuestas de encuestas de activos y leads para calibrar el plan.',
-        columns: ['Fecha Recepción', 'ID Sondaje', 'Tipo (Activo/Lead)', 'Origen (Web/WhatsApp/Evento)', 'Nombre', 'Teléfono', 'Edad', 'Barrio', 'Antigüedad / Motivo No Socio', 'Frecuencia Cancha', 'NPS (1-10)', 'Percepción Precio', 'Beneficios Usados', 'Actividades Deseadas', 'Canal Preferido']
+        title: 'Pestaña 11: 🎲 SONDAJE (4 Formularios de Encuesta)',
+        desc: 'Consolidación de respuestas de los 4 formularios oficiales.',
+        columns: ['Fecha', 'Formulario (#1 Activos / #2 Leads / #3 Ex-Socios / #4 Deudores)', 'Nombre', 'Barrio', 'NPS (0-10)', 'Barrera Principal', 'Medio Pago Preferido (Web/Predio/Tienda)', 'Acción Derivada']
       },
       'presupuesto': {
-        title: 'Pestaña 4: 💰 PRESUPUESTO (Plan vs Real)',
-        desc: 'Control estricto de egresos de campaña para mantener el CPA < $8.000.',
-        columns: ['Mes/Semana', 'Rubro (Gráfica/Ads/Merch/Viáticos/Prensa/Actividades)', 'Presupuesto Planeado', 'Gasto Real Ejecutado', 'Desvío ($)', '% Ejecución', 'Socios Nuevos del Período', 'CPA Resultante ($/socio)', 'Estado Factura']
+        title: 'Pestaña 4: 💰 PRESUPUESTO ($950.000 Total 6 Meses)',
+        desc: 'Control de inversión y retorno (CPA meta < $8.000).',
+        columns: ['Mes', 'Rubro', 'Presupuesto Planeado', 'Ejecutado Real', 'Desvío', 'Socios Recuperados/Nuevos', 'CPA Real']
       },
       'config': {
-        title: 'Pestaña 12: ⚙️ CONFIG (Listas de Validación & Fórmulas)',
-        desc: 'Parámetros del sistema: cuotas por categoría, topes anti-ban y roles del equipo.',
-        columns: ['Categorías y Precios ($38k Activo, $27k Cadete, $22k Jubilado)', 'Límites Anti-ban (10 msg/h, 40 msg/día)', 'Canales Válidos', 'Barrios de Mar del Plata', 'Roles Equipo (Coordinador, Admin, Comunicador, Operador, Voluntario)']
+        title: 'Pestaña 12: ⚙️ CONFIG (Parámetros Institucionales)',
+        desc: 'Valores de cuota, puntos de atención y reglas anti-ban.',
+        columns: ['Cuota Débito Web: $38.000', 'Familiar: $34.200', 'Cadete: $27.000', 'Jubilado: $22.000', 'Puntos: Web Online / Predio Punta Mogotes / Tienda Calle Olavarría']
       }
     };
 
-    // --- TAB SWITCHING LOGIC ---
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-aldosivi-green', 'text-white', 'shadow-md');
-        btn.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+        btn.classList.remove('bg-aldosivi-yellow', 'text-[#14532d]', 'shadow-md', 'font-bold');
+        btn.classList.add('text-emerald-100', 'hover:text-white', 'hover:bg-white/10', 'font-semibold');
       });
 
       const target = document.getElementById(tabId);
@@ -1556,47 +1208,22 @@ Contacto de Prensa: prensa@aldosivi.com.ar | www.aldosivi.com.ar</textarea>
 
       const activeBtn = document.getElementById('btn-' + tabId);
       if (activeBtn) {
-        activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
-        activeBtn.classList.add('bg-aldosivi-green', 'text-white', 'shadow-md');
+        activeBtn.classList.remove('text-emerald-100', 'hover:text-white', 'hover:bg-white/10', 'font-semibold');
+        activeBtn.classList.add('bg-aldosivi-yellow', 'text-[#14532d]', 'shadow-md', 'font-bold');
       }
     }
 
-    // --- SONDAJE SUB-VIEW SWITCHER ---
-    function switchSondajeView(viewType) {
-      document.getElementById('view-sondaje-activos').classList.add('hidden');
-      document.getElementById('view-sondaje-leads').classList.add('hidden');
-      document.getElementById('view-sondaje-paradoja').classList.add('hidden');
-
-      document.getElementById('sondaje-btn-activos').className = 'pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-2';
-      document.getElementById('sondaje-btn-leads').className = 'pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-2';
-      document.getElementById('sondaje-btn-paradoja').className = 'pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white flex items-center gap-2';
-
-      if (viewType === 'activos') {
-        document.getElementById('view-sondaje-activos').classList.remove('hidden');
-        document.getElementById('sondaje-btn-activos').className = 'pb-3 text-sm font-semibold border-b-2 border-aldosivi-yellow text-aldosivi-yellow flex items-center gap-2';
-      } else if (viewType === 'leads') {
-        document.getElementById('view-sondaje-leads').classList.remove('hidden');
-        document.getElementById('sondaje-btn-leads').className = 'pb-3 text-sm font-semibold border-b-2 border-emerald-400 text-emerald-400 flex items-center gap-2';
-      } else if (viewType === 'paradoja') {
-        document.getElementById('view-sondaje-paradoja').classList.remove('hidden');
-        document.getElementById('sondaje-btn-paradoja').className = 'pb-3 text-sm font-semibold border-b-2 border-amber-400 text-amber-400 flex items-center gap-2';
-      }
-    }
-
-    // --- LEAD SCORE SELECTOR ---
     function selectLeadScore(scoreNum) {
       const data = leadScoreData[scoreNum];
       if (!data) return;
 
       document.querySelectorAll('.score-btn').forEach(btn => {
-        btn.classList.remove('bg-aldosivi-green', 'text-white', 'border-aldosivi-yellow/40');
-        btn.classList.add('bg-slate-900', 'text-slate-300', 'border-slate-800');
+        btn.className = 'score-btn p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-700 border border-slate-200 text-left transition space-y-1';
       });
 
       const activeBtn = document.getElementById('score-btn-' + scoreNum);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-900', 'text-slate-300', 'border-slate-800');
-        activeBtn.classList.add('bg-aldosivi-green', 'text-white', 'border-aldosivi-yellow/40');
+        activeBtn.className = 'score-btn p-3.5 rounded-xl bg-[#14532d] text-white border-2 border-aldosivi-yellow text-left transition space-y-1 shadow';
       }
 
       document.getElementById('scoreTargetTitle').innerText = data.title;
@@ -1604,135 +1231,100 @@ Contacto de Prensa: prensa@aldosivi.com.ar | www.aldosivi.com.ar</textarea>
       document.getElementById('scoreMessageTemplate').value = data.template;
     }
 
-    // --- SHEET TAB SELECTOR ---
     function switchSheetTab(tabKey) {
       const data = sheetTabsData[tabKey];
       if (!data) return;
 
       document.querySelectorAll('.sheet-btn').forEach(btn => {
-        btn.classList.remove('bg-aldosivi-green', 'text-white', 'shadow');
-        btn.classList.add('bg-slate-900', 'text-slate-300');
+        btn.className = 'sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700';
       });
 
       const activeBtn = document.getElementById('sbtn-' + tabKey);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-900', 'text-slate-300');
-        activeBtn.classList.add('bg-aldosivi-green', 'text-white', 'shadow');
+        activeBtn.className = 'sheet-btn px-3.5 py-2 text-xs font-bold rounded-lg bg-[#14532d] text-white shadow';
       }
 
-      let columnsHtml = '';
-      data.columns.forEach((col, idx) => {
-        columnsHtml += `<div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800 font-mono text-[11px] text-slate-300 flex items-center gap-2"><span class="w-5 h-5 rounded bg-slate-800 text-aldosivi-yellow flex items-center justify-center font-bold text-[10px] shrink-0">${idx+1}</span><span>${col}</span></div>`;
+      let colsHtml = '';
+      data.columns.forEach((c, i) => {
+        colsHtml += `<div class="bg-white p-2.5 rounded-lg border border-emerald-200 font-mono text-[11px] text-slate-700 flex items-center gap-2 shadow-sm"><span class="w-5 h-5 rounded bg-[#14532d] text-aldosivi-yellow flex items-center justify-center font-bold text-[10px] shrink-0">${i+1}</span><span>${c}</span></div>`;
       });
 
       document.getElementById('sheetDetailBox').innerHTML = `
         <div class="space-y-1">
-          <div class="text-sm font-bold text-white font-montserrat">${data.title}</div>
-          <div class="text-slate-400 text-xs">${data.desc}</div>
+          <div class="text-sm font-extrabold text-[#14532d] font-montserrat">${data.title}</div>
+          <div class="text-slate-600 text-xs">${data.desc}</div>
         </div>
-        <div class="pt-2">
-          <div class="text-[10px] text-slate-400 uppercase font-semibold pb-2">Estructura de Columnas (${data.columns.length} Campos):</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-            ${columnsHtml}
-          </div>
-        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-2">${colsHtml}</div>
       `;
     }
 
-    // --- ROI CALCULATOR LOGIC ---
     function updateRoiCalculator(val) {
       document.getElementById('recoveryPercentLabel').innerText = val + '%';
-      
-      const totalDeudores = 1200;
-      const cuota = 38000;
-      const recoveredCount = Math.round(totalDeudores * (val / 100));
-      const monthlyAmount = recoveredCount * cuota;
+      const recoveredCount = Math.round(1200 * (val / 100));
+      const monthlyAmount = recoveredCount * 38000;
       const annualAmount = monthlyAmount * 12;
 
       document.getElementById('recoveredCount').innerText = recoveredCount + ' socios';
       document.getElementById('recoveredMonthly').innerText = '$' + monthlyAmount.toLocaleString('es-AR');
       document.getElementById('recoveredAnnual').innerText = '$' + annualAmount.toLocaleString('es-AR');
-
-      const campaignCost = 950000;
-      const multiplier = Math.round(monthlyAmount / campaignCost);
-      document.getElementById('roiMultiplier').innerText = multiplier + 'x Costo Total';
+      document.getElementById('roiMultiplier').innerText = Math.round(monthlyAmount / 950000) + 'x Costo Total';
     }
 
-    // --- VIDEO SCRIPT VIEWER ---
     function selectVideoScript(scriptKey) {
       const data = videoScripts[scriptKey];
       if (!data) return;
 
       document.querySelectorAll('.vscript-btn').forEach(btn => {
-        btn.classList.remove('bg-aldosivi-green', 'text-white', 'shadow');
-        btn.classList.add('bg-slate-900', 'text-slate-300');
+        btn.className = 'vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700';
       });
-
       const activeBtn = document.getElementById('vbtn-' + scriptKey);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-900', 'text-slate-300');
-        activeBtn.classList.add('bg-aldosivi-green', 'text-white', 'shadow');
+        activeBtn.className = 'vscript-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#14532d] text-white shadow';
       }
 
       let scenesHtml = '';
       data.scenes.forEach(s => {
         scenesHtml += `
-          <div class="p-3.5 bg-slate-900 rounded-xl border border-slate-800 space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-aldosivi-green/40 text-emerald-300 font-mono">${s.time}</span>
-              <span class="text-[10px] text-slate-500">Escena Clave</span>
-            </div>
-            <div class="text-xs text-slate-300 font-medium">🎬 <strong>Visual:</strong> ${s.visual}</div>
-            <div class="text-xs text-aldosivi-yellow font-mono bg-slate-950 p-2.5 rounded-lg border border-slate-800">${s.audio}</div>
+          <div class="p-3.5 bg-white rounded-xl border border-emerald-200 space-y-1.5 shadow-sm">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#14532d] text-aldosivi-yellow font-mono">${s.time}</span>
+            <div class="text-xs text-slate-700">🎬 <strong>Visual:</strong> ${s.visual}</div>
+            <div class="text-xs text-[#14532d] font-mono bg-emerald-50 p-2 rounded border border-emerald-200">${s.audio}</div>
           </div>
         `;
       });
 
       document.getElementById('videoScriptDisplay').innerHTML = `
-        <div class="border-b border-slate-800 pb-4 space-y-2">
-          <div class="text-base font-bold text-white font-montserrat">${data.title}</div>
-          <div class="flex flex-wrap gap-4 text-xs text-slate-400">
-            <span><strong>Formato:</strong> ${data.type}</span>
-            <span><strong>Duración:</strong> ${data.duration}</span>
-            <span><strong>Locución:</strong> ${data.locutor}</span>
-            <span><strong>Música:</strong> ${data.music}</span>
-          </div>
+        <div class="border-b border-emerald-200 pb-3">
+          <div class="text-base font-extrabold text-[#14532d] font-montserrat">${data.title}</div>
+          <div class="text-xs text-slate-600 mt-1"><strong>Formato:</strong> ${data.type} • <strong>Duración:</strong> ${data.duration}</div>
         </div>
-        <div class="space-y-3 pt-2">
-          <div class="text-xs font-bold text-slate-400 uppercase">Guion Técnico Desglosado:</div>
-          ${scenesHtml}
-        </div>
+        <div class="space-y-2.5 pt-2">${scenesHtml}</div>
       `;
     }
 
-    // --- WHATSAPP SIMULATOR LOGIC ---
     function simulateShortcut(shortcutKey) {
       const text = shortcutsMap[shortcutKey];
       if (!text) return;
-
       const chatBody = document.getElementById('whatsappChatBody');
       
       const userBubble = document.createElement('div');
-      userBubble.className = 'chat-bubble-sent p-3 text-white max-w-[80%] ml-auto space-y-1 shadow text-xs';
-      userBubble.innerHTML = `<p class="font-mono font-bold text-aldosivi-yellow">${shortcutKey}</p><div class="text-[9px] text-emerald-200 text-right">Ahora</div>`;
+      userBubble.className = 'chat-bubble-sent p-3 max-w-[80%] ml-auto space-y-1 shadow-sm text-xs';
+      userBubble.innerHTML = `<p class="font-mono font-bold">${shortcutKey}</p><div class="text-[9px] text-emerald-700 text-right">Ahora</div>`;
       chatBody.appendChild(userBubble);
 
       setTimeout(() => {
         const botBubble = document.createElement('div');
-        botBubble.className = 'chat-bubble-received p-3 text-slate-200 max-w-[85%] space-y-1 shadow text-xs';
+        botBubble.className = 'chat-bubble-received p-3 max-w-[85%] space-y-1 shadow-sm text-xs';
         botBubble.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p><div class="text-[9px] text-slate-400 text-right">Ahora</div>`;
         chatBody.appendChild(botBubble);
         chatBody.scrollTop = chatBody.scrollHeight;
-      }, 250);
-
+      }, 200);
       chatBody.scrollTop = chatBody.scrollHeight;
     }
 
-    // --- CLIPBOARD COPY HELPER ---
     function copyToClipboard(elementId) {
       const copyText = document.getElementById(elementId);
       if (!copyText) return;
-
       copyText.select();
       copyText.setSelectionRange(0, 99999);
       document.execCommand("copy");
@@ -1740,14 +1332,12 @@ Contacto de Prensa: prensa@aldosivi.com.ar | www.aldosivi.com.ar</textarea>
       const toast = document.getElementById('toastNotification');
       toast.classList.remove('translate-y-24', 'opacity-0');
       toast.classList.add('translate-y-0', 'opacity-100');
-
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-24', 'opacity-0');
       }, 2500);
     }
 
-    // --- ON LOAD INITIALIZATION ---
     window.onload = function() {
       selectVideoScript('reel-a');
       updateRoiCalculator(50);
