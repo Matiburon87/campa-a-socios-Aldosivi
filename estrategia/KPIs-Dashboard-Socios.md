@@ -1,14 +1,17 @@
 ---
 tipo: kpi-dashboard
-fecha: "2025-08-19"
+fecha: "2026-11-09"
 estado: "plantilla-lista-para-usar"
-herramienta: "Google Sheets (compartido equipo)"
+herramienta: "Google Sheets (compartido equipo) + Web Dashboard"
 club: "Club Atlético Aldosivi"
 ---
+
+![[99 - Templates/Escudo Oficial Aldosivi.png|120]]
 
 # 📊 KPI Dashboard — Campaña Socios Aldosivi
 
 > Hoja maestra única. Actualización: Diaria (Admin) / Semanal completa (Lunes reunión)
+> **Web Dashboard sincronizado:** [Centro de Campaña & Dashboard Web](../06%20-%20Memoria/campa%C3%B1a-socios-Aldosivi/index.html) (`https://github.com/Matiburon87/campa-a-socios-Aldosivi`)
 
 ## ESTRUCTURA DEL SHEET (Pestañas)
 
