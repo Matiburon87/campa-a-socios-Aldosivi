@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { AlertTriangle, Calculator, CheckCircle2, Target, TrendingUp } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
 import { useCountUp } from '../hooks.js';
-import { CUOTA, INVERSION, SOCIOS_MORA, problems, solutions } from '../data/content.js';
+import { CUOTA, INVERSION, META_ADHESION, RECUPERO_MENSUAL, SOCIOS_MORA, millones, problems, solutions } from '../data/content.js';
 
 const ars = (n) => '$' + n.toLocaleString('es-AR');
 
 export default function Diagnostico() {
-  const [pct, setPct] = useState(50);
+  const [pct, setPct] = useState(META_ADHESION);
   const recovered = Math.round(SOCIOS_MORA * (pct / 100));
   const monthly = recovered * CUOTA;
   const annual = monthly * 12;
@@ -26,9 +26,9 @@ export default function Diagnostico() {
           <div className="min-w-[220px] rounded-2xl border-2 border-gold-400 bg-surface p-5 text-center text-ink shadow-md">
             <div className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Recuperación mensual</div>
             <div className="font-display text-3xl font-black">
-              $22.8M <span className="text-xs font-medium text-slate-500">/ mes</span>
+              {millones(RECUPERO_MENSUAL)} <span className="text-xs font-medium text-slate-500">/ mes</span>
             </div>
-            <div className="mt-1 text-xs font-bold text-ink-3">Con 50% adhesión al débito</div>
+            <div className="mt-1 text-xs font-bold text-ink-3">Con {META_ADHESION}% adhesión al débito</div>
           </div>
         }
       >
@@ -85,7 +85,7 @@ export default function Diagnostico() {
               <div className="flex flex-wrap gap-2">
                 {[
                   [10, 'Pesimista'],
-                  [50, 'Meta plan'],
+                  [META_ADHESION, 'Meta plan'],
                   [90, 'Óptimo'],
                 ].map(([v, l]) => (
                   <button
