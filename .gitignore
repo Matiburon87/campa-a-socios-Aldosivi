@@ -4,4 +4,5 @@ dist
 *.log
 .vite
 .claude
-vite.config.js
+.env.local
+.env.*.local
