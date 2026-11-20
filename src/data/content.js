@@ -9,6 +9,8 @@ export const LINKS = {
 export const CUOTA = 38000;
 export const SOCIOS_MORA = 1200;
 export const INVERSION = 950000;
+export const SOCIOS_ACTUALES = 5100;
+export const META_CD = 10000;
 
 export const headlineStats = [
   { label: 'Socios activos', value: '5.100', tone: 'white' },
@@ -217,6 +219,9 @@ export const fronts = [
   { title: 'Ex-socios (PDF)', goal: 500, desc: 'Reenganche por segmentos A, B y C con 1er mes bonificado.', cpa: '~$1.000' },
   { title: 'Web & Tienda Olavarría', goal: 500, desc: 'Autogestión web 24/7 + QR en Tienda Oficial calle Olavarría.', cpa: '~$1.000' },
 ];
+
+/** Socios sumados en 6 meses si se cumplen los 4 frentes. */
+export const META_6M = fronts.reduce((a, f) => a + f.goal, 0);
 
 export const team = [
   ['Coordinador/a general', 'Estrategia, CD, KPIs', '15-20 h/sem'],

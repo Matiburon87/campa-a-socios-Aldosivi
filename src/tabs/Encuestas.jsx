@@ -1,32 +1,10 @@
-import { useEffect, useState } from 'react';
 import { ArrowRight, FileText, Globe, PencilLine, Scale, Split, Trash2, Users } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
 import { forms, paradoxBlocks } from '../data/content.js';
 import { forms as formDefs } from '../data/forms.js';
-import { clearDraft, draftStatus } from '../forms/drafts.js';
+import { ago, clearDraft, useDrafts } from '../forms/drafts.js';
 
 const blockIcons = { users: Users, scale: Scale, globe: Globe };
-
-/** Draft status per form number, refreshed if another browser tab edits a draft. */
-function useDrafts() {
-  const read = () => Object.fromEntries(formDefs.map((f) => [f.n, draftStatus(f)]));
-  const [drafts, setDrafts] = useState(read);
-  useEffect(() => {
-    const onStorage = (e) => e.key?.startsWith('aldosivi-form:') && setDrafts(read());
-    window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
-  }, []);
-  return [drafts, () => setDrafts(read())];
-}
-
-function ago(iso) {
-  if (!iso) return null;
-  const min = Math.round((Date.now() - Date.parse(iso)) / 60000);
-  if (min < 1) return 'recién';
-  if (min < 60) return `hace ${min} min`;
-  if (min < 1440) return `hace ${Math.round(min / 60)} h`;
-  return `hace ${Math.round(min / 1440)} d`;
-}
 
 function DraftStatus({ status, onDiscard }) {
   const pct = Math.round((status.answered / status.total) * 100);

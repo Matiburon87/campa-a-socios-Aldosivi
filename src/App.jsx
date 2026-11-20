@@ -1,34 +1,20 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { scrollToTop } from './hooks.js';
-import { BarChart3, ClipboardList, Film, Gauge, Megaphone, MessageCircle, Target } from 'lucide-react';
 import Header from './components/Header.jsx';
-import DocsBar from './components/DocsBar.jsx';
 import Footer from './components/Footer.jsx';
 import { BackToTop, PrevNext } from './components/PageNav.jsx';
 import { forms } from './data/forms.js';
+import { SECTIONS, groupById, sectionById, sectionsOf } from './navigation.js';
 
-/**
- * Each tab is its own chunk. `load` is kept so a tab can be prefetched
- * (hover/focus on its button, or when the browser is idle) before it is opened.
- */
-const lazyTab = (load) => Object.assign(lazy(load), { preload: load });
-
-const TABS = [
-  { id: 'diagnostico', label: 'Diagnóstico & ROI', icon: BarChart3, Component: lazyTab(() => import('./tabs/Diagnostico.jsx')) },
-  { id: 'kpi', label: 'KPI Dashboard', icon: Gauge, Component: lazyTab(() => import('./tabs/Kpis.jsx')) },
-  { id: 'encuestas', label: 'Encuestas & Paradoja', icon: ClipboardList, Component: lazyTab(() => import('./tabs/Encuestas.jsx')) },
-  { id: 'whatsapp', label: 'WhatsApp 1 a 1', icon: MessageCircle, Component: lazyTab(() => import('./tabs/WhatsApp.jsx')) },
-  { id: 'plan', label: 'Plan & Meta 10.000', icon: Target, Component: lazyTab(() => import('./tabs/Plan.jsx')) },
-  { id: 'video', label: 'Guiones Video', icon: Film, Component: lazyTab(() => import('./tabs/Video.jsx')) },
-  { id: 'prensa', label: 'Prensa & Redes', icon: Megaphone, Component: lazyTab(() => import('./tabs/Prensa.jsx')) },
-];
-
-const FormPage = lazyTab(() => import('./forms/FormPage.jsx'));
+const FormPage = Object.assign(
+  lazy(() => import('./forms/FormPage.jsx')),
+  { preload: () => import('./forms/FormPage.jsx') }
+);
 
 /** Prefetch every remaining chunk once the browser is idle, so later navigation is instant. */
 function usePrefetchWhenIdle() {
   useEffect(() => {
-    const run = () => [...TABS.map((t) => t.Component), FormPage].forEach((c) => c.preload().catch(() => {}));
+    const run = () => [...SECTIONS.map((s) => s.Component), FormPage].forEach((c) => c.preload().catch(() => {}));
     if ('requestIdleCallback' in window) {
       const id = requestIdleCallback(run, { timeout: 4000 });
       return () => cancelIdleCallback(id);
@@ -38,7 +24,7 @@ function usePrefetchWhenIdle() {
   }, []);
 }
 
-function TabSkeleton() {
+function SectionSkeleton() {
   return (
     <div className="animate-pulse space-y-8" aria-busy="true" aria-label="Cargando sección">
       <div className="h-40 rounded-3xl bg-slate-200" />
@@ -65,12 +51,12 @@ function FormSkeleton() {
   );
 }
 
-/** "#kpi" → { tab: 'kpi' }, "#formulario/ex-socios" → { form: 'ex-socios' } */
+/** "#kpi" → { section: 'kpi' }, "#formulario/ex-socios" → { form: 'ex-socios' }, anything else → Inicio. */
 const parseHash = () => {
   const h = window.location.hash.replace(/^#\/?/, '');
   const m = h.match(/^formulario\/([\w-]+)$/);
   if (m && forms.some((f) => f.slug === m[1])) return { form: m[1] };
-  return { tab: TABS.some((t) => t.id === h) ? h : TABS[0].id };
+  return { section: sectionById(h) ? h : SECTIONS[0].id };
 };
 
 export default function App() {
@@ -85,10 +71,19 @@ export default function App() {
 
   useEffect(() => {
     const f = route.form && forms.find((x) => x.slug === route.form);
+    const s = route.section && sectionById(route.section);
     document.title = f
       ? `Formulario ${f.n}: ${f.shortName} — Club Atlético Aldosivi`
-      : 'Centro Estratégico de Socios — Club Atlético Aldosivi';
+      : s && s.id !== 'inicio'
+        ? `${s.label} — Centro Estratégico de Socios · Aldosivi`
+        : 'Centro Estratégico de Socios — Club Atlético Aldosivi';
   }, [route]);
+
+  // Last section visited in each area, so switching areas returns to where you were.
+  const lastInGroup = useRef({});
+  useEffect(() => {
+    if (route.section) lastInGroup.current[sectionById(route.section).group] = route.section;
+  }, [route.section]);
 
   // Accessibility: announce section changes and, when asked, move focus to the new content.
   const mainRef = useRef(null);
@@ -97,18 +92,18 @@ export default function App() {
   const firstRender = useRef(true);
 
   useEffect(() => {
-    if (!route.tab) return;
+    if (!route.section) return;
     if (firstRender.current) {
       firstRender.current = false;
       return;
     }
-    const tab = TABS.find((t) => t.id === route.tab);
-    setAnnouncement(`Sección ${tab.label}`);
+    const s = sectionById(route.section);
+    setAnnouncement(s.id === 'inicio' ? 'Inicio' : `${groupById(s.group).label}: ${s.label}`);
     if (focusContentNext.current) {
       focusContentNext.current = false;
       mainRef.current?.focus({ preventScroll: true });
     }
-  }, [route.tab]);
+  }, [route.section]);
 
   if (route.form) {
     return (
@@ -118,7 +113,7 @@ export default function App() {
     );
   }
 
-  const active = route.tab;
+  const active = route.section;
   const go = (id, { focusContent = false } = {}) => {
     if (id !== active) {
       focusContentNext.current = focusContent;
@@ -126,7 +121,8 @@ export default function App() {
       scrollToTop();
     }
   };
-  const preload = (id) => TABS.find((t) => t.id === id)?.Component.preload().catch(() => {});
+  const goGroup = (groupId) => go(lastInGroup.current[groupId] ?? sectionsOf(groupId)[0].id);
+  const preload = (id) => sectionById(id)?.Component.preload().catch(() => {});
 
   const skipToContent = (e) => {
     // A plain href="#…" would be taken as a route by the hash router, so focus the panel directly.
@@ -134,12 +130,13 @@ export default function App() {
     mainRef.current?.focus();
   };
 
-  const { Component } = TABS.find((t) => t.id === active);
+  const section = sectionById(active);
+  const { Component } = section;
 
   return (
     <div className="flex min-h-screen flex-col">
       <a
-        href="#panel-seccion"
+        href="#contenido"
         onClick={skipToContent}
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-gold-400 focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-brand-900 focus:shadow-xl"
       >
@@ -148,21 +145,19 @@ export default function App() {
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {announcement}
       </div>
-      <Header tabs={TABS} active={active} onChange={go} onPreload={preload} />
-      <DocsBar />
+      <Header active={active} onChange={go} onGroup={goGroup} onPreload={preload} />
       <main
         key={active}
         ref={mainRef}
-        id="panel-seccion"
-        role="tabpanel"
-        aria-labelledby={`tab-${active}`}
+        id="contenido"
+        aria-label={section.label}
         tabIndex={-1}
-        className="mx-auto w-full max-w-7xl flex-grow animate-fade-up scroll-mt-32 px-4 py-8 outline-none sm:px-6 lg:px-8"
+        className="mx-auto w-full max-w-7xl flex-grow animate-fade-up scroll-mt-40 px-4 py-8 outline-none sm:px-6 lg:px-8"
       >
-        <Suspense fallback={<TabSkeleton />}>
-          <Component />
+        <Suspense fallback={<SectionSkeleton />}>
+          <Component onNavigate={go} />
         </Suspense>
-        <PrevNext tabs={TABS} active={active} onChange={go} />
+        {active !== 'inicio' && <PrevNext active={active} onChange={go} />}
       </main>
       <Footer />
       <BackToTop />

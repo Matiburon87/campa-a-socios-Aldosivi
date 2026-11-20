@@ -1,11 +1,14 @@
 import { ArrowLeft, ArrowRight, ArrowUp } from 'lucide-react';
 import { scrollToTop, useScrolled } from '../hooks.js';
+import { SECTIONS, groupById } from '../navigation.js';
 
-/** Previous / next section links shown at the end of every tab. */
-export function PrevNext({ tabs, active, onChange }) {
-  const i = tabs.findIndex((t) => t.id === active);
-  const prev = tabs[i - 1];
-  const next = tabs[i + 1];
+const where = (s, dir) => (s.id === 'inicio' ? dir : `${dir} · ${groupById(s.group).label}`);
+
+/** Previous / next section links shown at the end of every section, following the reading order. */
+export function PrevNext({ active, onChange }) {
+  const i = SECTIONS.findIndex((t) => t.id === active);
+  const prev = SECTIONS[i - 1];
+  const next = SECTIONS[i + 1];
 
   return (
     <nav className="mt-12 grid gap-3 sm:grid-cols-2" aria-label="Navegación entre secciones">
@@ -13,7 +16,7 @@ export function PrevNext({ tabs, active, onChange }) {
         <button onClick={() => onChange(prev.id, { focusContent: true })} className="card group flex items-center gap-3 p-4 text-left transition hover:border-brand-100 hover:shadow-lg">
           <ArrowLeft className="h-5 w-5 text-ink-3 transition group-hover:-translate-x-1" />
           <span>
-            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Anterior</span>
+            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">{where(prev, 'Anterior')}</span>
             <span className="font-display font-bold text-ink">{prev.label}</span>
           </span>
         </button>
@@ -26,7 +29,7 @@ export function PrevNext({ tabs, active, onChange }) {
           className="card group flex items-center justify-end gap-3 p-4 text-right transition hover:border-brand-100 hover:shadow-lg"
         >
           <span>
-            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Siguiente</span>
+            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">{where(next, 'Siguiente')}</span>
             <span className="font-display font-bold text-ink">{next.label}</span>
           </span>
           <ArrowRight className="h-5 w-5 text-ink-3 transition group-hover:translate-x-1" />

@@ -1,16 +1,12 @@
 import { Coins, UsersRound } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
-import { budget, fronts, team } from '../data/content.js';
+import GoalProgress from '../components/GoalProgress.jsx';
+import { META_6M as SIX_MONTH_GOAL, budget, fronts, team } from '../data/content.js';
 
 const ars = (n) => '$' + n.toLocaleString('es-AR');
-const CURRENT = 5100;
-const TARGET = 10000;
-const SIX_MONTH_GOAL = fronts.reduce((a, f) => a + f.goal, 0);
 
 export default function Plan() {
   const total = budget.reduce((a, [, v]) => a + v, 0);
-  const pctNow = (CURRENT / TARGET) * 100;
-  const pctAfter = ((CURRENT + SIX_MONTH_GOAL) / TARGET) * 100;
 
   return (
     <div className="space-y-8">
@@ -28,22 +24,8 @@ export default function Plan() {
         calle Olavarría.
       </PageHero>
 
-      <section className="card space-y-3 p-6">
-        <div className="flex flex-wrap items-end justify-between gap-2 text-sm">
-          <span className="font-semibold text-slate-700">Camino a los 10.000 socios</span>
-          <span className="text-slate-500">
-            Hoy <strong className="text-ink">5.100</strong> → en 6 meses{' '}
-            <strong className="text-ink">{(CURRENT + SIX_MONTH_GOAL).toLocaleString('es-AR')}</strong>
-          </span>
-        </div>
-        <div className="relative h-4 overflow-hidden rounded-full bg-slate-100">
-          <div className="absolute inset-y-0 left-0 rounded-full bg-gold-300" style={{ width: `${pctAfter}%` }} />
-          <div className="absolute inset-y-0 left-0 rounded-full bg-brand-800" style={{ width: `${pctNow}%` }} />
-        </div>
-        <div className="flex gap-4 text-xs text-slate-500">
-          <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-brand-800" /> Actual ({Math.round(pctNow)}%)</span>
-          <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-gold-300" /> Con plan 6 meses ({Math.round(pctAfter)}%)</span>
-        </div>
+      <section className="card p-6">
+        <GoalProgress />
       </section>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

@@ -169,7 +169,7 @@ function Toolbar({ form, progress, onCopy, onReset }) {
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-2.5">
         <div className="flex min-w-0 items-center gap-3">
           <a href="#encuestas" className="btn-ghost !px-3 !py-2 !text-xs">
-            <ArrowLeft className="h-4 w-4 text-gold-400" /> <span className="hidden sm:inline">Dashboard</span>
+            <ArrowLeft className="h-4 w-4 text-gold-400" /> <span className="hidden sm:inline">Formularios</span>
           </a>
           <nav className="flex gap-1 overflow-x-auto text-xs scrollbar-none" aria-label="Formularios">
             {forms.map((f) => (

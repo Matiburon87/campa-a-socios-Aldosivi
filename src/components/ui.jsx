@@ -23,7 +23,7 @@ export function PageHero({ chip, title, children, aside }) {
   );
 }
 
-export function SectionTitle({ icon: Icon, title, subtitle, right }) {
+export function SectionTitle({ id, icon: Icon, title, subtitle, right }) {
   return (
     <div className="flex flex-col gap-3 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-start gap-3">
@@ -33,7 +33,7 @@ export function SectionTitle({ icon: Icon, title, subtitle, right }) {
           </span>
         )}
         <div>
-          <h3 className="font-display text-lg font-bold text-ink">{title}</h3>
+          <h3 id={id} className="font-display text-lg font-bold text-ink">{title}</h3>
           {subtitle && <p className="text-sm text-slate-600">{subtitle}</p>}
         </div>
       </div>

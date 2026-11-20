@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AlertTriangle, Calculator, CheckCircle2, Target, TrendingUp } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
 import { useCountUp } from '../hooks.js';
-import { CUOTA, INVERSION, SOCIOS_MORA, headlineStats, problems, solutions } from '../data/content.js';
+import { CUOTA, INVERSION, SOCIOS_MORA, problems, solutions } from '../data/content.js';
 
 const ars = (n) => '$' + n.toLocaleString('es-AR');
 
@@ -37,16 +37,6 @@ export default function Diagnostico() {
         <strong className="text-white">Predio Deportivo de Punta Mogotes</strong> y la{' '}
         <strong className="text-white">Tienda Oficial de calle Olavarría</strong>.
       </PageHero>
-
-      {/* Mobile-visible stats (header stats are hidden below xl) */}
-      <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4 xl:hidden">
-        {headlineStats.map((s) => (
-          <div key={s.label} className="card p-4">
-            <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{s.label}</dt>
-            <dd className="font-display text-2xl font-extrabold text-ink">{s.value}</dd>
-          </div>
-        ))}
-      </dl>
 
       <div className="flex gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-5">
         <Target className="mt-0.5 h-5 w-5 shrink-0 text-ink-3" />
