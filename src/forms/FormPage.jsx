@@ -80,7 +80,13 @@ export default function FormPage({ slug }) {
         form={form}
         progress={progress}
         onCopy={() => copy(summary(form, state), '¡Respuestas copiadas!')}
-        onReset={() => setState(initialState(form))}
+        onReset={() => {
+          // Clearing also wipes the saved draft, so ask first unless there is nothing to lose.
+          const untouched = JSON.stringify(state) === JSON.stringify(initialState(form));
+          if (untouched || window.confirm('¿Borrar todas las respuestas de este formulario? El borrador guardado se pierde.')) {
+            setState(initialState(form));
+          }
+        }}
       />
 
       <article className="mx-auto my-8 max-w-[900px] overflow-hidden rounded-2xl border border-brand-100 bg-surface shadow-card print:my-0 print:max-w-none print:rounded-none print:border-0 print:shadow-none sm:mx-auto">
