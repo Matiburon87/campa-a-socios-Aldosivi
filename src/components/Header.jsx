@@ -40,7 +40,7 @@ export default function Header({ active, onChange, onGroup, onPreload }) {
                 scrolled ? 'h-10 w-10' : 'h-12 w-12'
               }`}
             >
-              <div className="flex h-full w-full items-center justify-center rounded-full bg-brand-800 p-1">
+              <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-brand-800 p-[14%]">
                 <img src="escudo-aldosivi.png" alt="" className="h-full w-full object-contain" />
               </div>
             </div>
