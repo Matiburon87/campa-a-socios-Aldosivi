@@ -1,5 +1,32 @@
 import { useState } from 'react';
-import { Gauge, Sheet, Table2 } from 'lucide-react';
+import { AlertTriangle, Gauge, Sheet, Table2 } from 'lucide-react';
+
+const FUNNEL = [
+  { label: 'Leads captados', value: 3000 },
+  { label: 'Socios nuevos', value: 1100 },
+];
+
+function Funnel() {
+  const max = FUNNEL[0].value;
+  return (
+    <div className="space-y-3">
+      {FUNNEL.map((s) => (
+        <div key={s.label} className="space-y-1">
+          <div className="flex justify-between text-xs">
+            <span className="text-emerald-100/80">{s.label}</span>
+            <span className="font-bold tabular-nums">{s.value.toLocaleString('es-AR')}</span>
+          </div>
+          <div className="h-2.5 overflow-hidden rounded-full bg-white/10">
+            <div className="h-full rounded-full bg-gold-400" style={{ width: `${(s.value / max) * 100}%` }} />
+          </div>
+        </div>
+      ))}
+      <div className="pt-1 text-xs text-emerald-100/80">
+        Conversión <span className="font-display text-lg font-black text-gold-400">{Math.round((FUNNEL[1].value / max) * 100)}%</span>
+      </div>
+    </div>
+  );
+}
 import { PageHero, Segmented, SectionTitle } from '../components/ui.jsx';
 import { kpis, sheetTabs } from '../data/content.js';
 
@@ -21,58 +48,31 @@ export default function Kpis() {
         Estructura integral en Google Sheets con seguimiento diario de altas web, Predio Punta Mogotes y Tienda Olavarría.
       </PageHero>
 
-      <section className="card overflow-hidden">
-        <div className="p-6 pb-0">
-          <SectionTitle
-            icon={Gauge}
-            title="Indicadores clave de rendimiento"
-            subtitle="Actualización diaria / semanal"
-          />
-        </div>
-
-        {/* Desktop table */}
-        <div className="hidden overflow-x-auto md:block">
-          <table className="w-full text-left text-sm">
-            <thead className="text-[11px] uppercase tracking-wide text-slate-500">
-              <tr className="border-b border-slate-100">
-                <th className="px-6 py-3 font-semibold">Indicador</th>
-                <th className="px-6 py-3 font-semibold">Fórmula / fuente</th>
-                <th className="px-6 py-3 font-semibold">Meta (6 meses)</th>
-                <th className="px-6 py-3 font-semibold">Umbral de alerta</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {kpis.map((k) => (
-                <tr key={k.name} className="transition hover:bg-brand-50/50">
-                  <td className="px-6 py-3.5 font-semibold text-brand-900">{k.name}</td>
-                  <td className="px-6 py-3.5">
-                    <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-600">{k.formula}</code>
-                  </td>
-                  <td className="px-6 py-3.5">
-                    <span className="chip bg-brand-50 normal-case text-brand-800">{k.goal}</span>
-                  </td>
-                  <td className="px-6 py-3.5">
-                    <span className="chip bg-red-50 normal-case text-red-700">{k.alert}</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Mobile cards */}
-        <ul className="divide-y divide-slate-100 md:hidden">
-          {kpis.map((k) => (
-            <li key={k.name} className="space-y-2 px-6 py-4">
-              <div className="font-semibold text-brand-900">{k.name}</div>
-              <code className="block rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">{k.formula}</code>
-              <div className="flex flex-wrap gap-2">
-                <span className="chip bg-brand-50 normal-case text-brand-800">Meta: {k.goal}</span>
-                <span className="chip bg-red-50 normal-case text-red-700">Alerta: {k.alert}</span>
+      <section className="space-y-4">
+        <SectionTitle icon={Gauge} title="Indicadores clave de rendimiento" subtitle="Meta a 6 meses · actualización diaria / semanal" />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {kpis.map((k, i) => (
+            <article
+              key={k.name}
+              className={`card flex flex-col gap-3 p-5 transition hover:-translate-y-0.5 hover:shadow-lg ${
+                i === 0 ? 'border-t-4 border-t-gold-400' : ''
+              }`}
+            >
+              <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{k.name}</div>
+              <div className="font-display text-2xl font-black text-brand-900">{k.goal}</div>
+              <code className="block break-words rounded-md bg-slate-50 px-2 py-1.5 text-[11px] leading-snug text-slate-500">
+                {k.formula}
+              </code>
+              <div className="mt-auto flex items-center gap-1.5 text-xs font-semibold text-red-700">
+                <AlertTriangle className="h-3.5 w-3.5" /> Alerta si {k.alert}
               </div>
-            </li>
+            </article>
           ))}
-        </ul>
+          <article className="hero-gradient flex flex-col justify-between gap-4 rounded-2xl p-5 text-white shadow-card">
+            <div className="text-xs font-semibold uppercase tracking-wide text-gold-400">Embudo meta</div>
+            <Funnel />
+          </article>
+        </div>
       </section>
 
       <section className="card space-y-5 p-6 sm:p-8">
