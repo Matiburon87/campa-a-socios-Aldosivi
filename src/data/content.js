@@ -12,6 +12,14 @@ export const INVERSION = 950000;
 export const SOCIOS_ACTUALES = 5100;
 export const META_CD = 10000;
 
+/** Target share of members in arrears that adopt automatic debit (%), and what it yields. */
+export const META_ADHESION = 50;
+export const META_RECUPERO = Math.round((SOCIOS_MORA * META_ADHESION) / 100);
+export const RECUPERO_MENSUAL = META_RECUPERO * CUOTA;
+
+/** 22800000 → "$22,8M". */
+export const millones = (n) => `$${(n / 1e6).toLocaleString('es-AR', { maximumFractionDigits: 1 })}M`;
+
 export const headlineStats = [
   { label: 'Socios activos', value: '5.100', tone: 'white' },
   { label: 'Mora (1-5 meses)', value: '1.200', tone: 'gold' },

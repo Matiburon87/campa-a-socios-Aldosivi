@@ -1,3 +1,5 @@
+import { META_RECUPERO, RECUPERO_MENSUAL, SOCIOS_MORA, millones } from './content.js';
+
 /**
  * The 4 official survey forms, as data.
  *
@@ -162,8 +164,8 @@ export const forms = [
     subtitle: 'Programa "Te acompañamos, no te damos de baja" · Recuperación de padrón (1 a 5 meses)',
     shortName: 'Regularización Deudores',
     meta: [
-      ['Universo', '1.200 socios (mora 1 a 5 meses)'],
-      ['Meta objetivo', '600 socios regularizados ($22.8M/mes)'],
+      ['Universo', `${SOCIOS_MORA.toLocaleString('es-AR')} socios (mora 1 a 5 meses)`],
+      ['Meta objetivo', `${META_RECUPERO.toLocaleString('es-AR')} socios regularizados (${millones(RECUPERO_MENSUAL)}/mes)`],
       ['Canales de pago', 'Web online / Predio / Tienda Olavarría'],
     ],
     intro: {
