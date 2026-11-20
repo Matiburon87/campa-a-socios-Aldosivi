@@ -34,7 +34,7 @@ export function SectionTitle({ icon: Icon, title, subtitle, right }) {
         )}
         <div>
           <h3 className="font-display text-lg font-bold text-ink">{title}</h3>
-          {subtitle && <p className="text-sm text-slate-500">{subtitle}</p>}
+          {subtitle && <p className="text-sm text-slate-600">{subtitle}</p>}
         </div>
       </div>
       {right}

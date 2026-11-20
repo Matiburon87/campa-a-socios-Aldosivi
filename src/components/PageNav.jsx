@@ -13,7 +13,7 @@ export function PrevNext({ tabs, active, onChange }) {
         <button onClick={() => onChange(prev.id)} className="card group flex items-center gap-3 p-4 text-left transition hover:border-brand-100 hover:shadow-lg">
           <ArrowLeft className="h-5 w-5 text-ink-3 transition group-hover:-translate-x-1" />
           <span>
-            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-400">Anterior</span>
+            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Anterior</span>
             <span className="font-display font-bold text-ink">{prev.label}</span>
           </span>
         </button>
@@ -26,7 +26,7 @@ export function PrevNext({ tabs, active, onChange }) {
           className="card group flex items-center justify-end gap-3 p-4 text-right transition hover:border-brand-100 hover:shadow-lg"
         >
           <span>
-            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-400">Siguiente</span>
+            <span className="block text-[11px] font-semibold uppercase tracking-wide text-slate-500">Siguiente</span>
             <span className="font-display font-bold text-ink">{next.label}</span>
           </span>
           <ArrowRight className="h-5 w-5 text-ink-3 transition group-hover:translate-x-1" />

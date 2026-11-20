@@ -183,7 +183,7 @@ export default function WhatsApp() {
 
           <div className="flex flex-wrap items-center gap-2">
             <CopyButton text={filled} label="Copiar mensaje" />
-            <a href={waLink} target="_blank" rel="noreferrer" className="btn !bg-[#128c7e] !py-2 !text-xs text-white hover:!bg-[#0f7a6d]">
+            <a href={waLink} target="_blank" rel="noreferrer" className="btn !bg-[#0f7a6d] !py-2 !text-xs text-white hover:!bg-[#0c6359]">
               <MessageCircle className="h-4 w-4" /> Abrir en WhatsApp
             </a>
             {pending > 0 && (
@@ -246,7 +246,7 @@ export default function WhatsApp() {
                 }`}
               >
                 <p className="whitespace-pre-wrap">{m.text}</p>
-                <div className="mt-1 text-right text-[10px] font-normal text-slate-400">{m.time}</div>
+                <div className="mt-1 text-right text-[10px] font-normal text-slate-500">{m.time}</div>
               </div>
             ))}
           </div>
