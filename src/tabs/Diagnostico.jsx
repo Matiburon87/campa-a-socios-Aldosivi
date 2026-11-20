@@ -23,12 +23,12 @@ export default function Diagnostico() {
         chip="Hallazgo estratégico principal"
         title="1.200 socios activos con mora de 1 a 5 meses + 300 ex-socios objetivo"
         aside={
-          <div className="min-w-[220px] rounded-2xl border-2 border-gold-400 bg-white p-5 text-center text-brand-900 shadow-md">
+          <div className="min-w-[220px] rounded-2xl border-2 border-gold-400 bg-surface p-5 text-center text-ink shadow-md">
             <div className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Recuperación mensual</div>
             <div className="font-display text-3xl font-black">
               $22.8M <span className="text-xs font-medium text-slate-500">/ mes</span>
             </div>
-            <div className="mt-1 text-xs font-bold text-brand-700">Con 50% adhesión al débito</div>
+            <div className="mt-1 text-xs font-bold text-ink-3">Con 50% adhesión al débito</div>
           </div>
         }
       >
@@ -43,15 +43,15 @@ export default function Diagnostico() {
         {headlineStats.map((s) => (
           <div key={s.label} className="card p-4">
             <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{s.label}</dt>
-            <dd className="font-display text-2xl font-extrabold text-brand-900">{s.value}</dd>
+            <dd className="font-display text-2xl font-extrabold text-ink">{s.value}</dd>
           </div>
         ))}
       </dl>
 
       <div className="flex gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-5">
-        <Target className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" />
+        <Target className="mt-0.5 h-5 w-5 shrink-0 text-ink-3" />
         <div className="space-y-1 text-sm">
-          <div className="font-bold text-brand-900">Enfoque operativo: contacto 1 a 1 personalizado y autogestión web</div>
+          <div className="font-bold text-ink">Enfoque operativo: contacto 1 a 1 personalizado y autogestión web</div>
           <p className="leading-relaxed text-slate-700">
             El socio que dejó de abonar por olvido o incomodidad vuelve cuando el club le ofrece resolverlo desde el celular en 2
             minutos, o cuando se acerca al Predio de Punta Mogotes o a la Tienda de calle Olavarría.
@@ -65,7 +65,7 @@ export default function Diagnostico() {
           title="Simulador de recuperación de socios con mora"
           subtitle="Mové el porcentaje de socios recuperados para proyectar el ingreso mensual y anual."
           right={
-            <span className="chip border border-brand-100 bg-brand-50 normal-case text-brand-800">
+            <span className="chip border border-brand-100 bg-brand-50 normal-case text-ink-2">
               Cuota débito web: {ars(CUOTA)} / mes
             </span>
           }
@@ -105,7 +105,7 @@ export default function Diagnostico() {
                     className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
                       pct === v
                         ? 'border-brand-800 bg-brand-800 text-white'
-                        : 'border-slate-200 bg-white text-slate-600 hover:border-brand-700 hover:text-brand-800'
+                        : 'border-slate-200 bg-surface text-slate-600 hover:border-brand-700 hover:text-ink-2'
                     }`}
                   >
                     {v}% · {l}
@@ -117,12 +117,12 @@ export default function Diagnostico() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
                 <div className="text-xs font-medium text-slate-500">Inversión total campaña (6 meses)</div>
-                <div className="font-display text-xl font-extrabold text-brand-900">{ars(INVERSION)}</div>
-                <div className="mt-1 text-xs font-semibold text-brand-700">Se recupera con {breakeven} socios adheridos</div>
+                <div className="font-display text-xl font-extrabold text-ink">{ars(INVERSION)}</div>
+                <div className="mt-1 text-xs font-semibold text-ink-3">Se recupera con {breakeven} socios adheridos</div>
               </div>
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
                 <div className="text-xs font-medium text-slate-500">Retorno sobre inversión (ROI mensual)</div>
-                <div className="flex items-center gap-2 font-display text-xl font-extrabold text-brand-700">
+                <div className="flex items-center gap-2 font-display text-xl font-extrabold text-ink-3">
                   <TrendingUp className="h-5 w-5" /> {roi}x costo total
                 </div>
                 <div className="mt-1 text-xs text-slate-500">Impacto neto desde el primer mes</div>
@@ -182,7 +182,7 @@ function ListCard({ tone, icon: Icon, title, items }) {
     <section className={`card space-y-4 border-l-4 p-6 ${red ? 'border-l-red-500' : 'border-l-brand-700'}`}>
       <h3
         className={`flex items-center gap-2 font-display text-sm font-extrabold uppercase tracking-wide ${
-          red ? 'text-red-700' : 'text-brand-900'
+          red ? 'text-red-700' : 'text-ink'
         }`}
       >
         <Icon className="h-5 w-5" /> {title}
@@ -192,7 +192,7 @@ function ListCard({ tone, icon: Icon, title, items }) {
           <li key={t} className="flex gap-3 text-sm">
             <span
               className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-                red ? 'bg-red-50 text-red-700' : 'bg-brand-50 text-brand-800'
+                red ? 'bg-red-50 text-red-700' : 'bg-brand-50 text-ink-2'
               }`}
             >
               {i + 1}

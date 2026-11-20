@@ -36,7 +36,7 @@ function Field({ label, value, onChange, disabled, ...rest }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-normal text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed"
+        className="mt-1 w-full rounded-lg border border-slate-200 bg-surface px-3 py-2 text-sm font-normal text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed"
         {...rest}
       />
     </label>
@@ -46,7 +46,7 @@ function Field({ label, value, onChange, disabled, ...rest }) {
 function TemplatePreview({ text }) {
   const parts = text.split(/(\[[A-Za-z_]+\])/g);
   return (
-    <pre className="whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-white p-4 font-sans text-sm leading-relaxed text-slate-700">
+    <pre className="whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-surface p-4 font-sans text-sm leading-relaxed text-slate-700">
       {parts.map((p, i) =>
         /^\[[A-Za-z_]+\]$/.test(p) ? (
           <mark key={i} className="rounded bg-amber-100 px-1 font-semibold text-amber-800">
@@ -139,10 +139,10 @@ export default function WhatsApp() {
                 } ${s.score === 1 ? 'col-span-2 sm:col-span-1' : ''}`}
               >
                 <div className="flex items-center justify-between gap-1">
-                  <span className={`font-display text-sm font-black ${on ? 'text-white' : 'text-brand-900'}`}>SCORE {s.score}</span>
+                  <span className={`font-display text-sm font-black ${on ? 'text-white' : 'text-ink'}`}>SCORE {s.score}</span>
                   <span
                     className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
-                      on ? 'bg-gold-400 text-brand-900' : 'bg-brand-100 text-brand-800'
+                      on ? 'bg-gold-400 text-brand-900' : 'bg-brand-100 text-ink-2'
                     }`}
                   >
                     {s.sla}
@@ -157,7 +157,7 @@ export default function WhatsApp() {
 
         <div key={score} className="animate-fade-up space-y-4 rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
           <div>
-            <div className="font-display font-bold text-brand-900">{current.title}</div>
+            <div className="font-display font-bold text-ink">{current.title}</div>
             <div className="text-sm text-slate-600">{current.desc}</div>
           </div>
 
@@ -183,7 +183,7 @@ export default function WhatsApp() {
 
           <div className="flex flex-wrap items-center gap-2">
             <CopyButton text={filled} label="Copiar mensaje" />
-            <a href={waLink} target="_blank" rel="noreferrer" className="btn !bg-[#25d366] !py-2 !text-xs text-white hover:!bg-[#1ebe5b]">
+            <a href={waLink} target="_blank" rel="noreferrer" className="btn !bg-[#128c7e] !py-2 !text-xs text-white hover:!bg-[#0f7a6d]">
               <MessageCircle className="h-4 w-4" /> Abrir en WhatsApp
             </a>
             {pending > 0 && (
@@ -197,7 +197,7 @@ export default function WhatsApp() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-3">
-          <div className="text-xs font-extrabold uppercase tracking-wider text-brand-900">Atajos rápidos WhatsApp Business</div>
+          <div className="text-xs font-extrabold uppercase tracking-wider text-ink">Atajos rápidos WhatsApp Business</div>
           {shortcuts.map((sc) => (
             <button
               key={sc.key}
@@ -205,10 +205,10 @@ export default function WhatsApp() {
               className="card flex w-full items-center justify-between gap-3 p-3.5 text-left transition hover:border-brand-100 hover:bg-brand-50"
             >
               <div>
-                <div className="font-mono text-sm font-bold text-brand-800">{sc.key}</div>
+                <div className="font-mono text-sm font-bold text-ink-2">{sc.key}</div>
                 <div className="text-xs text-slate-500">{sc.hint}</div>
               </div>
-              <Send className="h-4 w-4 shrink-0 text-brand-700" />
+              <Send className="h-4 w-4 shrink-0 text-ink-3" />
             </button>
           ))}
         </div>
@@ -233,7 +233,7 @@ export default function WhatsApp() {
           </div>
           <div
             ref={chatRef}
-            className="h-80 space-y-3 overflow-y-auto bg-[#efeae2] p-4"
+            className="h-80 space-y-3 overflow-y-auto bg-[#efeae2] p-4 dark:bg-[#0b141a]"
             style={{ backgroundImage: 'radial-gradient(rgba(20,83,45,0.06) 1px, transparent 1px)', backgroundSize: '16px 16px' }}
           >
             {chat.map((m, i) => (
@@ -241,8 +241,8 @@ export default function WhatsApp() {
                 key={i}
                 className={`animate-fade-up max-w-[85%] rounded-xl px-3.5 py-2 text-sm shadow-sm ${
                   m.from === 'me'
-                    ? 'ml-auto rounded-tr-none bg-[#d9fdd3] font-mono font-bold text-brand-900'
-                    : 'rounded-tl-none bg-white text-slate-800'
+                    ? 'ml-auto rounded-tr-none bg-[#d9fdd3] font-mono font-bold text-brand-900 dark:bg-[#005c4b] dark:text-white'
+                    : 'rounded-tl-none bg-surface text-slate-800 dark:bg-[#202c33]'
                 }`}
               >
                 <p className="whitespace-pre-wrap">{m.text}</p>

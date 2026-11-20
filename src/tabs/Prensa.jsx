@@ -13,8 +13,8 @@ export default function Prensa() {
         {pressCopies.map((c) => (
           <section key={c.id} className="card flex flex-col gap-4 p-6">
             <div className="flex items-center justify-between gap-3">
-              <h3 className="flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-brand-900">
-                <Megaphone className="h-4 w-4 text-brand-700" /> {c.title}
+              <h3 className="flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-ink">
+                <Megaphone className="h-4 w-4 text-ink-3" /> {c.title}
               </h3>
               <CopyButton text={c.text} />
             </div>

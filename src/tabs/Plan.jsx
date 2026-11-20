@@ -18,7 +18,7 @@ export default function Plan() {
         chip="Meta Comisión Directiva: 10.000 socios"
         title="Plan operativo en 4 frentes orgánicos y presupuesto mínimo"
         aside={
-          <div className="rounded-2xl border-2 border-gold-400 bg-white px-5 py-3 text-center font-display text-brand-900">
+          <div className="rounded-2xl border-2 border-gold-400 bg-surface px-5 py-3 text-center font-display text-ink">
             <div className="text-[10px] font-bold uppercase text-slate-500">Meta 6 meses</div>
             <div className="text-2xl font-black">+{SIX_MONTH_GOAL.toLocaleString('es-AR')} socios</div>
           </div>
@@ -32,8 +32,8 @@ export default function Plan() {
         <div className="flex flex-wrap items-end justify-between gap-2 text-sm">
           <span className="font-semibold text-slate-700">Camino a los 10.000 socios</span>
           <span className="text-slate-500">
-            Hoy <strong className="text-brand-900">5.100</strong> → en 6 meses{' '}
-            <strong className="text-brand-900">{(CURRENT + SIX_MONTH_GOAL).toLocaleString('es-AR')}</strong>
+            Hoy <strong className="text-ink">5.100</strong> → en 6 meses{' '}
+            <strong className="text-ink">{(CURRENT + SIX_MONTH_GOAL).toLocaleString('es-AR')}</strong>
           </span>
         </div>
         <div className="relative h-4 overflow-hidden rounded-full bg-slate-100">
@@ -53,11 +53,11 @@ export default function Plan() {
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-800 font-display text-sm font-black text-gold-400">
                 {i + 1}
               </span>
-              <span className="font-display text-xl font-black text-brand-900">+{f.goal}</span>
+              <span className="font-display text-xl font-black text-ink">+{f.goal}</span>
             </div>
-            <div className="font-bold text-brand-900">{f.title}</div>
+            <div className="font-bold text-ink">{f.title}</div>
             <p className="text-sm text-slate-600">{f.desc}</p>
-            <div className="text-xs font-bold text-brand-700">CPA {f.cpa}</div>
+            <div className="text-xs font-bold text-ink-3">CPA {f.cpa}</div>
           </div>
         ))}
       </div>
@@ -72,7 +72,7 @@ export default function Plan() {
                   <strong className="text-slate-900">{role}</strong>
                   <span className="block text-xs text-slate-500">{detail}</span>
                 </span>
-                <span className="shrink-0 rounded-md bg-brand-50 px-2 py-0.5 text-xs font-bold text-brand-800">{hours}</span>
+                <span className="shrink-0 rounded-md bg-brand-50 px-2 py-0.5 text-xs font-bold text-ink-2">{hours}</span>
               </li>
             ))}
           </ul>
@@ -91,12 +91,12 @@ export default function Plan() {
                   <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
                     <div className="h-full rounded-full bg-brand-700" style={{ width: `${(value / total) * 100}%` }} />
                   </div>
-                  <span className="w-20 text-right text-[11px] font-semibold text-brand-600">{saving}</span>
+                  <span className="w-20 text-right text-[11px] font-semibold text-ink-3">{saving}</span>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-between rounded-xl bg-brand-50 px-4 py-3 font-display font-extrabold text-brand-900">
+          <div className="flex items-center justify-between rounded-xl bg-brand-50 px-4 py-3 font-display font-extrabold text-ink">
             <span>Total campaña</span>
             <span className="tabular-nums">{ars(total)}</span>
           </div>

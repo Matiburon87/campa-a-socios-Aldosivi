@@ -59,7 +59,7 @@ export default function Kpis() {
               }`}
             >
               <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{k.name}</div>
-              <div className="font-display text-2xl font-black text-brand-900">{k.goal}</div>
+              <div className="font-display text-2xl font-black text-ink">{k.goal}</div>
               <code className="block break-words rounded-md bg-slate-50 px-2 py-1.5 text-[11px] leading-snug text-slate-500">
                 {k.formula}
               </code>
@@ -88,14 +88,14 @@ export default function Kpis() {
         />
         <div key={sheet} className="animate-fade-up space-y-4 rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
           <div>
-            <div className="font-display font-bold text-brand-900">{data.title}</div>
+            <div className="font-display font-bold text-ink">{data.title}</div>
             <div className="text-sm text-slate-600">{data.desc}</div>
           </div>
           <ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {data.columns.map((c, i) => (
               <li
                 key={c}
-                className="flex items-center gap-2.5 rounded-lg border border-brand-100 bg-white p-2.5 text-xs text-slate-700 shadow-sm"
+                className="flex items-center gap-2.5 rounded-lg border border-brand-100 bg-surface p-2.5 text-xs text-slate-700 shadow-sm"
               >
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-brand-800 text-[11px] font-bold text-gold-400">
                   {i + 1}

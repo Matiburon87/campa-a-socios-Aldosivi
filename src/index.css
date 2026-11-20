@@ -2,15 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Theme tokens ("R G B" triplets) ---------- */
+:root {
+  color-scheme: light;
+  --canvas: 243 246 244;
+  --surface: 255 255 255;
+  --ink: 15 63 34;
+  --ink-2: 20 83 45;
+  --ink-3: 22 101 52;
+  --shadow: 15 63 34;
+  --brand-50: 240 253 244;
+  --brand-100: 220 252 231;
+  --slate-50: 248 250 252;
+  --slate-100: 241 245 249;
+  --slate-200: 226 232 240;
+  --slate-300: 203 213 225;
+  --slate-400: 148 163 184;
+  --slate-500: 100 116 139;
+  --slate-600: 71 85 105;
+  --slate-700: 51 65 85;
+  --slate-800: 30 41 59;
+  --slate-900: 15 23 42;
+  --slate-950: 2 6 23;
+  --red-50: 254 242 242;
+  --red-100: 254 226 226;
+  --red-200: 254 202 202;
+  --red-700: 185 28 28;
+  --red-800: 153 27 27;
+  --red-950: 69 10 10;
+  --amber-50: 255 251 235;
+  --amber-100: 254 243 199;
+  --amber-200: 253 230 138;
+  --amber-700: 180 83 9;
+  --amber-800: 146 64 14;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: 8 15 11;
+  --surface: 17 28 22;
+  --ink: 232 245 236;
+  --ink-2: 187 247 208;
+  --ink-3: 134 239 172;
+  --shadow: 0 0 0;
+  --brand-50: 21 45 31;
+  --brand-100: 31 66 45;
+  --slate-50: 24 37 30;
+  --slate-100: 31 46 38;
+  --slate-200: 44 62 52;
+  --slate-300: 63 83 72;
+  --slate-400: 122 142 130;
+  --slate-500: 150 168 157;
+  --slate-600: 178 194 184;
+  --slate-700: 205 216 209;
+  --slate-800: 226 234 229;
+  --slate-900: 240 245 242;
+  --slate-950: 248 250 249;
+  --red-50: 52 20 22;
+  --red-100: 76 27 29;
+  --red-200: 110 38 40;
+  --red-700: 252 165 165;
+  --red-800: 254 202 202;
+  --red-950: 254 226 226;
+  --amber-50: 50 37 10;
+  --amber-100: 74 54 13;
+  --amber-200: 107 79 19;
+  --amber-700: 252 211 77;
+  --amber-800: 253 230 138;
+}
+
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply bg-[#f3f6f4] text-slate-800 font-sans antialiased; }
+  body { @apply bg-canvas text-slate-800 font-sans antialiased transition-colors duration-300; }
   ::selection { @apply bg-gold-300 text-brand-900; }
-  :focus-visible { @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-white; }
+  :focus-visible { @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-surface; }
 }
 
 @layer components {
-  .card { @apply bg-white rounded-2xl border border-slate-200/80 shadow-card; }
+  .card { @apply bg-surface rounded-2xl border border-slate-200/80 shadow-card; }
   .hero-gradient { background: radial-gradient(120% 140% at 0% 0%, #1a6b3c 0%, #14532d 45%, #0a2e17 100%); }
   .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide; }
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98]; }
@@ -21,18 +90,31 @@
   .seg { @apply rounded-lg px-3.5 py-2 text-sm font-semibold transition whitespace-nowrap; }
   .seg-on { @apply bg-brand-800 text-white shadow-sm; }
   .seg-off { @apply bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900; }
-  .form-input { @apply mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-normal text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100; }
+  .form-input { @apply mt-1 w-full rounded-lg border border-slate-300 bg-surface px-3 py-2 text-sm font-normal text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100; }
 }
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { scrollbar-width: none; }
 
 input[type='range'] { accent-color: #14532d; }
+.dark input[type='range'] { accent-color: #facc15; }
 
 @keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .animate-fade-up { animation: fade-up 0.25s ease-out both; }
 
 @media print {
+  /* Always print in the light theme */
+  html.dark {
+    color-scheme: light;
+    --canvas: 243 246 244; --surface: 255 255 255;
+    --ink: 15 63 34; --ink-2: 20 83 45; --ink-3: 22 101 52;
+    --brand-50: 240 253 244; --brand-100: 220 252 231;
+    --slate-50: 248 250 252; --slate-100: 241 245 249; --slate-200: 226 232 240; --slate-300: 203 213 225;
+    --slate-400: 148 163 184; --slate-500: 100 116 139; --slate-600: 71 85 105; --slate-700: 51 65 85;
+    --slate-800: 30 41 59; --slate-900: 15 23 42; --slate-950: 2 6 23;
+    --red-50: 254 242 242; --red-100: 254 226 226; --red-200: 254 202 202; --red-700: 185 28 28; --red-800: 153 27 27; --red-950: 69 10 10;
+    --amber-50: 255 251 235; --amber-100: 254 243 199; --amber-200: 253 230 138; --amber-700: 180 83 9; --amber-800: 146 64 14;
+  }
   header, footer, nav { display: none !important; }
   body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   @page { margin: 12mm; }

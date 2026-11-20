@@ -1,6 +1,7 @@
 import { FileText } from 'lucide-react';
 import { headlineStats, LINKS } from '../data/content.js';
 import { useScrolled } from '../hooks.js';
+import ThemeToggle from './ThemeToggle.jsx';
 
 const toneClass = { white: 'text-white', gold: 'text-gold-400', mint: 'text-emerald-200' };
 
@@ -61,6 +62,7 @@ export default function Header({ tabs, active, onChange }) {
             <span className="hidden sm:inline">PDF Ex-Socios</span>
             <span className="sm:hidden">PDF</span>
           </a>
+          <ThemeToggle className="-ml-3" />
         </div>
       </div>
 

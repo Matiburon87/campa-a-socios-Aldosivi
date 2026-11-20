@@ -28,12 +28,12 @@ export function SectionTitle({ icon: Icon, title, subtitle, right }) {
     <div className="flex flex-col gap-3 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-start gap-3">
         {Icon && (
-          <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+          <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-ink-3">
             <Icon className="h-5 w-5" />
           </span>
         )}
         <div>
-          <h3 className="font-display text-lg font-bold text-brand-900">{title}</h3>
+          <h3 className="font-display text-lg font-bold text-ink">{title}</h3>
           {subtitle && <p className="text-sm text-slate-500">{subtitle}</p>}
         </div>
       </div>
@@ -73,7 +73,7 @@ export function CopyButton({ text, variant = 'btn-primary', label = 'Copiar' }) 
 export function TextBlock({ text, className = '' }) {
   return (
     <pre
-      className={`whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-white p-4 font-sans text-sm leading-relaxed text-slate-700 ${className}`}
+      className={`whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-surface p-4 font-sans text-sm leading-relaxed text-slate-700 ${className}`}
     >
       {text}
     </pre>
