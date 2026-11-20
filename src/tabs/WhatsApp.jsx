@@ -28,17 +28,40 @@ function toWaNumber(raw) {
   return '549' + d;
 }
 
+/** Month names of the last `count` months, most recent first. */
+function lastMonths(count = 12) {
+  const today = new Date();
+  return Array.from({ length: count }, (_, i) =>
+    new Date(today.getFullYear(), today.getMonth() - i, 1).toLocaleDateString('es-AR', { month: 'long' })
+  );
+}
+
+const MONTHS = lastMonths();
+
+const FIELD_CLS =
+  'mt-1 w-full rounded-lg border border-slate-200 bg-surface px-3 py-2 text-sm font-normal text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed';
+
 function Field({ label, value, onChange, disabled, ...rest }) {
   return (
     <label className={`block text-xs font-semibold text-slate-600 ${disabled ? 'opacity-40' : ''}`}>
       {label}
-      <input
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        disabled={disabled}
-        className="mt-1 w-full rounded-lg border border-slate-200 bg-surface px-3 py-2 text-sm font-normal text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed"
-        {...rest}
-      />
+      <input value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled} className={FIELD_CLS} {...rest} />
+    </label>
+  );
+}
+
+function SelectField({ label, value, onChange, disabled, options, placeholder }) {
+  return (
+    <label className={`block text-xs font-semibold text-slate-600 ${disabled ? 'opacity-40' : ''}`}>
+      {label}
+      <select value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled} className={FIELD_CLS}>
+        <option value="">{placeholder}</option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o.charAt(0).toUpperCase() + o.slice(1)}
+          </option>
+        ))}
+      </select>
     </label>
   );
 }
@@ -163,11 +186,12 @@ export default function WhatsApp() {
 
           <div className="grid gap-3 sm:grid-cols-3">
             <Field label="Nombre de pila" value={vars.nombre} onChange={(v) => setVars({ ...vars, nombre: v })} placeholder="Ej: Martín" />
-            <Field
+            <SelectField
               label="Mes último pago"
               value={vars.mes}
               onChange={(v) => setVars({ ...vars, mes: v })}
-              placeholder="Ej: agosto"
+              options={MONTHS}
+              placeholder="Elegí el mes"
               disabled={!current.template.includes('[MES_ULTIMO_PAGO]')}
             />
             <Field
