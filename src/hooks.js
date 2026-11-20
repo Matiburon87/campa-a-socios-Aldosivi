@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-const reducedMotion = () =>
+export const reducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+/** Scrolls to the top, smoothly unless the user asked the OS for reduced motion. */
+export const scrollToTop = () => window.scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' });
 
 /** Animates a number towards `target` (ease-out), starting from the last shown value. */
 export function useCountUp(target, duration = 600) {

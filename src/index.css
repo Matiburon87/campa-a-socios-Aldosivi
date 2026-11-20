@@ -127,3 +127,13 @@ input[type='range'] { accent-color: #14532d; }
   body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   @page { margin: 12mm; }
 }
+
+/* Respect the OS "reduce motion" setting: no entrance animations, pings, spins or smooth scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

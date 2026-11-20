@@ -70,10 +70,19 @@ export default function Header({ tabs, active, onChange, onPreload }) {
         <div
           className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 py-2 scrollbar-none sm:px-6 lg:px-8"
           role="tablist"
+          aria-label="Secciones del dashboard"
           onKeyDown={(e) => {
-            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            // WAI-ARIA tabs: ←/→ move between tabs, Home/End jump to first/last.
             const i = tabs.findIndex((t) => t.id === active);
-            const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+            const targets = {
+              ArrowRight: tabs[(i + 1) % tabs.length],
+              ArrowLeft: tabs[(i + tabs.length - 1) % tabs.length],
+              Home: tabs[0],
+              End: tabs[tabs.length - 1],
+            };
+            const next = targets[e.key];
+            if (!next) return;
+            e.preventDefault();
             onChange(next.id);
             e.currentTarget.querySelector(`[data-tab="${next.id}"]`)?.focus();
           }}
@@ -84,9 +93,11 @@ export default function Header({ tabs, active, onChange, onPreload }) {
               <button
                 key={id}
                 data-tab={id}
+                id={`tab-${id}`}
                 ref={on ? (el) => el?.scrollIntoView({ block: 'nearest', inline: 'center' }) : undefined}
                 role="tab"
                 aria-selected={on}
+                aria-controls="panel-seccion"
                 tabIndex={on ? 0 : -1}
                 onClick={() => onChange(id)}
                 onMouseEnter={() => onPreload?.(id)}
@@ -102,7 +113,7 @@ export default function Header({ tabs, active, onChange, onPreload }) {
                 >
                   {i + 1}
                 </span>
-                <Icon className="h-4 w-4" />
+                <Icon className="h-4 w-4" aria-hidden="true" />
                 {label}
               </button>
             );

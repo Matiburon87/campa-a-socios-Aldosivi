@@ -1,4 +1,5 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { scrollToTop } from './hooks.js';
 import { BarChart3, ClipboardList, Film, Gauge, Megaphone, MessageCircle, Target } from 'lucide-react';
 import Header from './components/Header.jsx';
 import DocsBar from './components/DocsBar.jsx';
@@ -89,6 +90,26 @@ export default function App() {
       : 'Centro Estratégico de Socios — Club Atlético Aldosivi';
   }, [route]);
 
+  // Accessibility: announce section changes and, when asked, move focus to the new content.
+  const mainRef = useRef(null);
+  const focusContentNext = useRef(false);
+  const [announcement, setAnnouncement] = useState('');
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (!route.tab) return;
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    const tab = TABS.find((t) => t.id === route.tab);
+    setAnnouncement(`Sección ${tab.label}`);
+    if (focusContentNext.current) {
+      focusContentNext.current = false;
+      mainRef.current?.focus({ preventScroll: true });
+    }
+  }, [route.tab]);
+
   if (route.form) {
     return (
       <Suspense fallback={<FormSkeleton />}>
@@ -98,21 +119,46 @@ export default function App() {
   }
 
   const active = route.tab;
-  const go = (id) => {
+  const go = (id, { focusContent = false } = {}) => {
     if (id !== active) {
+      focusContentNext.current = focusContent;
       window.location.hash = id;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTop();
     }
   };
   const preload = (id) => TABS.find((t) => t.id === id)?.Component.preload().catch(() => {});
+
+  const skipToContent = (e) => {
+    // A plain href="#…" would be taken as a route by the hash router, so focus the panel directly.
+    e.preventDefault();
+    mainRef.current?.focus();
+  };
 
   const { Component } = TABS.find((t) => t.id === active);
 
   return (
     <div className="flex min-h-screen flex-col">
+      <a
+        href="#panel-seccion"
+        onClick={skipToContent}
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-gold-400 focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-brand-900 focus:shadow-xl"
+      >
+        Saltar al contenido
+      </a>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {announcement}
+      </div>
       <Header tabs={TABS} active={active} onChange={go} onPreload={preload} />
       <DocsBar />
-      <main key={active} className="mx-auto w-full max-w-7xl flex-grow animate-fade-up px-4 py-8 sm:px-6 lg:px-8">
+      <main
+        key={active}
+        ref={mainRef}
+        id="panel-seccion"
+        role="tabpanel"
+        aria-labelledby={`tab-${active}`}
+        tabIndex={-1}
+        className="mx-auto w-full max-w-7xl flex-grow animate-fade-up scroll-mt-32 px-4 py-8 outline-none sm:px-6 lg:px-8"
+      >
         <Suspense fallback={<TabSkeleton />}>
           <Component />
         </Suspense>
