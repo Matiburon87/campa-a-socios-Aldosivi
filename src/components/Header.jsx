@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle.jsx';
 
 const toneClass = { white: 'text-white', gold: 'text-gold-400', mint: 'text-emerald-200' };
 
-export default function Header({ tabs, active, onChange }) {
+export default function Header({ tabs, active, onChange, onPreload }) {
   const scrolled = useScrolled(40);
 
   return (
@@ -89,6 +89,8 @@ export default function Header({ tabs, active, onChange }) {
                 aria-selected={on}
                 tabIndex={on ? 0 : -1}
                 onClick={() => onChange(id)}
+                onMouseEnter={() => onPreload?.(id)}
+                onFocus={() => onPreload?.(id)}
                 className={`group flex items-center gap-2 whitespace-nowrap rounded-lg px-3.5 py-2.5 text-sm font-semibold transition ${
                   on ? 'bg-gold-400 text-brand-900 shadow' : 'text-emerald-100/80 hover:bg-white/10 hover:text-white'
                 }`}
