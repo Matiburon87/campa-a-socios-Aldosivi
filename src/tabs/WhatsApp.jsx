@@ -102,7 +102,7 @@ export default function WhatsApp() {
       </PageHero>
 
       <div className="flex gap-3 rounded-2xl border border-red-200 bg-red-50 p-5">
-        <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+        <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-700" />
         <div className="space-y-1.5 text-sm">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="font-extrabold text-red-800">Regla de oro anti-ban (Meta WhatsApp 2026)</span>

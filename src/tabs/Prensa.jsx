@@ -21,7 +21,7 @@ export default function Prensa() {
             <TextBlock text={c.text} className="max-h-96 flex-1 overflow-y-auto bg-slate-50" />
             <div className="flex justify-between text-xs text-slate-400">
               <span>{c.text.split(/\s+/).length} palabras</span>
-              <span className={c.id === 'feed' && c.text.length > 2200 ? 'font-semibold text-red-600' : ''}>
+              <span className={c.id === 'feed' && c.text.length > 2200 ? 'font-semibold text-red-700' : ''}>
                 {c.text.length.toLocaleString('es-AR')} caracteres{c.id === 'feed' && ' · límite Instagram 2.200'}
               </span>
             </div>
