@@ -1,10 +1,73 @@
-import { ArrowRight, FileText, Globe, Scale, Split, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowRight, FileText, Globe, PencilLine, Scale, Split, Trash2, Users } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
 import { forms, paradoxBlocks } from '../data/content.js';
+import { forms as formDefs } from '../data/forms.js';
+import { clearDraft, draftStatus } from '../forms/drafts.js';
 
 const blockIcons = { users: Users, scale: Scale, globe: Globe };
 
+/** Draft status per form number, refreshed if another browser tab edits a draft. */
+function useDrafts() {
+  const read = () => Object.fromEntries(formDefs.map((f) => [f.n, draftStatus(f)]));
+  const [drafts, setDrafts] = useState(read);
+  useEffect(() => {
+    const onStorage = (e) => e.key?.startsWith('aldosivi-form:') && setDrafts(read());
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
+  return [drafts, () => setDrafts(read())];
+}
+
+function ago(iso) {
+  if (!iso) return null;
+  const min = Math.round((Date.now() - Date.parse(iso)) / 60000);
+  if (min < 1) return 'recién';
+  if (min < 60) return `hace ${min} min`;
+  if (min < 1440) return `hace ${Math.round(min / 60)} h`;
+  return `hace ${Math.round(min / 1440)} d`;
+}
+
+function DraftStatus({ status, onDiscard }) {
+  const pct = Math.round((status.answered / status.total) * 100);
+  return (
+    <div className="space-y-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="flex items-center gap-1.5 font-bold text-amber-800">
+          <PencilLine className="h-3.5 w-3.5" /> Borrador en curso
+          {status.name && <span className="font-medium">· {status.name}</span>}
+        </span>
+        <span className="text-amber-800">
+          {status.answered}/{status.total} respondidas{status.savedAt && ` · ${ago(status.savedAt)}`}
+        </span>
+      </div>
+      <div
+        className="h-1.5 overflow-hidden rounded-full bg-amber-100"
+        role="progressbar"
+        aria-label="Progreso del borrador"
+        aria-valuenow={pct}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
+        <div className="h-full rounded-full bg-amber-500" style={{ width: `${pct}%` }} />
+      </div>
+      <button onClick={onDiscard} className="flex items-center gap-1 font-semibold text-amber-800 underline-offset-2 hover:underline">
+        <Trash2 className="h-3.5 w-3.5" /> Descartar borrador
+      </button>
+    </div>
+  );
+}
+
 export default function Encuestas() {
+  const [drafts, refreshDrafts] = useDrafts();
+  const discard = (n) => {
+    const f = formDefs.find((x) => x.n === n);
+    if (window.confirm(`¿Descartar el borrador del formulario #${n}? Se borran las respuestas cargadas y no se pueden recuperar.`)) {
+      clearDraft(f);
+      refreshDrafts();
+    }
+  };
+
   return (
     <div className="space-y-8">
       <PageHero chip="Listos para mostrar e imprimir" title="Los 4 formularios oficiales de encuesta y la matriz de la paradoja">
@@ -36,9 +99,10 @@ export default function Encuestas() {
                 <h3 className="font-display text-lg font-bold text-ink">{f.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-600">{f.desc}</p>
               </div>
+              {drafts[f.n] && <DraftStatus status={drafts[f.n]} onDiscard={() => discard(f.n)} />}
               <div className="flex gap-2">
                 <a href={f.href} className="btn-primary flex-1">
-                  <ArrowRight className="h-4 w-4 text-gold-400" /> Completar formulario #{f.n}
+                  <ArrowRight className="h-4 w-4 text-gold-400" /> {drafts[f.n] ? 'Continuar' : 'Completar'} formulario #{f.n}
                 </a>
                 {f.pdf && (
                   <a href={f.pdf} target="_blank" rel="noreferrer" className="btn-gold">

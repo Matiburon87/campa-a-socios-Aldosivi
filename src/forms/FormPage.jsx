@@ -4,6 +4,7 @@ import { forms, formHref } from '../data/forms.js';
 import { LINKS } from '../data/content.js';
 import { useCopy } from '../components/Toast.jsx';
 import ThemeToggle from '../components/ThemeToggle.jsx';
+import { initialState, isAnswered, loadDraft, saveDraft } from './drafts.js';
 
 /* ---------- helpers ---------- */
 
@@ -15,31 +16,6 @@ export function rich(text) {
 }
 const plain = (t) => (typeof t === 'string' ? t : t.title).replace(/\*\*/g, '');
 
-const initialState = (form) => ({
-  consent: form.intro.consent ? 0 : null,
-  fields: form.fields.map(() => ''),
-  answers: form.questions.map((q) => {
-    if (q.type === 'multi') return q.defaults ?? [];
-    if (q.type === 'text') return '';
-    return q.defaults?.[0] ?? null;
-  }),
-});
-
-const storageKey = (slug) => `aldosivi-form:${slug}`;
-function loadDraft(form) {
-  try {
-    const raw = localStorage.getItem(storageKey(form.slug));
-    if (raw) {
-      const d = JSON.parse(raw);
-      if (d.answers?.length === form.questions.length && d.fields?.length === form.fields.length) return d;
-    }
-  } catch {
-    /* storage unavailable: start fresh */
-  }
-  return initialState(form);
-}
-
-const isAnswered = (q, a) => (q.type === 'multi' ? a.length > 0 : q.type === 'text' ? a.trim() !== '' : a !== null);
 
 function npsInfo(v) {
   if (v === null) return null;
@@ -78,12 +54,8 @@ export default function FormPage({ slug }) {
   }, []);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(storageKey(form.slug), JSON.stringify(state));
-    } catch {
-      /* ignore */
-    }
-  }, [form.slug, state]);
+    saveDraft(form, state);
+  }, [form, state]);
 
   const setAnswer = (i, v) => setState((s) => ({ ...s, answers: s.answers.map((a, j) => (j === i ? v : a)) }));
   const setField = (i, v) => setState((s) => ({ ...s, fields: s.fields.map((a, j) => (j === i ? v : a)) }));
