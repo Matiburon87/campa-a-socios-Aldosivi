@@ -3,6 +3,7 @@ import { BarChart3, ClipboardList, Film, Gauge, Megaphone, MessageCircle, Target
 import Header from './components/Header.jsx';
 import DocsBar from './components/DocsBar.jsx';
 import Footer from './components/Footer.jsx';
+import { BackToTop, PrevNext } from './components/PageNav.jsx';
 import Diagnostico from './tabs/Diagnostico.jsx';
 import Kpis from './tabs/Kpis.jsx';
 import Encuestas from './tabs/Encuestas.jsx';
@@ -50,8 +51,10 @@ export default function App() {
       <DocsBar />
       <main key={active} className="mx-auto w-full max-w-7xl flex-grow animate-fade-up px-4 py-8 sm:px-6 lg:px-8">
         <Component />
+        <PrevNext tabs={TABS} active={active} onChange={go} />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

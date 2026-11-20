@@ -19,7 +19,7 @@ export function ToastProvider({ children }) {
       <div
         role="status"
         aria-live="polite"
-        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 transition-all duration-300 sm:left-auto sm:right-6 sm:translate-x-0 ${
+        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
           msg ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
         }`}
       >
