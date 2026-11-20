@@ -29,11 +29,11 @@ export default function Encuestas() {
                   >
                     {f.n}
                   </span>
-                  <span className={`chip normal-case ${gold ? 'bg-amber-50 text-amber-800' : 'bg-brand-50 text-brand-800'}`}>
+                  <span className={`chip normal-case ${gold ? 'bg-amber-50 text-amber-800' : 'bg-brand-50 text-ink-2'}`}>
                     {f.badge}
                   </span>
                 </div>
-                <h3 className="font-display text-lg font-bold text-brand-900">{f.title}</h3>
+                <h3 className="font-display text-lg font-bold text-ink">{f.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-600">{f.desc}</p>
               </div>
               <div className="flex gap-2">
@@ -62,13 +62,13 @@ export default function Encuestas() {
             const Icon = blockIcons[b.icon];
             return (
               <div key={b.title} className="flex flex-col gap-3 rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
-                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wide text-brand-900">
+                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wide text-ink">
                   <Icon className="h-4 w-4" /> {b.title}
                 </div>
                 <p className="text-sm text-slate-700">
                   <strong>Hallazgo:</strong> {b.finding}
                 </p>
-                <div className="mt-auto rounded-xl border-l-4 border-gold-400 bg-white p-3 text-sm text-brand-900">
+                <div className="mt-auto rounded-xl border-l-4 border-gold-400 bg-surface p-3 text-sm text-ink">
                   <strong>Acción:</strong> {b.action}
                 </div>
               </div>

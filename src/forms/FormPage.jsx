@@ -3,6 +3,7 @@ import { ArrowLeft, ClipboardCopy, FileText, MessageSquareQuote, Printer, Rotate
 import { forms, formHref } from '../data/forms.js';
 import { LINKS } from '../data/content.js';
 import { useCopy } from '../components/Toast.jsx';
+import ThemeToggle from '../components/ThemeToggle.jsx';
 
 /* ---------- helpers ---------- */
 
@@ -44,7 +45,7 @@ function npsInfo(v) {
   if (v === null) return null;
   if (v <= 6) return { label: 'Detractor', action: 'Activar llamado personal', cls: 'bg-red-50 text-red-800 border-red-200' };
   if (v <= 8) return { label: 'Pasivo', action: 'Invitar a evento', cls: 'bg-amber-50 text-amber-800 border-amber-200' };
-  return { label: 'Promotor', action: 'Activar programa referidos (1 mes gratis)', cls: 'bg-brand-50 text-brand-800 border-brand-100' };
+  return { label: 'Promotor', action: 'Activar programa referidos (1 mes gratis)', cls: 'bg-brand-50 text-ink-2 border-brand-100' };
 }
 
 function summary(form, state) {
@@ -102,7 +103,7 @@ export default function FormPage({ slug }) {
   }, [form]);
 
   return (
-    <div className="min-h-screen bg-[#f3f6f4] pb-16 print:bg-white print:pb-0">
+    <div className="min-h-screen bg-canvas pb-16 print:bg-surface print:pb-0">
       <Toolbar
         form={form}
         progress={progress}
@@ -110,13 +111,13 @@ export default function FormPage({ slug }) {
         onReset={() => setState(initialState(form))}
       />
 
-      <article className="mx-auto my-8 max-w-[900px] overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-card print:my-0 print:max-w-none print:rounded-none print:border-0 print:shadow-none sm:mx-auto">
+      <article className="mx-auto my-8 max-w-[900px] overflow-hidden rounded-2xl border border-brand-100 bg-surface shadow-card print:my-0 print:max-w-none print:rounded-none print:border-0 print:shadow-none sm:mx-auto">
         <Banner form={form} />
 
         <div className="space-y-6 p-5 sm:p-8">
           <div className="space-y-2 rounded-r-xl border-l-4 border-brand-700 bg-brand-50 p-5 text-sm">
-            <div className="flex items-center gap-2 font-bold text-brand-900">
-              <MessageSquareQuote className="h-4 w-4 text-brand-700" /> {form.intro.title}
+            <div className="flex items-center gap-2 font-bold text-ink">
+              <MessageSquareQuote className="h-4 w-4 text-ink-3" /> {form.intro.title}
             </div>
             <p className="italic leading-relaxed text-slate-700">{rich(form.intro.text)}</p>
             {form.intro.consent && (
@@ -228,6 +229,7 @@ function Toolbar({ form, progress, onCopy, onReset }) {
           <button onClick={() => window.print()} className="btn-gold !px-3 !py-2 !text-xs">
             <Printer className="h-4 w-4" /> <span className="hidden sm:inline">Imprimir / PDF</span>
           </button>
+          <ThemeToggle />
         </div>
       </div>
     </div>
@@ -270,7 +272,7 @@ function Question({ n, q, value, onChange }) {
   const done = isAnswered(q, value);
   return (
     <fieldset
-      className={`space-y-3 rounded-xl border border-slate-200 bg-white p-5 transition break-inside-avoid hover:border-brand-700/40 hover:shadow-sm ${
+      className={`space-y-3 rounded-xl border border-slate-200 bg-surface p-5 transition break-inside-avoid hover:border-brand-700/40 hover:shadow-sm ${
         toneCls[q.tone] ?? ''
       }`}
     >
@@ -284,7 +286,7 @@ function Question({ n, q, value, onChange }) {
             >
               {n}
             </span>
-            <h3 className={`text-sm font-bold ${q.tone === 'mint' ? 'text-brand-900' : 'text-slate-900'}`}>
+            <h3 className={`text-sm font-bold ${q.tone === 'mint' ? 'text-ink' : 'text-slate-900'}`}>
               {q.q} {q.hint && <span className="text-xs font-normal text-slate-500">({q.hint})</span>}
             </h3>
           </div>
@@ -313,11 +315,11 @@ function Question({ n, q, value, onChange }) {
               return (
                 <label
                   key={o.title}
-                  className={`cursor-pointer space-y-1 rounded-xl border-2 bg-white p-3.5 text-xs transition ${
+                  className={`cursor-pointer space-y-1 rounded-xl border-2 bg-surface p-3.5 text-xs transition ${
                     on ? 'border-brand-700 shadow-md' : 'border-brand-100 hover:border-brand-700/50'
                   }`}
                 >
-                  <span className="flex items-center gap-2 font-bold text-brand-900">
+                  <span className="flex items-center gap-2 font-bold text-ink">
                     <input type="radio" checked={on} onChange={() => onChange(k)} className="accent-brand-700" />
                     {o.title}
                   </span>
@@ -358,8 +360,8 @@ function Choice({ type, checked, onChange, children, pill }) {
     <label
       className={`flex cursor-pointer items-start gap-2 text-xs transition ${
         pill
-          ? `rounded-lg border bg-white px-3 py-1.5 font-semibold ${checked ? 'border-brand-700 text-brand-900' : 'border-slate-300 text-slate-600'}`
-          : `rounded-md px-1.5 py-1 ${checked ? 'bg-brand-50 text-brand-900' : 'text-slate-700 hover:bg-slate-50'}`
+          ? `rounded-lg border bg-surface px-3 py-1.5 font-semibold ${checked ? 'border-brand-700 text-ink' : 'border-slate-300 text-slate-600'}`
+          : `rounded-md px-1.5 py-1 ${checked ? 'bg-brand-50 text-ink' : 'text-slate-700 hover:bg-slate-50'}`
       }`}
     >
       <input type={type} checked={checked} onChange={onChange} className="mt-0.5 shrink-0 accent-brand-700" />
@@ -371,7 +373,7 @@ function Choice({ type, checked, onChange, children, pill }) {
 function Nps({ value, onChange }) {
   const info = npsInfo(value);
   const tone = (n) =>
-    n <= 6 ? 'border-red-200 bg-red-50 text-red-700' : n <= 8 ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-300 bg-emerald-50 text-emerald-800';
+    n <= 6 ? 'border-red-200 bg-red-50 text-red-700' : n <= 8 ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-300';
   return (
     <div className="space-y-2">
       <div className="grid grid-cols-6 gap-1.5 sm:grid-cols-11 sm:gap-1" role="radiogroup" aria-label="Puntaje NPS de 0 a 10">
@@ -410,7 +412,7 @@ function FormFooter() {
       <div className="flex items-center gap-3">
         <img src="escudo-aldosivi.png" alt="" className="h-8 w-8 object-contain" />
         <div>
-          <div className="font-bold text-brand-900">Club Atlético Aldosivi — Campaña oficial de socios 2026-2027</div>
+          <div className="font-bold text-ink">Club Atlético Aldosivi — Campaña oficial de socios 2026-2027</div>
           <div className="text-[11px] text-slate-500">
             Atención y pagos: <strong>100% online (aldosivi.com.ar/socio)</strong> · Presencial: <strong>Predio Deportivo de Punta Mogotes</strong> y{' '}
             <strong>Tienda Oficial calle Olavarría</strong>

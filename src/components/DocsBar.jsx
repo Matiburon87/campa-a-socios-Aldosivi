@@ -7,7 +7,7 @@ export default function DocsBar() {
   return (
     <div className="border-b border-brand-800/10 bg-white/70">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5 text-xs sm:px-6 lg:px-8">
-        <span className="flex items-center gap-1.5 font-bold text-brand-800">
+        <span className="flex items-center gap-1.5 font-bold text-ink-2">
           <FolderOpen className="h-4 w-4" /> Formularios
         </span>
         <div className="flex flex-wrap gap-1.5">
@@ -15,7 +15,7 @@ export default function DocsBar() {
             <a
               key={f.n}
               href={f.href}
-              className="rounded-md border border-brand-800/15 bg-white px-2.5 py-1 font-semibold text-brand-800 transition hover:border-brand-800 hover:bg-brand-800 hover:text-white"
+              className="rounded-md border border-brand-800/15 bg-surface px-2.5 py-1 font-semibold text-ink-2 transition hover:border-brand-800 hover:bg-brand-800 hover:text-white"
             >
               {f.n}. {shortNames[f.n]}
             </a>
