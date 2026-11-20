@@ -159,7 +159,7 @@ export default function FormPage({ slug }) {
             <span>
               {answered} de {form.questions.length} preguntas respondidas
             </span>
-            <span className="text-slate-400">El borrador se guarda automáticamente en este navegador</span>
+            <span className="text-slate-500">El borrador se guarda automáticamente en este navegador</span>
           </div>
 
           <div className="space-y-4">

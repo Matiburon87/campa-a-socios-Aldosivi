@@ -36,7 +36,7 @@ export default function Video() {
                 </span>
                 <div className="grid gap-3 md:grid-cols-2">
                   <div className="rounded-xl border border-slate-200 bg-surface p-3.5 text-sm text-slate-700">
-                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">
+                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-slate-500">
                       <Clapperboard className="h-3.5 w-3.5" /> Visual
                     </div>
                     {sc.visual}
