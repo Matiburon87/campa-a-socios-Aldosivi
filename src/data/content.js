@@ -1,9 +1,9 @@
 export const LINKS = {
   pdfExSocios: 'templates/campana_recuperacion_ex_socios_aldosivi.pdf',
-  formActivos: 'formulario-socios-activos.html',
-  formLeads: 'formulario-leads-potenciales.html',
-  formExSocios: 'formulario-ex-socios.html',
-  formDeudores: 'formulario-deudores-regularizacion.html',
+  formActivos: '#formulario/socios-activos',
+  formLeads: '#formulario/leads-potenciales',
+  formExSocios: '#formulario/ex-socios',
+  formDeudores: '#formulario/deudores-regularizacion',
 };
 
 export const CUOTA = 38000;
