@@ -11,6 +11,8 @@ import WhatsApp from './tabs/WhatsApp.jsx';
 import Plan from './tabs/Plan.jsx';
 import Video from './tabs/Video.jsx';
 import Prensa from './tabs/Prensa.jsx';
+import FormPage from './forms/FormPage.jsx';
+import { forms } from './data/forms.js';
 
 const TABS = [
   { id: 'diagnostico', label: 'Diagnóstico & ROI', icon: BarChart3, Component: Diagnostico },
@@ -22,20 +24,33 @@ const TABS = [
   { id: 'prensa', label: 'Prensa & Redes', icon: Megaphone, Component: Prensa },
 ];
 
-const fromHash = () => {
-  const id = window.location.hash.replace('#', '');
-  return TABS.some((t) => t.id === id) ? id : TABS[0].id;
+/** "#kpi" → { tab: 'kpi' }, "#formulario/ex-socios" → { form: 'ex-socios' } */
+const parseHash = () => {
+  const h = window.location.hash.replace(/^#\/?/, '');
+  const m = h.match(/^formulario\/([\w-]+)$/);
+  if (m && forms.some((f) => f.slug === m[1])) return { form: m[1] };
+  return { tab: TABS.some((t) => t.id === h) ? h : TABS[0].id };
 };
 
 export default function App() {
-  const [active, setActive] = useState(fromHash);
+  const [route, setRoute] = useState(parseHash);
 
   useEffect(() => {
-    const onHash = () => setActive(fromHash());
+    const onHash = () => setRoute(parseHash());
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
+  useEffect(() => {
+    const f = route.form && forms.find((x) => x.slug === route.form);
+    document.title = f
+      ? `Formulario ${f.n}: ${f.shortName} — Club Atlético Aldosivi`
+      : 'Centro Estratégico de Socios — Club Atlético Aldosivi';
+  }, [route]);
+
+  if (route.form) return <FormPage key={route.form} slug={route.form} />;
+
+  const active = route.tab;
   const go = (id) => {
     if (id !== active) {
       window.location.hash = id;

@@ -22,5 +22,6 @@ npm run preview
 - `src/tabs/` — una pestaña por archivo (Diagnóstico, KPIs, Encuestas, WhatsApp, Plan, Video, Prensa)
 - `src/data/content.js` — todos los textos, cifras y plantillas
 - `src/components/` — header, footer, toasts y componentes de UI compartidos
-- `public/` — escudo, PDF de ex-socios y los 4 formularios imprimibles (HTML estático)
+- `src/data/forms.js` + `src/forms/FormPage.jsx` — los 4 formularios de encuesta, en `#formulario/<slug>`
+- `public/` — escudo, PDF de ex-socios y redirecciones desde las URLs viejas `formulario-*.html`
 - `estrategia/` — documentos de estrategia en Markdown

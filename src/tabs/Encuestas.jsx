@@ -1,4 +1,4 @@
-import { ExternalLink, FileText, Globe, Scale, Split, Users } from 'lucide-react';
+import { ArrowRight, FileText, Globe, Scale, Split, Users } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
 import { forms, paradoxBlocks } from '../data/content.js';
 
@@ -8,7 +8,8 @@ export default function Encuestas() {
   return (
     <div className="space-y-8">
       <PageHero chip="Listos para mostrar e imprimir" title="Los 4 formularios oficiales de encuesta y la matriz de la paradoja">
-        Cada formulario es un documento completo e interactivo (HTML / PDF imprimible) con todas sus preguntas y opciones.
+        Cada formulario se completa en pantalla (durante la llamada o el chat), guarda el borrador solo, copia las respuestas para
+        la planilla y se puede imprimir o guardar como PDF.
       </PageHero>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -36,8 +37,8 @@ export default function Encuestas() {
                 <p className="text-sm leading-relaxed text-slate-600">{f.desc}</p>
               </div>
               <div className="flex gap-2">
-                <a href={f.href} target="_blank" rel="noreferrer" className="btn-primary flex-1">
-                  <ExternalLink className="h-4 w-4 text-gold-400" /> Abrir formulario #{f.n}
+                <a href={f.href} className="btn-primary flex-1">
+                  <ArrowRight className="h-4 w-4 text-gold-400" /> Completar formulario #{f.n}
                 </a>
                 {f.pdf && (
                   <a href={f.pdf} target="_blank" rel="noreferrer" className="btn-gold">

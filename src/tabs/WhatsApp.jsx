@@ -91,7 +91,7 @@ export default function WhatsApp() {
             <a href={LINKS.pdfExSocios} target="_blank" rel="noreferrer" className="btn-gold">
               <FileText className="h-4 w-4 text-red-700" /> Abrir PDF (8 págs)
             </a>
-            <a href={LINKS.formExSocios} target="_blank" rel="noreferrer" className="btn-ghost">
+            <a href={LINKS.formExSocios} className="btn-ghost">
               <ClipboardCheck className="h-4 w-4 text-gold-400" /> Formulario ex-socios
             </a>
           </div>
