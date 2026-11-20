@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AlertTriangle, Calculator, CheckCircle2, Target, TrendingUp } from 'lucide-react';
 import { PageHero, SectionTitle } from '../components/ui.jsx';
+import { useCountUp } from '../hooks.js';
 import { CUOTA, INVERSION, SOCIOS_MORA, headlineStats, problems, solutions } from '../data/content.js';
 
 const ars = (n) => '$' + n.toLocaleString('es-AR');
@@ -12,6 +13,9 @@ export default function Diagnostico() {
   const annual = monthly * 12;
   const roi = Math.round(monthly / INVERSION);
   const breakeven = Math.ceil(INVERSION / CUOTA);
+  const shownRecovered = useCountUp(recovered);
+  const shownMonthly = useCountUp(monthly);
+  const shownAnnual = useCountUp(annual);
 
   return (
     <div className="space-y-8">
@@ -88,10 +92,25 @@ export default function Diagnostico() {
                 onChange={(e) => setPct(Number(e.target.value))}
                 className="h-2.5 w-full cursor-pointer appearance-none rounded-lg bg-slate-200"
               />
-              <div className="flex justify-between text-[11px] font-semibold text-slate-500">
-                <button onClick={() => setPct(10)} className="hover:text-brand-800">10% · Pesimista</button>
-                <button onClick={() => setPct(50)} className="hover:text-brand-800">50% · Meta plan</button>
-                <button onClick={() => setPct(90)} className="hover:text-brand-800">90% · Óptimo</button>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  [10, 'Pesimista'],
+                  [50, 'Meta plan'],
+                  [90, 'Óptimo'],
+                ].map(([v, l]) => (
+                  <button
+                    key={v}
+                    onClick={() => setPct(v)}
+                    aria-pressed={pct === v}
+                    className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
+                      pct === v
+                        ? 'border-brand-800 bg-brand-800 text-white'
+                        : 'border-slate-200 bg-white text-slate-600 hover:border-brand-700 hover:text-brand-800'
+                    }`}
+                  >
+                    {v}% · {l}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -115,15 +134,25 @@ export default function Diagnostico() {
             <div className="text-xs font-extrabold uppercase tracking-wider text-gold-400">Impacto de caja proyectado</div>
             <div>
               <div className="text-xs text-emerald-100/80">Socios recuperados</div>
-              <div className="font-display text-3xl font-black tabular-nums">{recovered.toLocaleString('es-AR')}</div>
+              <div className="font-display text-3xl font-black tabular-nums">
+                {shownRecovered.toLocaleString('es-AR')}
+                <span className="text-sm font-semibold text-emerald-200/80"> / {SOCIOS_MORA.toLocaleString('es-AR')}</span>
+              </div>
+              <div
+                className="mx-auto mt-2 flex h-2 max-w-[220px] overflow-hidden rounded-full bg-white/15"
+                role="img"
+                aria-label={`${recovered} de ${SOCIOS_MORA} socios recuperados`}
+              >
+                <div className="rounded-full bg-gold-400 transition-[width] duration-500" style={{ width: `${pct}%` }} />
+              </div>
             </div>
             <div className="border-y border-white/10 py-3">
               <div className="text-xs text-emerald-100/80">Ingreso mensual recurrente</div>
-              <div className="font-display text-2xl font-black tabular-nums text-gold-400">{ars(monthly)}</div>
+              <div className="font-display text-2xl font-black tabular-nums text-gold-400">{ars(shownMonthly)}</div>
             </div>
             <div>
               <div className="text-xs text-emerald-100/80">Ingreso anualizado</div>
-              <div className="font-display text-xl font-bold tabular-nums text-emerald-200">{ars(annual)}</div>
+              <div className="font-display text-xl font-bold tabular-nums text-emerald-200">{ars(shownAnnual)}</div>
             </div>
           </div>
         </div>

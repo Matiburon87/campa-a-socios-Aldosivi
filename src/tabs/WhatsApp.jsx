@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ClipboardCheck, FileText, MessageCircle, Send, ShieldAlert, Star, Trash2 } from 'lucide-react';
-import { CopyButton, PageHero, SectionTitle, TextBlock } from '../components/ui.jsx';
+import { CopyButton, PageHero, SectionTitle } from '../components/ui.jsx';
 import { LINKS, leadScores, shortcuts } from '../data/content.js';
 
 const WELCOME = {
@@ -11,11 +11,66 @@ const WELCOME = {
 
 const now = () => new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
 
+const PLACEHOLDER_RE = /\[[A-Za-z_]+\]/g;
+
+/** Local Mar del Plata numbers (e.g. "223 555 1234") → wa.me format 549XXXXXXXXXX. */
+function toWaNumber(raw) {
+  let d = raw.replace(/\D/g, '');
+  if (!d) return '';
+  if (d.startsWith('54')) d = d.slice(2);
+  if (d.startsWith('9')) d = d.slice(1);
+  if (d.startsWith('0')) d = d.slice(1);
+  // "223 15 555 1234" → drop the local mobile prefix 15 after the area code (2-4 digits)
+  if (d.length === 12) {
+    const k = [2, 3, 4].find((i) => d.slice(i, i + 2) === '15');
+    if (k !== undefined) d = d.slice(0, k) + d.slice(k + 2);
+  }
+  return '549' + d;
+}
+
+function Field({ label, value, onChange, disabled, ...rest }) {
+  return (
+    <label className={`block text-xs font-semibold text-slate-600 ${disabled ? 'opacity-40' : ''}`}>
+      {label}
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-normal text-slate-800 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed"
+        {...rest}
+      />
+    </label>
+  );
+}
+
+function TemplatePreview({ text }) {
+  const parts = text.split(/(\[[A-Za-z_]+\])/g);
+  return (
+    <pre className="whitespace-pre-wrap break-words rounded-xl border border-slate-200 bg-white p-4 font-sans text-sm leading-relaxed text-slate-700">
+      {parts.map((p, i) =>
+        /^\[[A-Za-z_]+\]$/.test(p) ? (
+          <mark key={i} className="rounded bg-amber-100 px-1 font-semibold text-amber-800">
+            {p}
+          </mark>
+        ) : (
+          p
+        )
+      )}
+    </pre>
+  );
+}
+
 export default function WhatsApp() {
   const [score, setScore] = useState(5);
   const [chat, setChat] = useState([WELCOME]);
   const chatRef = useRef(null);
+  const [vars, setVars] = useState({ nombre: '', mes: '', tel: '' });
   const current = leadScores.find((s) => s.score === score);
+  const filled = current.template
+    .replaceAll('[Nombre]', vars.nombre.trim() || '[Nombre]')
+    .replaceAll('[MES_ULTIMO_PAGO]', vars.mes.trim() || '[MES_ULTIMO_PAGO]');
+  const pending = (filled.match(PLACEHOLDER_RE) || []).length;
+  const waLink = `https://wa.me/${toWaNumber(vars.tel)}?text=${encodeURIComponent(filled)}`;
 
   useEffect(() => {
     chatRef.current?.scrollTo({ top: chatRef.current.scrollHeight, behavior: 'smooth' });
@@ -101,14 +156,42 @@ export default function WhatsApp() {
         </div>
 
         <div key={score} className="animate-fade-up space-y-4 rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <div className="font-display font-bold text-brand-900">{current.title}</div>
-              <div className="text-sm text-slate-600">{current.desc}</div>
-            </div>
-            <CopyButton text={current.template} label="Copiar mensaje" />
+          <div>
+            <div className="font-display font-bold text-brand-900">{current.title}</div>
+            <div className="text-sm text-slate-600">{current.desc}</div>
           </div>
-          <TextBlock text={current.template} />
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <Field label="Nombre de pila" value={vars.nombre} onChange={(v) => setVars({ ...vars, nombre: v })} placeholder="Ej: Martín" />
+            <Field
+              label="Mes último pago"
+              value={vars.mes}
+              onChange={(v) => setVars({ ...vars, mes: v })}
+              placeholder="Ej: agosto"
+              disabled={!current.template.includes('[MES_ULTIMO_PAGO]')}
+            />
+            <Field
+              label="Celular (opcional)"
+              value={vars.tel}
+              onChange={(v) => setVars({ ...vars, tel: v.replace(/[^\d+ ]/g, '') })}
+              placeholder="Ej: 223 555 1234"
+              inputMode="tel"
+            />
+          </div>
+
+          <TemplatePreview text={filled} />
+
+          <div className="flex flex-wrap items-center gap-2">
+            <CopyButton text={filled} label="Copiar mensaje" />
+            <a href={waLink} target="_blank" rel="noreferrer" className="btn !bg-[#25d366] !py-2 !text-xs text-white hover:!bg-[#1ebe5b]">
+              <MessageCircle className="h-4 w-4" /> Abrir en WhatsApp
+            </a>
+            {pending > 0 && (
+              <span className="text-xs font-medium text-amber-700">
+                {pending} dato{pending > 1 ? 's' : ''} sin completar
+              </span>
+            )}
+          </div>
         </div>
       </section>
 
