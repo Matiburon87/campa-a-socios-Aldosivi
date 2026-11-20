@@ -23,7 +23,7 @@ export default function Header({ active, onChange, onGroup, onPreload }) {
       >
         <div
           className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-[padding] duration-300 sm:px-6 lg:px-8 ${
-            scrolled ? 'py-2' : 'py-3.5'
+            scrolled ? 'py-2' : 'py-3'
           }`}
         >
           <a
@@ -36,11 +36,11 @@ export default function Header({ active, onChange, onGroup, onPreload }) {
             aria-label="Ir al inicio"
           >
             <div
-              className={`flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-500 p-0.5 shadow-[0_0_18px_rgba(250,204,21,0.35)] transition-all duration-300 ${
-                scrolled ? 'h-10 w-10' : 'h-12 w-12'
+              className={`flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-500 p-[3px] shadow-[0_0_18px_rgba(250,204,21,0.35)] transition-all duration-300 ${
+                scrolled ? 'h-12 w-12 sm:h-14 sm:w-14' : 'h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem]'
               }`}
             >
-              <div className="flex h-full w-full items-center justify-center rounded-full bg-brand-800 p-1">
+              <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-brand-800 p-[14%]">
                 <img src="escudo-aldosivi.png" alt="" className="h-full w-full object-contain" />
               </div>
             </div>
