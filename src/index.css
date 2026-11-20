@@ -21,6 +21,7 @@
   .seg { @apply rounded-lg px-3.5 py-2 text-sm font-semibold transition whitespace-nowrap; }
   .seg-on { @apply bg-brand-800 text-white shadow-sm; }
   .seg-off { @apply bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900; }
+  .form-input { @apply mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-normal text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100; }
 }
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
@@ -33,4 +34,6 @@ input[type='range'] { accent-color: #14532d; }
 
 @media print {
   header, footer, nav { display: none !important; }
+  body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 12mm; }
 }
