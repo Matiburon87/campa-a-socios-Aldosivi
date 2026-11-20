@@ -16,13 +16,13 @@ export default function Header({ tabs, active, onChange }) {
     >
       <div
         className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-[padding] duration-300 sm:px-6 lg:px-8 ${
-          scrolled ? 'py-1.5' : 'py-3'
+          scrolled ? 'py-2' : 'py-4'
         }`}
       >
         <a href="#diagnostico" onClick={(e) => { e.preventDefault(); onChange(tabs[0].id); }} className="flex min-w-0 items-center gap-3 rounded-lg">
           <div
             className={`flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-500 p-0.5 shadow-[0_0_18px_rgba(250,204,21,0.35)] transition-all duration-300 ${
-              scrolled ? 'h-9 w-9' : 'h-12 w-12'
+              scrolled ? 'h-11 w-11' : 'h-14 w-14'
             }`}
           >
             <div className="flex h-full w-full items-center justify-center rounded-full bg-brand-800 p-1">
@@ -31,7 +31,7 @@ export default function Header({ tabs, active, onChange }) {
           </div>
           <div className="min-w-0">
             <span
-              className={`chip overflow-hidden bg-gold-400 !py-0 text-[10px] text-brand-900 transition-all duration-300 ${
+              className={`chip overflow-hidden bg-gold-400 !py-0 text-[11px] text-brand-900 transition-all duration-300 ${
                 scrolled ? 'max-h-0 opacity-0' : 'max-h-5 opacity-100'
               }`}
             >
@@ -41,7 +41,7 @@ export default function Header({ tabs, active, onChange }) {
               </span>
               Campaña 2026-2027
             </span>
-            <h1 className="truncate font-display text-base font-extrabold tracking-tight sm:text-lg">
+            <h1 className="truncate font-display text-lg font-extrabold tracking-tight sm:text-xl">
               Club Atlético Aldosivi{' '}
               <span className="hidden font-semibold text-gold-400 sm:inline">· Centro Estratégico</span>
             </h1>
@@ -89,7 +89,7 @@ export default function Header({ tabs, active, onChange }) {
                 aria-selected={on}
                 tabIndex={on ? 0 : -1}
                 onClick={() => onChange(id)}
-                className={`group flex items-center gap-2 whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition ${
+                className={`group flex items-center gap-2 whitespace-nowrap rounded-lg px-3.5 py-2.5 text-sm font-semibold transition ${
                   on ? 'bg-gold-400 text-brand-900 shadow' : 'text-emerald-100/80 hover:bg-white/10 hover:text-white'
                 }`}
               >
