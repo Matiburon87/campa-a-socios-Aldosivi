@@ -413,7 +413,7 @@ function FormFooter() {
           </div>
         </div>
       </div>
-      <span className="shrink-0 rounded-full bg-brand-800 px-3 py-1 text-[11px] font-bold text-gold-300">Firma creador: Maty_Asaro_Dev</span>
+      <span className="shrink-0 rounded-full bg-brand-800 px-3 py-1 text-[11px] font-bold text-gold-300">Creado por: Maty_Asaro_Dev y Marcos Knudsen</span>
     </div>
   );
 }

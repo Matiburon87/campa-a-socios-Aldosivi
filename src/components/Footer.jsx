@@ -14,7 +14,7 @@ export default function Footer() {
           </div>
         </div>
         <span className="chip shrink-0 bg-gold-400 !px-4 !py-1.5 text-xs normal-case text-brand-900">
-          <Code2 className="h-4 w-4" /> Creado por Maty_Asaro_Dev
+          <Code2 className="h-4 w-4" /> Creado por Maty_Asaro_Dev y Marcos Knudsen
         </span>
       </div>
     </footer>
