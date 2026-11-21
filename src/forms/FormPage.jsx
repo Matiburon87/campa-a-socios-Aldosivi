@@ -298,7 +298,7 @@ function Question({ n, q, value, onChange }) {
                   }`}
                 >
                   <span className="flex items-center gap-2 font-bold text-ink">
-                    <input type="radio" checked={on} onChange={() => onChange(k)} className="accent-brand-700" />
+                    <input type="radio" name={`q${n}`} checked={on} onChange={() => onChange(k)} className="accent-brand-700" />
                     {o.title}
                   </span>
                   <span className="block pl-5 text-[11px] leading-relaxed text-slate-600">{rich(o.desc)}</span>
@@ -317,6 +317,7 @@ function Question({ n, q, value, onChange }) {
                 <Choice
                   key={k}
                   type={multi ? 'checkbox' : 'radio'}
+                  name={`q${n}`}
                   checked={checked}
                   onChange={() =>
                     onChange(multi ? (checked ? value.filter((x) => x !== k) : [...value, k].sort((a, b) => a - b)) : k)
@@ -333,7 +334,7 @@ function Question({ n, q, value, onChange }) {
   );
 }
 
-function Choice({ type, checked, onChange, children, pill }) {
+function Choice({ type, name, checked, onChange, children, pill }) {
   return (
     <label
       className={`flex cursor-pointer items-start gap-2 text-xs transition ${
@@ -342,7 +343,7 @@ function Choice({ type, checked, onChange, children, pill }) {
           : `rounded-md px-1.5 py-1 ${checked ? 'bg-brand-50 text-ink' : 'text-slate-700 hover:bg-slate-50'}`
       }`}
     >
-      <input type={type} checked={checked} onChange={onChange} className="mt-0.5 shrink-0 accent-brand-700" />
+      <input type={type} name={name} checked={checked} onChange={onChange} className="mt-0.5 shrink-0 accent-brand-700" />
       <span>{children}</span>
     </label>
   );
@@ -350,17 +351,32 @@ function Choice({ type, checked, onChange, children, pill }) {
 
 function Nps({ value, onChange }) {
   const info = npsInfo(value);
+  const focusable = value ?? 0;
+  // Radiogroup keyboard pattern: arrows move focus and select, Home/End jump to the ends.
+  const onKeyDown = (e) => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    let next;
+    if (step) next = Math.min(10, Math.max(0, (value ?? (step > 0 ? -1 : 11)) + step));
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = 10;
+    else return;
+    e.preventDefault();
+    onChange(next);
+    e.currentTarget.querySelector(`[data-nps="${next}"]`)?.focus();
+  };
   const tone = (n) =>
     n <= 6 ? 'border-red-200 bg-red-50 text-red-700' : n <= 8 ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-300';
   return (
     <div className="space-y-2">
-      <div className="grid grid-cols-6 gap-1.5 sm:grid-cols-11 sm:gap-1" role="radiogroup" aria-label="Puntaje NPS de 0 a 10">
+      <div className="grid grid-cols-6 gap-1.5 sm:grid-cols-11 sm:gap-1" role="radiogroup" aria-label="Puntaje NPS de 0 a 10" onKeyDown={onKeyDown}>
         {Array.from({ length: 11 }, (_, n) => (
           <button
             key={n}
             type="button"
             role="radio"
             aria-checked={value === n}
+            tabIndex={n === focusable ? 0 : -1}
+            data-nps={n}
             onClick={() => onChange(value === n ? null : n)}
             className={`rounded-md border py-2 text-xs font-bold transition hover:brightness-95 ${
               value === n ? 'scale-105 border-brand-700 bg-brand-700 text-gold-300 shadow' : tone(n)
