@@ -392,7 +392,7 @@ function FormFooter() {
         <div>
           <div className="font-bold text-ink">Club Atlético Aldosivi — Campaña oficial de socios 2026-2027</div>
           <div className="text-[11px] text-slate-500">
-            Atención y pagos: <strong>100% online (aldosivi.com.ar/socio)</strong> · Presencial: <strong>Predio Deportivo de Punta Mogotes</strong> y{' '}
+            Atención y pagos: <strong>100% online (aldosivi.com/socio)</strong> · Presencial: <strong>Predio Deportivo de Punta Mogotes</strong> y{' '}
             <strong>Tienda Oficial calle Olavarría</strong>
           </div>
         </div>

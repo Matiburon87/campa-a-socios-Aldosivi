@@ -34,7 +34,7 @@ export const problems = [
 ];
 
 export const solutions = [
-  ['Medios de pago 100% web (aldosivi.com.ar/socio)', 'Alta, renovación y pago online en 2 minutos desde el celular con carné digital inmediato.'],
+  ['Medios de pago 100% web (aldosivi.com/socio)', 'Alta, renovación y pago online en 2 minutos desde el celular con carné digital inmediato.'],
   ['Atención en Predio Punta Mogotes y Tienda calle Olavarría', 'Puntos estratégicos de cercanía para el hincha marplatense.'],
   ['Incentivo débito automático ($38.000/mes)', 'Primer mes bonificado y ahorro anual de $108.000 frente al pago manual.'],
 ];
@@ -154,7 +154,7 @@ export const leadScores = [
     title: 'SCORE 5: Lead caliente (SLA: inmediato < 10 minutos)',
     desc: 'El usuario inició el trámite en la web o consultó cómo pagar.',
     template:
-      '¡Hola [Nombre]! 🦈 Vimos que empezaste tu trámite de socio y te faltó el último paso.\n\nRecordá que podés abonar 100% online por medios web en 1 minuto con débito automático ($38.000/mes) y tenés el PRIMER MES GRATIS: aldosivi.com.ar/socio 👈\n\nSi preferís hacerlo presencial, te esperamos en el Predio Deportivo de Punta Mogotes o en la Tienda de calle Olavarría.',
+      '¡Hola [Nombre]! 🦈 Vimos que empezaste tu trámite de socio y te faltó el último paso.\n\nRecordá que podés abonar 100% online por medios web en 1 minuto con débito automático ($38.000/mes) y tenés el PRIMER MES GRATIS: aldosivi.com/socio 👈\n\nSi preferís hacerlo presencial, te esperamos en el Predio Deportivo de Punta Mogotes o en la Tienda de calle Olavarría.',
   },
   {
     score: 4,
@@ -202,7 +202,7 @@ export const shortcuts = [
   {
     key: '/alta',
     hint: 'Alta web en 2 min + Predio y Tienda Olavarría',
-    text: '¡Hola! 🦈 Asociarte a Aldosivi toma 2 minutos y podés pagar 100% online por medios web:\n👉 aldosivi.com.ar/socio\n\nTambién podés acercarte al Predio Deportivo de Punta Mogotes o a la Tienda Oficial de calle Olavarría.\n🎁 Con débito auto ($38.000/mes) tenés el PRIMER MES GRATIS.',
+    text: '¡Hola! 🦈 Asociarte a Aldosivi toma 2 minutos y podés pagar 100% online por medios web:\n👉 aldosivi.com/socio\n\nTambién podés acercarte al Predio Deportivo de Punta Mogotes o a la Tienda Oficial de calle Olavarría.\n🎁 Con débito auto ($38.000/mes) tenés el PRIMER MES GRATIS.',
   },
   {
     key: '/precios',
@@ -217,7 +217,7 @@ export const shortcuts = [
   {
     key: '/ubicacion',
     hint: 'Web 24hs, Predio Punta Mogotes y Tienda Olavarría',
-    text: '📍 Canales Oficiales de Atención y Pago:\n\n🌐 100% Online Web (24 hs): aldosivi.com.ar/socio\n🏟️ Predio Deportivo de Punta Mogotes\n🛍️ Tienda Oficial: Calle Olavarría, Mar del Plata',
+    text: '📍 Canales Oficiales de Atención y Pago:\n\n🌐 100% Online Web (24 hs): aldosivi.com/socio\n🏟️ Predio Deportivo de Punta Mogotes\n🛍️ Tienda Oficial: Calle Olavarría, Mar del Plata',
   },
 ];
 
@@ -258,7 +258,7 @@ export const videoScripts = [
     locutor: 'Voz joven marplatense',
     scenes: [
       { time: '0:00-0:10', visual: 'Popular de Aldosivi llena en el Minella. Texto: "¿TODAVÍA NO SOS SOCIO?"', audio: '"Dos entradas sueltas por mes te salen más caras que ser socio activo todo el mes."' },
-      { time: '0:10-0:30', visual: 'Celular mostrando el alta online en aldosivi.com.ar/socio sin moverse de casa.', audio: '"Ya no tenés que moverte de tu casa: hoy pagás por medios web en 2 minutos, o pasás por el Predio de Punta Mogotes o la Tienda de calle Olavarría."' },
+      { time: '0:10-0:30', visual: 'Celular mostrando el alta online en aldosivi.com/socio sin moverse de casa.', audio: '"Ya no tenés que moverte de tu casa: hoy pagás por medios web en 2 minutos, o pasás por el Predio de Punta Mogotes o la Tienda de calle Olavarría."' },
       { time: '0:30-0:60', visual: 'Carné digital en pantalla + comercios adheridos.', audio: '"Adherite al débito automático por $38.000 y tenés el primer mes GRATIS. Aldosivi sos vos."' },
     ],
   },
@@ -272,7 +272,7 @@ export const videoScripts = [
     locutor: 'Voz institucional cercana',
     scenes: [
       { time: '0:00-0:20', visual: 'Amanecer en el Predio Deportivo de Punta Mogotes con juveniles entrenando.', audio: '"Cada cuota que abonás por la web o en el Predio sostiene el futuro de nuestras inferiores en Punta Mogotes."' },
-      { time: '0:20-0:60', visual: 'Escudo de Aldosivi y link aldosivi.com.ar/socio.', audio: '"Con débito automático ahorrás $108.000 al año y hacés crecer al club. Sumate hoy."' },
+      { time: '0:20-0:60', visual: 'Escudo de Aldosivi y link aldosivi.com/socio.', audio: '"Con débito automático ahorrás $108.000 al año y hacés crecer al club. Sumate hoy."' },
     ],
   },
   {
@@ -310,7 +310,7 @@ export const pressCopies = [
     text: `🦈 Sos del Tiburón. Hacete socio AHORA desde donde estés.
 
 Ya no hace falta hacer filas: hoy te asociás y pagás 100% online por medios web en 2 MINUTOS:
-🌐 Entrás a aldosivi.com.ar/socio
+🌐 Entrás a aldosivi.com/socio
 💳 Adherís con tarjeta o débito automático
 📱 Recibís tu carné digital al instante
 
@@ -331,7 +331,7 @@ ALDOSIVI LANZA SU PLATAFORMA DE PAGO WEB Y CAMPAÑA DE SOCIOS 2026-2027
 
 Mar del Plata — El Club Atlético Aldosivi presenta su nueva campaña integral de captación y recuperación de socios bajo el lema "Volvé a ser parte. Aldosivi sos vos".
 
-A partir de ahora, los hinchas pueden asociarse, regularizar su situación y abonar sus cuotas 100% online por medios web en menos de dos minutos a través de aldosivi.com.ar/socio, obteniendo su carné digital instantáneo. Asimismo, la atención presencial se brinda en el Predio Deportivo de Punta Mogotes y en la Tienda Oficial de la calle Olavarría.
+A partir de ahora, los hinchas pueden asociarse, regularizar su situación y abonar sus cuotas 100% online por medios web en menos de dos minutos a través de aldosivi.com/socio, obteniendo su carné digital instantáneo. Asimismo, la atención presencial se brinda en el Predio Deportivo de Punta Mogotes y en la Tienda Oficial de la calle Olavarría.
 
 Quienes se adhieran al débito automático ($38.000 mensuales) contarán con el primer mes 100% bonificado y acceso a más de 20 descuentos en comercios de Mar del Plata.`,
   },
