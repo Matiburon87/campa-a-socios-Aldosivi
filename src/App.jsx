@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { scrollToTop } from './hooks.js';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { BackToTop, PrevNext } from './components/PageNav.jsx';
 import { forms } from './data/forms.js';
 import { SECTIONS, groupById, sectionById, sectionsOf } from './navigation.js';
@@ -107,9 +108,11 @@ export default function App() {
 
   if (route.form) {
     return (
-      <Suspense fallback={<FormSkeleton />}>
-        <FormPage key={route.form} slug={route.form} />
-      </Suspense>
+      <ErrorBoundary key={route.form}>
+        <Suspense fallback={<FormSkeleton />}>
+          <FormPage key={route.form} slug={route.form} />
+        </Suspense>
+      </ErrorBoundary>
     );
   }
 
@@ -154,9 +157,11 @@ export default function App() {
         tabIndex={-1}
         className="mx-auto w-full max-w-7xl flex-grow animate-fade-up scroll-mt-40 px-4 py-8 outline-none sm:px-6 lg:px-8"
       >
-        <Suspense fallback={<SectionSkeleton />}>
-          <Component onNavigate={go} />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionSkeleton />}>
+            <Component onNavigate={go} />
+          </Suspense>
+        </ErrorBoundary>
         {active !== 'inicio' && <PrevNext active={active} onChange={go} />}
       </main>
       <Footer />
