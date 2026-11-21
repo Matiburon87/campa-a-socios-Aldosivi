@@ -135,7 +135,7 @@ export default function WhatsApp() {
           </div>
           <p className="leading-relaxed text-red-950/80">
             Contacto 1 a 1 artesanal, <strong>no broadcast frío</strong>. Cada mensaje incluye nombre de pila, dato contextual
-            real y link de pago web (<code>aldosivi.com.ar/socio</code>). Enviar en lotes de 5 para evitar detección automática.
+            real y link de pago web (<code>aldosivi.com/socio</code>). Enviar en lotes de 5 para evitar detección automática.
           </p>
         </div>
       </div>

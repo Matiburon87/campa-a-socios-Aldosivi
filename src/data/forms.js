@@ -192,7 +192,7 @@ export const forms = [
       },
       {
         type: 'single', q: '¿Por dónde preferís realizar el pago o la adhesión?', cols: 3, defaults: [0],
-        options: ['🌐 **100% online por medios web** (link por WhatsApp / aldosivi.com.ar/socio)', '🏟️ Presencial en el **Predio Deportivo de Punta Mogotes**', '🛍️ Presencial en la **Tienda Oficial de calle Olavarría**'],
+        options: ['🌐 **100% online por medios web** (link por WhatsApp / aldosivi.com/socio)', '🏟️ Presencial en el **Predio Deportivo de Punta Mogotes**', '🛍️ Presencial en la **Tienda Oficial de calle Olavarría**'],
       },
       { type: 'single', q: '¿Te gustaría sumar a tu grupo familiar con 10% de descuento adicional ($34.200 c/u)?', cols: 3, options: ['Sí, quiero consultar por el pack familiar', 'Solo regularizar mi carné individual', 'Necesito que me llame un operador en 5 minutos'] },
       { type: 'text', q: 'Observaciones / horario preferido para que te contactemos:', placeholder: 'Ej: Prefiero que me escriban por WhatsApp después de las 15 hs...' },

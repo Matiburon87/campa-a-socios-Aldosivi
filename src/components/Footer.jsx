@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="font-display text-sm font-bold">Club Atlético Aldosivi — Mar del Plata</div>
             <div className="text-xs text-emerald-200/80">
-              Autogestión 24/7 en aldosivi.com.ar/socio · Predio Deportivo Punta Mogotes · Tienda Oficial calle Olavarría
+              Autogestión 24/7 en aldosivi.com/socio · Predio Deportivo Punta Mogotes · Tienda Oficial calle Olavarría
             </div>
           </div>
         </div>

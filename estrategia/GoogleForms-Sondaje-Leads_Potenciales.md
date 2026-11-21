@@ -11,7 +11,7 @@ destinatarios: "Leads potenciales (web autogestión + WhatsApp + eventos)"
 # 📄 FORMULARIO GOOGLE FORMS — Lead Potencial — Aldosivi
 
 > **Estado:** Para publicar en Google Forms (enlace público).
-> **Destinatarios:** Personas que llegaron a `aldosivi.com.ar/socio` y no adhirieron,
+> **Destinatarios:** Personas que llegaron a `aldosivi.com/socio` y no adhirieron,
 > leads de WhatsApp no pagados, gente que vino a eventos / stand.
 > **Meta:** 200–400 respuestas / mes.
 > **Logística:** Al publicar el enlace en la web autogestión, añadir el link al final del flow
