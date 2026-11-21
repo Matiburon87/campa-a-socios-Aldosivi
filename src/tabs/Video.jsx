@@ -14,7 +14,7 @@ export default function Video() {
       </PageHero>
 
       <section className="card space-y-6 p-6 sm:p-8">
-        <Segmented value={id} onChange={setId} options={videoScripts.map((v) => ({ value: v.id, label: v.label }))} />
+        <Segmented label="Guion de video" value={id} onChange={setId} options={videoScripts.map((v) => ({ value: v.id, label: v.label }))} />
 
         <div key={id} className="animate-fade-up space-y-5">
           <div className="space-y-3 border-b border-slate-100 pb-4">

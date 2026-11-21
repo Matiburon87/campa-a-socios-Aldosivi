@@ -42,14 +42,14 @@ export function SectionTitle({ id, icon: Icon, title, subtitle, right }) {
   );
 }
 
-export function Segmented({ options, value, onChange }) {
+export function Segmented({ options, value, onChange, label }) {
   return (
-    <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 scrollbar-none" role="tablist">
+    <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 scrollbar-none" role="group" aria-label={label}>
       {options.map((o) => (
         <button
           key={o.value}
-          role="tab"
-          aria-selected={value === o.value}
+          type="button"
+          aria-pressed={value === o.value}
           onClick={() => onChange(o.value)}
           className={`seg ${value === o.value ? 'seg-on' : 'seg-off'}`}
         >
