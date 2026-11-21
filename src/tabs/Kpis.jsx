@@ -82,6 +82,7 @@ export default function Kpis() {
           subtitle="Elegí una pestaña para inspeccionar sus campos."
         />
         <Segmented
+          label="Pestaña de la planilla"
           value={sheet}
           onChange={setSheet}
           options={Object.entries(sheetTabs).map(([value, t]) => ({ value, label: t.label }))}
