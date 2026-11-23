@@ -7,12 +7,12 @@ import { forms as formDefs } from '../data/forms.js';
  */
 
 export const initialState = (form) => ({
-  consent: form.intro.consent ? 0 : null,
+  consent: null,
   fields: form.fields.map(() => ''),
   answers: form.questions.map((q) => {
     if (q.type === 'multi') return q.defaults ?? [];
     if (q.type === 'text') return '';
-    return q.defaults?.[0] ?? null;
+    return null; // radio groups never start pre-selected
   }),
 });
 

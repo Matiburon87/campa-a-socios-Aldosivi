@@ -9,7 +9,8 @@ import { META_RECUPERO, RECUPERO_MENSUAL, SOCIOS_MORA, millones } from './conten
  *  - offer:  single choice rendered as cards with a description
  * Options may use **bold** markup. `half: true` puts two consecutive questions side by side.
  * `tone`: 'mint' (highlighted), 'amber' / 'brand' (left accent border).
- * `defaults` lists option indexes pre-selected, as in the original printed forms.
+ * `defaults` (multi only) lists option indexes pre-checked, as in the original printed forms.
+ * Single-choice questions (single / offer) always start unanswered.
  */
 export const forms = [
   {
@@ -100,7 +101,7 @@ export const forms = [
       },
       { type: 'single', half: true, q: '¿Cuánto estarías dispuesto a abonar por mes?', cols: 2, options: ['Hasta $22.000 (jub/cad)', '$25.000 a $32.000', '$34.200 (pack familiar)', '$38.000 (débito auto)'] },
       { type: 'text', half: true, q: '¿Cuál es el "empujoncito" que te haría decir que SÍ hoy?', placeholder: 'Ej: Primer mes gratis en débito, promo grupo familiar, trámite por WhatsApp...' },
-      { type: 'single', q: '¿Por qué canal preferís que te pasemos el link directo de alta o te asesoremos?', cols: 4, defaults: [0], options: ['WhatsApp 1 a 1', 'Instagram Direct', 'Llamada telefónica', 'Email'] },
+      { type: 'single', q: '¿Por qué canal preferís que te pasemos el link directo de alta o te asesoremos?', cols: 4, options: ['WhatsApp 1 a 1', 'Instagram Direct', 'Llamada telefónica', 'Email'] },
       {
         type: 'multi', tone: 'mint', q: 'Si te avisamos de estas promos vigentes, ¿cuál te interesa activar ahora?', cols: 2,
         options: ['🎁 **Primer mes 100% GRATIS** con débito automático ($38.000/mes)', '👨‍👩‍👧‍👦 **Categoría familiar:** 10% OFF para cada integrante ($34.200 c/u)', '🎓 **Cadete ($27.000) o jubilado ($22.000)** en débito automático', '🎉 Invitación a actividades sociales en el Predio de Punta Mogotes'],
@@ -144,7 +145,7 @@ export const forms = [
         options: ['Alta y pago **100% online por web** en 2 minutos', 'Atención en **Predio Deportivo de Punta Mogotes** y **Tienda calle Olavarría**', 'Débito automático a $38.000/mes (ahorro de $108.000 al año)', 'Más de 20 descuentos en comercios de Mar del Plata'],
       },
       {
-        type: 'offer', tone: 'mint', q: '¿Con cuál de estas propuestas exclusivas de reenganche te gustaría volver hoy?', cols: 3, defaults: [0],
+        type: 'offer', tone: 'mint', q: '¿Con cuál de estas propuestas exclusivas de reenganche te gustaría volver hoy?', cols: 3,
         options: [
           { title: 'Promo "Volvé a ser parte"', desc: '50% OFF en reactivación + 1er mes GRATIS con débito automático + carné digital en 2 min.' },
           { title: 'Promo "Extrañamos tu bandera"', desc: '1er mes GRATIS + acceso a 20+ comercios de MDP + invitación sin cargo a evento social en el Predio.' },
@@ -152,7 +153,7 @@ export const forms = [
         ],
       },
       { type: 'single', half: true, q: '¿Te gustaría asistir a un evento de reencuentro en el Predio de Punta Mogotes?', cols: 1, options: ['Sí, me sumo a un asado / peña de socios', 'Sí, quiero ir a un entrenamiento abierto con mi familia', 'Prefiero ir directamente al próximo partido en el Minella'] },
-      { type: 'single', half: true, q: '¿Cómo preferís completar tu reactivación?', cols: 1, defaults: [0], options: ['Que me envíen el **link de pago web directo** por WhatsApp', 'Acercarme al **Predio Deportivo de Punta Mogotes**', 'Acercarme a la **Tienda Oficial de calle Olavarría**'] },
+      { type: 'single', half: true, q: '¿Cómo preferís completar tu reactivación?', cols: 1, options: ['Que me envíen el **link de pago web directo** por WhatsApp', 'Acercarme al **Predio Deportivo de Punta Mogotes**', 'Acercarme a la **Tienda Oficial de calle Olavarría**'] },
       { type: 'text', q: 'Comentario o mensaje que quieras dejarle al club:', placeholder: 'Contanos qué te gustaría ver en esta nueva etapa de Aldosivi...' },
     ],
   },
@@ -184,14 +185,14 @@ export const forms = [
         options: ['**Olvido o falta de tiempo** para ir a pagar en persona', '**Vencimiento o cambio de plástico** de mi tarjeta anterior', '**Dificultad económica** temporal en estos meses', 'No sabía cómo abonar por la nueva plataforma web'],
       },
       {
-        type: 'offer', tone: 'mint', q: '¿Qué opción de regularización te resulta más cómoda para mantener tu antigüedad?', cols: 2, defaults: [0],
+        type: 'offer', tone: 'mint', q: '¿Qué opción de regularización te resulta más cómoda para mantener tu antigüedad?', cols: 2,
         options: [
           { title: 'Opción A: adhesión a débito automático ($38.000/mes)', desc: 'Ahorrás $108.000 al año (19% OFF respecto a ventanilla) + **1er mes BONIFICADO** (se descuenta del 2do débito).' },
           { title: 'Opción B: plan "Te acompañamos" (deuda 3-5 meses)', desc: 'Plan de facilidades personalizado en hasta 3 cuotas sin interés + mantenimiento de tu número de socio histórico.' },
         ],
       },
       {
-        type: 'single', q: '¿Por dónde preferís realizar el pago o la adhesión?', cols: 3, defaults: [0],
+        type: 'single', q: '¿Por dónde preferís realizar el pago o la adhesión?', cols: 3,
         options: ['🌐 **100% online por medios web** (link por WhatsApp / aldosivi.com/socio)', '🏟️ Presencial en el **Predio Deportivo de Punta Mogotes**', '🛍️ Presencial en la **Tienda Oficial de calle Olavarría**'],
       },
       { type: 'single', q: '¿Te gustaría sumar a tu grupo familiar con 10% de descuento adicional ($34.200 c/u)?', cols: 3, options: ['Sí, quiero consultar por el pack familiar', 'Solo regularizar mi carné individual', 'Necesito que me llame un operador en 5 minutos'] },
