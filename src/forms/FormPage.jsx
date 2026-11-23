@@ -223,7 +223,7 @@ function Banner({ form }) {
           <h1 className="font-display text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">{form.title}</h1>
           <p className="text-sm text-emerald-100">{form.subtitle} · Club Atlético Aldosivi</p>
         </div>
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-gold-400 bg-white/10 p-[14%]">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-gold-400 bg-white/10 p-2">
           <img src="escudo-aldosivi.png" alt="Escudo Club Atlético Aldosivi" className="h-full w-full object-contain" />
         </div>
       </div>
