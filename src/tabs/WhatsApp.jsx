@@ -93,7 +93,8 @@ export default function WhatsApp() {
     .replaceAll('[Nombre]', vars.nombre.trim() || '[Nombre]')
     .replaceAll('[MES_ULTIMO_PAGO]', vars.mes.trim() || '[MES_ULTIMO_PAGO]');
   const pending = (filled.match(PLACEHOLDER_RE) || []).length;
-  const waLink = `https://wa.me/${toWaNumber(vars.tel)}?text=${encodeURIComponent(filled)}`;
+  // api.whatsapp.com directly: the wa.me redirect corrupts 4-byte emojis (shown as U+FFFD).
+  const waLink = `https://api.whatsapp.com/send?phone=${toWaNumber(vars.tel)}&text=${encodeURIComponent(filled)}`;
 
   useEffect(() => {
     chatRef.current?.scrollTo({ top: chatRef.current.scrollHeight, behavior: 'smooth' });
