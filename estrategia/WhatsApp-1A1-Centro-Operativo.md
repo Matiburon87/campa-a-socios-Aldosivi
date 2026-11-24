@@ -41,7 +41,7 @@ Se usan los scripts base + **[Nombre] + dato específico + contexto real**. No s
 ### 2.1 Lead caliente (5)
 > ¡Hola **[Nombre]**! 🦈 Vimos que empezaste el trámite y no lo completaste. Tenés 2 minutos para terminarlo.  
 > Con débito auto: **$38.000/mes** y el **primer mes GRATIS** hasta 31/10/2026.  
-> Link: [aldosivi.com.ar/socio] · Dudas, acá estamos.  
+> Link: [aldosivi.com/socio] · Dudas, acá estamos.  
 > — Equipo Aldosivi Socios
 
 ### 2.2 Socio inactivo (4)
@@ -82,7 +82,7 @@ Se usan los scripts base + **[Nombre] + dato específico + contexto real**. No s
 
 ### 2.8 Cierre (si respondió positivo)
 > ¡Genial **[Nombre]**! 🦈 Listo para el primer mes gratis.  
-> Te enviamos el link para cerrar: [aldosivi.com.ar/socio]  
+> Te enviamos el link para cerrar: [aldosivi.com/socio]  
 > ¿Preferís que te asesoremos paso a paso? Respondé "SI".  
 > — Equipo Aldosivi Socios
 

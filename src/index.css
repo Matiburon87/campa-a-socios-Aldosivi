@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Theme tokens ("R G B" triplets) ---------- */
+:root {
+  color-scheme: light;
+  --canvas: 243 246 244;
+  --surface: 255 255 255;
+  --ink: 15 63 34;
+  --ink-2: 20 83 45;
+  --ink-3: 22 101 52;
+  --shadow: 15 63 34;
+  --brand-50: 240 253 244;
+  --brand-100: 220 252 231;
+  --brand-700: 22 101 52;
+  --brand-800: 20 83 45;
+  --slate-50: 248 250 252;
+  --slate-100: 241 245 249;
+  --slate-200: 226 232 240;
+  --slate-300: 203 213 225;
+  --slate-400: 148 163 184;
+  --slate-500: 100 116 139;
+  --slate-600: 71 85 105;
+  --slate-700: 51 65 85;
+  --slate-800: 30 41 59;
+  --slate-900: 15 23 42;
+  --slate-950: 2 6 23;
+  --red-50: 254 242 242;
+  --red-100: 254 226 226;
+  --red-200: 254 202 202;
+  --red-700: 185 28 28;
+  --red-800: 153 27 27;
+  --red-950: 69 10 10;
+  --amber-50: 255 251 235;
+  --amber-100: 254 243 199;
+  --amber-200: 253 230 138;
+  --amber-700: 180 83 9;
+  --amber-800: 146 64 14;
+}
+
+.dark {
+  color-scheme: dark;
+  /* Layered greens: canvas < surface < slate-50/100 so cards read as raised. */
+  --canvas: 10 18 13;
+  --surface: 18 30 23;
+  --ink: 236 246 239;
+  --ink-2: 198 236 210;
+  --ink-3: 125 220 158;
+  --shadow: 0 0 0;
+  --brand-50: 22 48 33;
+  --brand-100: 34 72 49;
+  /* Brand fills a step brighter so buttons/badges stand out from dark cards. */
+  --brand-700: 21 128 61;
+  --brand-800: 22 101 52;
+  --slate-50: 25 40 31;
+  --slate-100: 32 50 40;
+  --slate-200: 46 66 55;
+  --slate-300: 66 88 76;
+  --slate-400: 128 148 136;
+  --slate-500: 156 174 163;
+  --slate-600: 182 198 188;
+  --slate-700: 208 219 212;
+  --slate-800: 228 236 231;
+  --slate-900: 241 246 243;
+  --slate-950: 248 250 249;
+  --red-50: 52 20 22;
+  --red-100: 76 27 29;
+  --red-200: 110 38 40;
+  --red-700: 252 165 165;
+  --red-800: 254 202 202;
+  --red-950: 254 226 226;
+  --amber-50: 50 37 10;
+  --amber-100: 74 54 13;
+  --amber-200: 107 79 19;
+  --amber-700: 252 211 77;
+  --amber-800: 253 230 138;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-canvas text-slate-800 font-sans antialiased transition-colors duration-300; }
+  ::selection { @apply bg-gold-300 text-brand-900; }
+  :focus-visible { @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-surface; }
+}
+
+@layer components {
+  .card { @apply bg-surface rounded-2xl border border-slate-200/80 shadow-card; }
+  .hero-gradient { background: radial-gradient(120% 140% at 0% 0%, #1a6b3c 0%, #14532d 45%, #0a2e17 100%); }
+  .dark .hero-gradient { background: radial-gradient(120% 140% at 0% 0%, #17603a 0%, #10432a 45%, #08241a 100%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06); }
+  .dark .card { @apply border-slate-200/60 shadow-none; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98]; }
+  .btn-primary { @apply btn bg-brand-800 text-white hover:bg-brand-700 shadow-sm; }
+  .btn-gold { @apply btn bg-gold-400 text-brand-900 hover:bg-gold-300 shadow-sm font-bold; }
+  .btn-ghost { @apply btn bg-white/10 text-white hover:bg-white/20 border border-white/20; }
+  .btn-soft { @apply btn bg-slate-100 text-slate-700 hover:bg-slate-200; }
+  .seg { @apply rounded-lg px-3.5 py-2 text-sm font-semibold transition whitespace-nowrap; }
+  .seg-on { @apply bg-brand-800 text-white shadow-sm; }
+  .seg-off { @apply bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900; }
+  .form-input { @apply mt-1 w-full rounded-lg border border-slate-300 bg-surface px-3 py-2 text-sm font-normal text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-700 focus:ring-2 focus:ring-brand-100; }
+}
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
+
+input[type='range'] { accent-color: #14532d; }
+.dark input[type='range'] { accent-color: #facc15; }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.animate-fade-up { animation: fade-up 0.25s ease-out both; }
+
+@media print {
+  /* Always print in the light theme */
+  html.dark {
+    color-scheme: light;
+    --canvas: 243 246 244; --surface: 255 255 255;
+    --ink: 15 63 34; --ink-2: 20 83 45; --ink-3: 22 101 52;
+    --brand-50: 240 253 244; --brand-100: 220 252 231; --brand-700: 22 101 52; --brand-800: 20 83 45;
+    --slate-50: 248 250 252; --slate-100: 241 245 249; --slate-200: 226 232 240; --slate-300: 203 213 225;
+    --slate-400: 148 163 184; --slate-500: 100 116 139; --slate-600: 71 85 105; --slate-700: 51 65 85;
+    --slate-800: 30 41 59; --slate-900: 15 23 42; --slate-950: 2 6 23;
+    --red-50: 254 242 242; --red-100: 254 226 226; --red-200: 254 202 202; --red-700: 185 28 28; --red-800: 153 27 27; --red-950: 69 10 10;
+    --amber-50: 255 251 235; --amber-100: 254 243 199; --amber-200: 253 230 138; --amber-700: 180 83 9; --amber-800: 146 64 14;
+  }
+  header, footer, nav { display: none !important; }
+  body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 12mm; }
+}
+
+/* Respect the OS "reduce motion" setting: no entrance animations, pings, spins or smooth scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
